@@ -1,4 +1,6 @@
-package LinkedList;
+package LinkedList.SlowFastPointers;
+
+import LinkedList.ListNode;
 
 // constant space - O(1) - https://leetcode.com/problems/palindrome-linked-list/
 // Bruteforce - create an List<Integer> , then check list is palindrome or not
