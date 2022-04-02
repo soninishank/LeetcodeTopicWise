@@ -1,5 +1,8 @@
-package LinkedList;
+package LinkedList.SlowFastPointers;
 
+import LinkedList.ListNode;
+
+// https://leetcode.com/problems/linked-list-cycle/
 public class LinkedListCycle {
     public boolean hasCycle(ListNode head) {
         ListNode slow = head;

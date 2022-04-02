@@ -1,4 +1,6 @@
-package LinkedList;
+package LinkedList.SlowFastPointers;
+
+import LinkedList.ListNode;
 
 // https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 public class RemoveNthNodeFromEndOfList {
