@@ -2,7 +2,7 @@ package LinkedList;
 
 import java.util.HashMap;
 
-// https://leetcode.com/problems/copy-list-with-random-pointer/w
+// https://leetcode.com/problems/copy-list-with-random-pointer/
 public class CopyListWithRandomPointer {
     // O(N) space
     public Node copyRandomListUsingHashMap(Node head) {
