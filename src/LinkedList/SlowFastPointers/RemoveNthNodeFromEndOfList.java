@@ -27,3 +27,7 @@ public class RemoveNthNodeFromEndOfList {
         return dummy.next;
     }
 }
+
+// head -> 1,2,3,4,5  size = 5 k = 2   diff= 2
+// dummy = 0,1,2,3,4,5  -> return dummy.next
+// temp = 0,1,2,3,4,5

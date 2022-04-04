@@ -1,4 +1,6 @@
-package LinkedList;
+package LinkedList.SlowFastPointers;
+
+import LinkedList.ListNode;
 
 public class MiddleLinkedList {
     public ListNode middleNode(ListNode head) {
