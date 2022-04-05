@@ -1,6 +1,6 @@
-package BinaryTree.Views;
+package Tree.BinaryTree.Views;
 
-import BinaryTree.TreeNode;
+import Tree.TreeNode;
 
 import java.util.*;
 
@@ -8,11 +8,12 @@ import java.util.*;
  * @author Nishank Soni
  * @project Leet Code Topic Wise on 4/1/22
  */
-public class BottomView {
-    ArrayList<Integer> resultList = new ArrayList<>();
+public class TopView {
 
-    private List<Integer> bottomView(TreeNode root) {
-        if (root == null) {
+    List<Integer> resultList = new ArrayList<>();
+
+    private List<Integer> topView(TreeNode root) {
+        if (null == root) {
             return resultList;
         }
         Queue<RowColDirection> queue = new LinkedList<>();
@@ -22,8 +23,6 @@ public class BottomView {
             RowColDirection poll = queue.poll();
             if (!hashMap.containsKey(poll.col)) {
                 hashMap.put(poll.col, new ArrayList<>());
-                hashMap.get(poll.col).add(poll.treeNode.val);
-            } else {
                 hashMap.get(poll.col).add(poll.treeNode.val);
             }
             if (poll.treeNode.left != null) {
@@ -36,7 +35,7 @@ public class BottomView {
         for (int key : hashMap.keySet()) {
             List<Integer> list = hashMap.get(key);
             for (int i = 0; i < list.size(); i++) {
-                if (i == list.size() - 1) {
+                if (i == 0) {
                     resultList.add(list.get(i));
                 }
             }

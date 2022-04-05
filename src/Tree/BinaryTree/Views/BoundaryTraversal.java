@@ -1,4 +1,4 @@
-package BinaryTree.Views;
+package Tree.BinaryTree.Views;
 
 /**
  * @author Nishank Soni

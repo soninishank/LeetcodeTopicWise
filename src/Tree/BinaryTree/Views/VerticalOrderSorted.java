@@ -1,6 +1,6 @@
-package BinaryTree.Views;
+package Tree.BinaryTree.Views;
 
-import BinaryTree.TreeNode;
+import Tree.TreeNode;
 
 import java.util.*;
 

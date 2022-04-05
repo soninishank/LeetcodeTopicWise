@@ -1,4 +1,4 @@
-package BinaryTree;
+package Tree;
 
 /**
  * @author Nishank Soni
