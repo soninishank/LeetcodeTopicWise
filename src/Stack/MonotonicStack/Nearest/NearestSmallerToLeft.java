@@ -7,6 +7,12 @@ import java.util.Stack;
 // https://youtu.be/85LWui3FlVk
 public class NearestSmallerToLeft {
 
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 0, 2, 5};
+        int[] ints = new NearestSmallerToLeft().nearestSmallerToLeft(arr);
+        System.out.println(Arrays.toString(ints));
+    }
+
     private int[] nearestSmallerToLeft(int[] arr) {
         int[] result = new int[arr.length];
         Stack<Integer> stack = new Stack<>();
@@ -22,11 +28,5 @@ public class NearestSmallerToLeft {
             stack.push(i);
         }
         return result;
-    }
-
-    public static void main(String[] args) {
-        int arr[] = {1, 3, 0, 2, 5};
-        int[] ints = new NearestSmallerToLeft().nearestSmallerToLeft(arr);
-        System.out.println(Arrays.toString(ints));
     }
 }

@@ -14,6 +14,17 @@ public class StockSpanner {
         index = 0;
     }
 
+    public static void main(String[] args) {
+        StockSpanner stockSpanner = new StockSpanner();
+        System.out.println(stockSpanner.next(100)); // return 1
+        System.out.println(stockSpanner.next(80));  // return 1
+        System.out.println(stockSpanner.next(60));  // return 1
+        System.out.println(stockSpanner.next(70));  // return 2
+        System.out.println(stockSpanner.next(60));  // return 1
+        System.out.println(stockSpanner.next(75));  // return 4, because the last 4 prices
+        System.out.println(stockSpanner.next(85));
+    }
+
     public int next(int price) {
         while (!stack.isEmpty() && stack.peek().currentValue <= price) {
             stack.pop();
@@ -27,17 +38,6 @@ public class StockSpanner {
         stack.push(new StackIndex(price, index));
         index++;
         return value;
-    }
-
-    public static void main(String[] args) {
-        StockSpanner stockSpanner = new StockSpanner();
-        System.out.println(stockSpanner.next(100)); // return 1
-        System.out.println(stockSpanner.next(80));  // return 1
-        System.out.println(stockSpanner.next(60));  // return 1
-        System.out.println(stockSpanner.next(70));  // return 2
-        System.out.println(stockSpanner.next(60));  // return 1
-        System.out.println(stockSpanner.next(75));  // return 4, because the last 4 prices
-        System.out.println(stockSpanner.next(85));
     }
 }
 

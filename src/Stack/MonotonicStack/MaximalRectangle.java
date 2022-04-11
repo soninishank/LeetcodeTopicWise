@@ -4,6 +4,12 @@ package Stack.MonotonicStack;
 // TODO
 public class MaximalRectangle {
 
+    public static void main(String[] args) {
+        char[][] ch = {{'1', '0'}, {'0', '1'}};
+        int i = new MaximalRectangle().maximalRectangle(ch);
+        System.out.println(i);
+    }
+
     private int maximalRectangle(char[][] matrix) {
         int maxRectangle = Integer.MIN_VALUE;
         int[] result = new int[matrix[0].length];
@@ -19,11 +25,5 @@ public class MaximalRectangle {
             maxRectangle = Math.max(maxRectangle, new LargestRectangleInHistogram().largestRectangleArea(result));
         }
         return maxRectangle;
-    }
-
-    public static void main(String[] args) {
-        char[][] ch = {{'1', '0'}, {'0', '1'}};
-        int i = new MaximalRectangle().maximalRectangle(ch);
-        System.out.println(i);
     }
 }

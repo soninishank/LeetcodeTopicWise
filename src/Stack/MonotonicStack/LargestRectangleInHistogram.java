@@ -5,6 +5,12 @@ import java.util.Stack;
 // TODO - review
 // https://leetcode.com/problems/largest-rectangle-in-histogram/
 public class LargestRectangleInHistogram {
+    public static void main(String[] args) {
+        int[] arr = {2, 1, 5, 6, 2, 3};
+        int i = new LargestRectangleInHistogram().largestRectangleArea(arr);
+        System.out.println(i);
+    }
+
     public int largestRectangleArea(int[] heights) {
         if (heights == null || heights.length == 0) {
             return 0;
@@ -19,13 +25,6 @@ public class LargestRectangleInHistogram {
         }
         return max;
     }
-
-    public static void main(String[] args) {
-        int[] arr = {2, 1, 5, 6, 2, 3};
-        int i = new LargestRectangleInHistogram().largestRectangleArea(arr);
-        System.out.println(i);
-    }
-
 
     private int[] nearest_smaller_to_right(int[] arr) {
         int[] result = new int[arr.length];

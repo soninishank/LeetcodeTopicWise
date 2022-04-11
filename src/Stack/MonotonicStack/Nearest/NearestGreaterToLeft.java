@@ -7,7 +7,13 @@ import java.util.Stack;
 // https://www.callicoder.com/nearest-greater-to-left/
 public class NearestGreaterToLeft {
 
-    private int[] findNearestGreaterLeft(int[] arr) {
+    public static void main(String[] args) {
+        int[] arr = {9, 4, 15, 6, 2, 10}; // -1,-1,3,-1
+        int[] nearestGreaterLeft = new NearestGreaterToLeft().nearestGreaterToLeft(arr);
+        System.out.println(Arrays.toString(nearestGreaterLeft));
+    }
+
+    private int[] nearestGreaterToLeft(int[] arr) {
         Stack<Integer> stack = new Stack<>();
         int[] result = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
@@ -22,11 +28,5 @@ public class NearestGreaterToLeft {
             stack.push(i);
         }
         return result;
-    }
-
-    public static void main(String[] args) {
-        int arr[] = {9, 4, 15, 6, 2, 10}; // -1,-1,3,-1
-        int[] nearestGreaterLeft = new NearestGreaterToLeft().findNearestGreaterLeft(arr);
-        System.out.println(Arrays.toString(nearestGreaterLeft));
     }
 }
