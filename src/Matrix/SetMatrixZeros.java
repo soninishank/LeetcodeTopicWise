@@ -20,7 +20,7 @@ public class SetMatrixZeros {
             }
         }
 
-        // Travere other rows and col
+        // Traverse other rows and col
         for (int i = 1; i < rowLength; i++) {
             for (int j = 1; j < colLength; j++) {
                 if (matrix[i][j] == 0) { // If it's zero
