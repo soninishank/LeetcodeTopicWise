@@ -8,6 +8,9 @@ import java.util.*;
  * @author Nishank Soni
  * @project Leet Code Topic Wise on 4/1/22 - 987 leetcode
  */
+// treemap of treemap
+// Inside TreeMap<Key,Value> -> key is row and value is PriorityQueue
+// Main TreeMap<Key,Value> -> key is column  and Value is above treeMap
 public class VerticalOrderSorted {
     List<List<Integer>> resultList = new ArrayList<>();
 

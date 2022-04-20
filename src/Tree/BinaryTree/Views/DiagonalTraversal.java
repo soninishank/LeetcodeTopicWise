@@ -4,7 +4,7 @@ import Tree.TreeNode;
 
 import java.util.*;
 
-// Right side -> 0
+// Right side -> 0 - same value on each step
 // left side -> -1 on each step
 // https://www.geeksforgeeks.org/diagonal-traversal-of-binary-tree/
 public class DiagonalTraversal {
