@@ -8,6 +8,8 @@ import java.util.*;
  * @author Nishank Soni
  * @project Leet Code Topic Wise on 4/1/22
  */
+// https://leetcode.com/problems/binary-tree-vertical-order-traversal/
+// https://www.geeksforgeeks.org/print-binary-tree-vertical-order/
 public class VerticalOrder {
     List<List<Integer>> result = new ArrayList<>();
 

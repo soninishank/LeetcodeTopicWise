@@ -3,9 +3,10 @@ package BuyAndSellStock;
 import java.util.Arrays;
 
 /**
- * @author akhilkalari
+ * @author nishank soni
  * @project Leetcode on 3/29/22
  */
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 public class BestTimeToBuySellStock {
 
     public int maxProfit(int[] prices, int index, int buy, int[][] dp) {
@@ -20,6 +21,19 @@ public class BestTimeToBuySellStock {
         } else {
             return dp[index][buy] = Math.max(prices[index] + maxProfit(prices, index + 1, buy ^ 1, dp), maxProfit(prices, index + 1, buy, dp));
         }
+    }
+
+    public int maxProfit(int[] prices) {
+        int minValue = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minValue) {
+                minValue = prices[i];
+            } else if (prices[i] - minValue > maxProfit) {
+                maxProfit = prices[i] - minValue;
+            }
+        }
+        return maxProfit;
     }
 
     public static void main(String[] args) {

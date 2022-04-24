@@ -11,6 +11,7 @@ import java.util.*;
 // treemap of treemap
 // Inside TreeMap<Key,Value> -> key is row and value is PriorityQueue
 // Main TreeMap<Key,Value> -> key is column  and Value is above treeMap
+// https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
 public class VerticalOrderSorted {
     List<List<Integer>> resultList = new ArrayList<>();
 

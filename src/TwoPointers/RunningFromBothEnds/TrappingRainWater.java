@@ -4,6 +4,7 @@ package TwoPointers.RunningFromBothEnds;
  * @author Nishank Soni
  * @project Leet Code Topic Wise on 4/1/22
  */
+// https://leetcode.com/problems/trapping-rain-water/
 public class TrappingRainWater {
     public int trap(int[] height) {
         int low = 0, high = height.length - 1;
