@@ -1,4 +1,4 @@
-package BFS;
+package WordSeries;
 
 import java.util.*;
 
