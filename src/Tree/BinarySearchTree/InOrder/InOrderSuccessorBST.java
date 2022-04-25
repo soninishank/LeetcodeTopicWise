@@ -2,6 +2,7 @@ package Tree.BinarySearchTree.InOrder;
 
 import Tree.TreeNode;
 
+// https://leetcode.com/problems/inorder-successor-in-bst/
 public class InOrderSuccessorBST {
     TreeNode result = null;
 
@@ -17,11 +18,11 @@ public class InOrderSuccessorBST {
         if (root == null) {
             return;
         }
-        inorderSuccessor(root.left, p);
+        getData(root.left, p);
         if (result == null && root.val > p.val) {
             result = root;
             return;
         }
-        inorderSuccessor(root.right, p);
+        getData(root.right, p);
     }
 }
