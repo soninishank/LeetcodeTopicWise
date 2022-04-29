@@ -1,0 +1,18 @@
+Approach
+
+How does the Property of BST help to solve this problem?
+We all know that for current node value data, for all the nodes lying in the left subtree of the current node will have
+strictly lesser value than data while all the nodes lying in the right subtree of the current node will have strictly more
+value than data.
+Case 1:- When data is strictly less than low, It is obvious that all the nodes lying in the left subtree will also have
+strictly lesser value than data, so we would traverse the right subtree only for finding the sum.
+Case 2:- When data is strictly more than high, It is obvious that all the nodes lying in the right subtree will also have
+strictly more value than data, so we would traverse the left subtree only for finding the sum
+Case 3:- When data is in range [low, high], we would traverse both left subtree and right subtree, and also, we need to add
+the current node's value since it lies in the given range.
+
+
+Sorted Coding.Array to BST : low,high,mid
+the middle element in the sorted array is root
+all the elements left of middle element is root.left
+all the elements right of middle element is root.right

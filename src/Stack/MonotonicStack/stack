@@ -1,7 +1,0 @@
-1.Stack is last in first out - LIFO
-2.the last element added will be processed first
-3.Operations :
-  push(int val)
-  pop()
-  top()
-  isEmpty()
