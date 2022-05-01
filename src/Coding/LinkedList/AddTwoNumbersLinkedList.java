@@ -1,6 +1,7 @@
 package Coding.LinkedList;
 
 // https://leetcode.com/problems/add-two-numbers/
+// Do its other variation - mostly asked as a follow-up question
 public class AddTwoNumbersLinkedList {
     // sum = 11 , sum / 10 = 1 -> quotient -> carry
     // sum = 11 , sum % 10 = 1 -> remainder -> current value

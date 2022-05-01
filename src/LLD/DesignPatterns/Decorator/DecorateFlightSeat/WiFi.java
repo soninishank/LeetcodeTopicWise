@@ -1,6 +1,6 @@
-package LLD.Decorator.DecorateFlightSeat;
+package LLD.DesignPatterns.Decorator.DecorateFlightSeat;
 
-import LLD.Decorator.FlightSeat;
+import LLD.DesignPatterns.Decorator.FlightSeat;
 
 public class WiFi extends FlightSeatDecorator {
 

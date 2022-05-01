@@ -2,19 +2,28 @@ package Coding.Tree.BinaryTree.Parent;
 
 import Coding.Tree.TreeNode;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
+// Burn the binary tree starting from the target node
+// https://www.geeksforgeeks.org/burn-the-binary-tree-starting-from-the-target-node/
+// Three directions
+// 1.left
+// 2.right
+// 3.Parent Node
 public class MinTimeToBurnACompleteTree {
 
     public int minTime(TreeNode root, TreeNode target) {
-        HashMap<TreeNode, TreeNode> parentNodeReference = new HashMap<>();
-        List<Integer> list = new ArrayList<>();
-        buildParentRef(root, parentNodeReference);
-        int value = dfs(root, target, parentNodeReference);
+        HashMap<TreeNode, TreeNode> parentNodeReferenceHashMap = new HashMap<>();
+        buildParentRef(root, parentNodeReferenceHashMap);
+        int value = dfs(root, target, parentNodeReferenceHashMap);
         return value;
     }
 
 
+    // Build a hashmap of node with parent reference
     private void buildParentRef(TreeNode root, HashMap<TreeNode, TreeNode> parentRef) {
         if (root == null) {
             return;
@@ -36,7 +45,6 @@ public class MinTimeToBurnACompleteTree {
     }
 
     // when the adjacent node start burning they all start burning the nearby nodes at once
-
     private int dfs(TreeNode root, TreeNode target, HashMap<TreeNode, TreeNode> parentRefHashMap) {
         if (root == null) {
             return 0;
@@ -48,7 +56,6 @@ public class MinTimeToBurnACompleteTree {
         int currentLevel = 0;
         while (!queue.isEmpty()) {
             int size = queue.size();
-            currentLevel++;
             for (int i = 0; i < size; i++) {
                 TreeNode poll = queue.poll();
                 // left
@@ -67,6 +74,7 @@ public class MinTimeToBurnACompleteTree {
                     visitedHashset.add(parentRefHashMap.get(poll));
                 }
             }
+            currentLevel++;
         }
         return currentLevel;
     }

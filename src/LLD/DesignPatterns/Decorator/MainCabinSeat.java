@@ -1,4 +1,4 @@
-package LLD.Decorator;
+package LLD.DesignPatterns.Decorator;
 
 public class MainCabinSeat implements FlightSeat {
     @Override

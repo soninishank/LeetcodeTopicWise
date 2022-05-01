@@ -1,4 +1,4 @@
-package LLD.Fliter.Model;
+package LLD.DesignPatterns.Fliter.Model;
 
 public class Laptop {
     private Integer id;

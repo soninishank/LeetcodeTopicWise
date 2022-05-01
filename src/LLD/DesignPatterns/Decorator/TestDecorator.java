@@ -1,8 +1,8 @@
-package LLD.Decorator;
+package LLD.DesignPatterns.Decorator;
 
-import LLD.Decorator.DecorateFlightSeat.HeadPhone;
-import LLD.Decorator.DecorateFlightSeat.LiveTV;
-import LLD.Decorator.DecorateFlightSeat.WiFi;
+import LLD.DesignPatterns.Decorator.DecorateFlightSeat.HeadPhone;
+import LLD.DesignPatterns.Decorator.DecorateFlightSeat.LiveTV;
+import LLD.DesignPatterns.Decorator.DecorateFlightSeat.WiFi;
 
 public class TestDecorator {
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
-package LLD.Fliter.FliterCriteria;
+package LLD.DesignPatterns.Fliter.FliterCriteria;
 
-import LLD.Fliter.Model.Laptop;
+import LLD.DesignPatterns.Fliter.Model.Laptop;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package LLD.Fliter;
+package LLD.DesignPatterns.Fliter;
 
-import LLD.Fliter.Model.Laptop;
+import LLD.DesignPatterns.Fliter.Model.Laptop;
 
 import java.util.Arrays;
 import java.util.List;
