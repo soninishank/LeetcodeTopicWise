@@ -11,7 +11,6 @@ import java.util.Stack;
 public class BasicCalculatorIII {
 
     Queue<Character> queue = new LinkedList<>();
-
     public int calculate(String s) {
         if (s == null || s.length() == 0) {
             return 0;

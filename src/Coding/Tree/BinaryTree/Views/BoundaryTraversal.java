@@ -14,15 +14,16 @@ import java.util.*;
 // print right view - without leaf node
 public class BoundaryTraversal {
 
-    ArrayList<Integer> resultList = new ArrayList<>();
+    List<Integer> resultList = new ArrayList<>();
 
-    ArrayList<Integer> printBoundary(TreeNode root) {
+    private List<Integer> printBoundary(TreeNode root) {
         if (root == null) {
             return resultList;
         }
         resultList.add(root.val);
         printLeftViewExcludeLeafNode(root.left);
-        printBottomViewIncludeOnlyLeafNode(root);
+        leaves(root.left);
+        leaves(root.right);
         printRightViewExcludeLeafNode(root.right);
         return resultList;
     }
@@ -54,38 +55,14 @@ public class BoundaryTraversal {
         }
     }
 
-    private void printBottomViewIncludeOnlyLeafNode(TreeNode root) {
-        if (root == null) {
+    public void leaves(TreeNode root) {
+        if (root == null) return;
+        if (root.left == null && root.right == null) {
+            resultList.add(root.val);
             return;
         }
-        Queue<RowColDirection> queue = new LinkedList<>();
-        queue.add(new RowColDirection(0, root));
-        TreeMap<Integer, List<Integer>> hashMap = new TreeMap<>();
-        while (!queue.isEmpty()) {
-            RowColDirection poll = queue.poll();
-            if (poll.treeNode.left == null && poll.treeNode.right == null) {
-                if (!hashMap.containsKey(poll.col)) {
-                    hashMap.put(poll.col, new ArrayList<>());
-                    hashMap.get(poll.col).add(poll.treeNode.val);
-                } else {
-                    hashMap.get(poll.col).add(poll.treeNode.val);
-                }
-            }
-            if (poll.treeNode.left != null) {
-                queue.add(new RowColDirection(poll.col - 1, poll.treeNode.left));
-            }
-            if (poll.treeNode.right != null) {
-                queue.add(new RowColDirection(poll.col + 1, poll.treeNode.right));
-            }
-        }
-        for (int key : hashMap.keySet()) {
-            List<Integer> list = hashMap.get(key);
-            for (int i = 0; i < list.size(); i++) {
-                if (i == list.size() - 1) {
-                    resultList.add(list.get(i));
-                }
-            }
-        }
+        leaves(root.left);
+        leaves(root.right);
     }
 
     private void printRightViewExcludeLeafNode(TreeNode root) {
@@ -120,20 +97,21 @@ public class BoundaryTraversal {
     public static void main(String[] args) {
         TreeNode tree = new TreeNode(1);
         tree.left = new TreeNode(2);
+        tree.right = new TreeNode(3);
+
         tree.left.left = new TreeNode(4);
-        tree.left.right = new TreeNode(9);
-
-        tree.left.left.left = new TreeNode(6);
-        tree.left.left.right = new TreeNode(5);
-        tree.left.right.right = new TreeNode(3);
+        tree.left.right = new TreeNode(5);
+        tree.right.left = new TreeNode(6);
 
 
-        tree.left.right.right.left = new TreeNode(7);
-        tree.left.right.right.right = new TreeNode(8);
+        tree.left.right.left = new TreeNode(7);
+        tree.left.right.right = new TreeNode(8);
+
+        tree.right.left.left = new TreeNode(9);
+        tree.right.left.right = new TreeNode(10);
 
 
-
-        ArrayList<Integer> integers = new BoundaryTraversal().printBoundary(tree);
+        List<Integer> integers = new BoundaryTraversal().printBoundary(tree);
         System.out.println(integers);
     }
 }

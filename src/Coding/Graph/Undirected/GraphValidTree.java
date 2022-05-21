@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 // https://leetcode.com/problems/graph-valid-tree/
+// Detect a cycle in undirected graph
 public class GraphValidTree {
     List<List<Integer>> adjList;
     HashSet<Integer> visited;

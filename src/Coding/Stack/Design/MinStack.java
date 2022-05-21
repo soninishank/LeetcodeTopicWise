@@ -4,16 +4,16 @@ package Coding.Stack.Design;
 // https://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/
 // https://leetcode.com/problems/min-stack/
 public class MinStack {
-    NodeData head;
+    MinNodeData head;
 
     private MinStack() {
     }
 
     private void push(int val) {
         if (head == null) { // when head is null then minValue and current value will be same  and also nodePtr is null
-            head = new NodeData(val, val, null);
+            head = new MinNodeData(val, val, null);
         } else {
-            head = new NodeData(val, Math.min(val, head.minValue), head); // passing reference of head pointer
+            head = new MinNodeData(val, Math.min(val, head.minValue), head); // passing reference of head pointer
         }
     }
 
@@ -40,12 +40,12 @@ public class MinStack {
         minStack.getMin(); // return -2
     }
 
-    class NodeData {
+    class MinNodeData {
         int value;
         int minValue;
-        NodeData next;
+        MinNodeData next;
 
-        private NodeData(int value, int minValue, NodeData nodePtr) {
+        private MinNodeData(int value, int minValue, MinNodeData nodePtr) {
             this.value = value;
             this.minValue = minValue;
             this.next = nodePtr;

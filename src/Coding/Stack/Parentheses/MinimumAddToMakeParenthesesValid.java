@@ -2,6 +2,7 @@ package Coding.Stack.Parentheses;
 
 import java.util.Stack;
 
+// https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
 public class MinimumAddToMakeParenthesesValid {
     public int minAddToMakeValid(String s) {
         Stack<Character> stack = new Stack<>();

@@ -5,7 +5,7 @@ import java.util.Queue;
 
 // Draw on pen and paper
 // helperQueue is used only at the time of pop
-// we will maintain topValue variable - always the newly inserted element is top element and when poping out
+// we will maintain topValue variable - always the newly inserted element is top element and when popping out
 // from main queue last element is top element
 // https://leetcode.com/problems/implement-stack-using-queues/
 public class ImplementStackUsingQueue {

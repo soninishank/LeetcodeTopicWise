@@ -1,43 +1,49 @@
 package Coding.Graph;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
-public class NetworkDelayTime {
+// https://leetcode.com/problems/network-delay-time/
+class NetworkDelayTime {
+    // Adjacency list
     public int networkDelayTime(int[][] times, int N, int K) {
-        Map<Integer, List<int[]>> graph = new HashMap<>();
-        for (int i = 1; i <= N; ++i) graph.put(i, new ArrayList<>());
+        Map<Integer, Map<Integer, Integer>> map = new HashMap<>();
         for (int[] time : times) {
-            graph.get(time[0]).add(new int[]{time[1], time[2]});
+            map.putIfAbsent(time[0], new HashMap<>());
+            map.get(time[0]).put(time[1], time[2]);
         }
-        // Bellman-Ford (SPFA) to compute the shortest path from K to all other nodes.
-        Integer[] cost = new Integer[N + 1];
-        Deque<Integer> queue = new ArrayDeque<>();
-        cost[K] = 0;
-        queue.add(K);
-        while (queue.size() > 0) {
-            int currNode = queue.remove();
-            for (int[] adjacentNode : graph.get(currNode)) {
-                if (cost[adjacentNode[0]] == null || cost[currNode] + adjacentNode[1] < cost[adjacentNode[0]]) {
-                    cost[adjacentNode[0]] = cost[currNode] + adjacentNode[1];
-                    queue.addLast(adjacentNode[0]);
+        //distance, node into pq
+        Queue<int[]> pq = new PriorityQueue<>((a, b) -> (a[0] - b[0]));
+        pq.add(new int[]{0, K});
+        boolean[] visited = new boolean[N + 1]; //because starting from 1 ,N = 4 so N = 1 to 4
+        int res = 0;
+        while (!pq.isEmpty()) {
+            int[] cur = pq.remove();
+            int nodeDistance = cur[0];
+            int currentNode = cur[1];
+            if (visited[currentNode]) {
+                continue;
+            }
+            visited[currentNode] = true;
+            res = nodeDistance;
+            N--;
+            if (map.containsKey(currentNode)) {
+                // visit its neighbouring node
+                for (int neighbour : map.get(currentNode).keySet()) {
+                    pq.add(new int[]{nodeDistance + map.get(currentNode).get(neighbour), neighbour});
                 }
             }
         }
-
-        int result = 0;
-        for (int i = 1; i < cost.length; ++i) {
-            if (cost[i] == null) return -1;
-            result = Math.max(result, cost[i]);
-        }
-        return result;
+        return N == 0 ? res : -1;
     }
 
     public static void main(String[] args) {
+        // u,v,w -> w is the weight
         int[][] times = {{2, 1, 1}, {2, 3, 1}, {3, 4, 1}};
         int n = 4, k = 2;
         int i = new NetworkDelayTime().networkDelayTime(times, n, k);
         System.out.println(i);
     }
-
-
 }

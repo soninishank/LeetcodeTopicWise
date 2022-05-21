@@ -1,0 +1,9 @@
+MinPriorityQueue : minimum element is on top - smallest to largest - when you pop - smaller will come out
+        PriorityQueue<Integer> minPQ = new PriorityQueue<>();
+        PriorityQueue<Integer> minPriorityQueue = new PriorityQueue<>((o1, o2) -> hashMap.get(o1) - hashMap.get(o2)); // ascending order
+
+
+MaxPriorityQueue : maximum element is on top - largest to smallest - when you pop - largest will come out
+PriorityQueue<Integer> maxPQ = new PriorityQueue<>(Collections.reverseOrder());
+PriorityQueue<Integer> maxPriorityQueue = new PriorityQueue<>((o1, o2) -> hashMap.get(o2) - hashMap.get(o1)); // descending order
+

@@ -2,10 +2,12 @@ package Coding.Stack.Parentheses;
 
 import java.util.Stack;
 
+// "()(()" -> the output is 2 -> it means we need in sequence not in breaks
+// "()(()" -> just draw on pen and paper , you will understand it
 // TODO - https://leetcode.com/problems/longest-valid-parentheses/
 // Check if the string scanned so far is valid.
 // Find the length of the longest valid string.
-// In order to do so, we start by pushing -1−1 onto the stack. For every \text{‘(’}‘(’ encountered, we push its index
+// In order to do so, we start by pushing -1 onto the stack. For every \text{‘(’}‘(’ encountered, we push its index
 // onto the stack.
 // For every \text{‘)’}‘)’ encountered, we pop the topmost element. Then, the length of the currently encountered
 // valid string of parentheses will be the difference between the current element's index and the top element of the

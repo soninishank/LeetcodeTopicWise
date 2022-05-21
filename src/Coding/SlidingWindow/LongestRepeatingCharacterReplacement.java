@@ -5,20 +5,21 @@ package Coding.SlidingWindow;
 // https://leetcode.com/problems/longest-repeating-character-replacement/
 public class LongestRepeatingCharacterReplacement {
     public int characterReplacement(String s, int k) {
-        int end = 0, start = 0, maxCount = 0;
-        int arr[] = new int[256];
-        int result = 0;
+        int[] cArr = new int[26];
+        int maxCount = 0, start = 0, maxSize = 0;
+        int end = 0;
         while (end < s.length()) {
-            arr[s.charAt(end)]++;
-            maxCount = Math.max(maxCount, arr[s.charAt(end)]);
+            int index = s.charAt(end) - 'A';
+            cArr[index]++;
+            maxCount = Math.max(maxCount, cArr[index]);
             end++;
-            while (end - start - maxCount > k) {
-                arr[s.charAt(start)]--;
+            if (end - start - maxCount > k) {
+                cArr[s.charAt(start) - 'A']--;
                 start++;
             }
-            result = Math.max(result, end - start);
+            maxSize = Math.max(maxSize, end - start);
         }
-        return result;
+        return maxSize;
     }
 
     public static void main(String[] args) {

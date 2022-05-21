@@ -5,6 +5,7 @@ import java.util.Stack;
 
 // https://www.geeksforgeeks.org/find-the-nearest-smaller-numbers-on-left-side-in-an-array/
 // https://youtu.be/85LWui3FlVk
+// https://practice.geeksforgeeks.org/problems/smallest-number-on-left3403/1/
 public class NearestSmallerToLeft {
 
     public static void main(String[] args) {

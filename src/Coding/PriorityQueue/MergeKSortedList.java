@@ -3,6 +3,7 @@ package Coding.PriorityQueue;
 import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/merge-k-sorted-lists/
+// Blind-75
 public class MergeKSortedList {
     public ListNode mergeKLists(ListNode[] lists) {
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();

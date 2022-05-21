@@ -3,12 +3,12 @@ package Coding.Tree.BinaryTree.Symmetry;
 import Coding.Tree.TreeNode;
 
 // https://leetcode.com/problems/invert-binary-tree/
+// swapping a tree
 public class InvertBinaryTree {
     public TreeNode invertTree(TreeNode root) {
         if (root == null) {
             return null;
         }
-
         TreeNode temp = invertTree(root.left);// just saving left tree
         root.left = invertTree(root.right);  // assigning right tree to left
         root.right = temp;// then left to right

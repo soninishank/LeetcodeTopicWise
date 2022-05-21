@@ -1,28 +1,34 @@
-package Coding.PriorityQueue;
+package Coding.PriorityQueue.K;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+// largest repetitive elements return
+// remove smaller counts
+//https://leetcode.com/problems/top-k-frequent-elements/
+// Blind-75
 public class TopKFrequentElements {
     public int[] topKFrequent(int[] nums, int k) {
         HashMap<Integer, Integer> hashMap = new HashMap<>();
         for (int num : nums) {
             hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
         }
-        System.out.println(hashMap);
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((o1, o2) -> hashMap.get(o1) - hashMap.get(o2)); // descending
-        for (int num : nums) {
+        for (int num : hashMap.keySet()) {
             priorityQueue.add(num);
             if (priorityQueue.size() > k) {
                 priorityQueue.poll();
             }
         }
-        while (!priorityQueue.isEmpty()) {
-            int value = priorityQueue.poll();
-            System.out.println(value);
+        int[] result = new int[priorityQueue.size()];
+        int i = result.length - 1;
+        // Here
+        while (priorityQueue.size() > 0) {
+            result[i] = priorityQueue.poll();
+            i--;
         }
-        return null;
+        return result;
     }
 
     public static void main(String[] args) {
