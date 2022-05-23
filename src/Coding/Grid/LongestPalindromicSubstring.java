@@ -1,7 +1,8 @@
 package Coding.Grid;
 
+// https://leetcode.com/problems/longest-palindromic-substring/
 public class LongestPalindromicSubstring {
-    // https://leetcode.com/problems/longest-palindromic-substring/
+
     public String longestPalindrome(String s) {
         int[][] dp = new int[s.length()][s.length()];
         String result = "";

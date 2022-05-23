@@ -3,6 +3,7 @@ package Coding.Backtracking;
 import java.util.ArrayList;
 import java.util.List;
 
+// https://leetcode.com/problems/permutations/
 public class Permutation {
 
     List<List<Integer>> permuteList = new ArrayList<>();
@@ -11,21 +12,19 @@ public class Permutation {
         if (nums.length == 0) {
             return permuteList;
         }
-        applyPermutationBacktracking(nums, 0, new ArrayList<Integer>());
+        applyPermutationBacktracking(nums, new ArrayList<Integer>());
         return permuteList;
     }
 
-    private void applyPermutationBacktracking(int[] nums, int index, ArrayList<Integer> arrayList) {
+    private void applyPermutationBacktracking(int[] nums, ArrayList<Integer> arrayList) {
         if (arrayList.size() == nums.length) {
             permuteList.add(new ArrayList<>(arrayList));
             return;
         }
-        if (index > nums.length) {
-            return;
-        }
-        for (int i = index; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
+            if (arrayList.contains(nums[i])) continue;
             arrayList.add(nums[i]);
-            applyPermutationBacktracking(nums, index + 1, arrayList);
+            applyPermutationBacktracking(nums, arrayList);
             arrayList.remove(arrayList.size() - 1);
         }
     }

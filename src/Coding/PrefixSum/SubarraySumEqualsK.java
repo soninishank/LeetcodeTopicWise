@@ -2,7 +2,7 @@ package Coding.PrefixSum;
 
 import java.util.HashMap;
 
-// running sum
+// running sum - subarray with given sum
 // https://leetcode.com/problems/subarray-sum-equals-k/
 public class SubarraySumEqualsK {
 
