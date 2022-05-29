@@ -1,0 +1,3 @@
+-- creational design pattern - it deal with the object creation
+-- common shareable data - you want to share with the multiple classes
+-- java.lang.runtime

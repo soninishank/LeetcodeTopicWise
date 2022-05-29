@@ -1,0 +1,46 @@
+HashMap<Integer,Integer> hashmap = new HashMap<>();
+1.Initially it will create a bucket of size 16 - 0 to 15
+2.Each bucket internally uses a linked list
+3.Linked List contains a Node
+4.Each bucket can have N number of Node
+5.Node : Key | value | hash | next
+6.put (key K , Value V)
+  hash(K)
+  index = hash & (n-1)
+7.if you got the same index (also known as hashing collision) - it will go to that index
+  and calls the equals method - if they are different - than it will change the pointer of next node and update the next pointer
+  number
+8.map.put(null,"") -> if key is null - it will be placed in zero bucket
+9.enhancement done in Java 8 : initially it was used as linked list but after certain threshold it gets converted to Balanced
+tree.
+
+
+
+
+
+
+
+
+
+
+
+* Whenever we call get( Key k )  method on the HashMap object . First it checks that whether key is null or not .  Note that there can only be one null key in HashMap .
+
+If key is null , then Null keys always map to hash 0, thus index 0.
+
+If key is not null then , it will call hashfunction on the key object , see line 4 in above method i.e. key.hashCode()  ,so after key.hashCode() returns hashValue , line 4 looks like
+
+4.int hash = hash(hashValue)
+
+ , and now ,it applies returned hashValue into its own hashing function .
+
+We might wonder why we are calculating the hashvalue again using hash(hashValue). Answer is ,It defends against poor quality
+hash functions.
+Now step 4 final  hashvalue is used to find the bucket location at which the Entry object is stored . Entry object stores in
+the bucket like this (hash,key,value,bucketindex) .
+Interviewer: What if  when two different keys have the same hashcode ?
+Solution, equals() method comes to rescue.Here candidate gets puzzled. Since bucket is one and we have two objects with the
+same hashcode .Candidate usually forgets that bucket is a simple linked list.The bucket is the linked list effectively . Its
+not a LinkedList as in a java.util.LinkedList - It's a separate (simpler) implementation just for the map .
+So we traverse through linked list , comparing keys in each entries using keys.equals() until it return true.
+Then the corresponding entry object Value is returned .

@@ -25,10 +25,10 @@ public class PalindromePartitioning {
         for (int i = 0; i < str.length(); i++) {
             String substring = str.substring(0, i + 1);
             if (isPalindrome(substring)) {
-                arrayList.add(substring);
+                arrayList.add(substring); // choose
                 String remainingSubstring = str.substring(i + 1);
-                applyPalindromePartition(remainingSubstring, arrayList);
-                arrayList.remove(arrayList.size() - 1);
+                applyPalindromePartition(remainingSubstring, arrayList); // explore
+                arrayList.remove(arrayList.size() - 1); // un-choose
             }
         }
     }
