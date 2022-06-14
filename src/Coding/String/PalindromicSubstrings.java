@@ -3,6 +3,7 @@ package Coding.String;
 // https://leetcode.com/problems/palindromic-substrings/
 public class PalindromicSubstrings {
     public int countSubstrings(String s) {
+        System.out.println(Integer.MAX_VALUE);
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
             count += checkPalindrome(s, i, i);
@@ -11,6 +12,8 @@ public class PalindromicSubstrings {
         return count;
     }
 
+    // we are passing complete string
+    // and just checking through index
     private int checkPalindrome(String s, int low, int high) {
         int count = 0;
         while (low >= 0 && high < s.length()) {
@@ -26,7 +29,7 @@ public class PalindromicSubstrings {
     }
 
     public static void main(String[] args) {
-        String s = "abc";
+        String s = "babab";
         int i = new PalindromicSubstrings().countSubstrings(s);
         System.out.println(i);
     }

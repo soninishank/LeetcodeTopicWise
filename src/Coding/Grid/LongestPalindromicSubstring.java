@@ -1,5 +1,7 @@
 package Coding.Grid;
 
+import java.util.Arrays;
+
 // https://leetcode.com/problems/longest-palindromic-substring/
 public class LongestPalindromicSubstring {
 
@@ -23,6 +25,7 @@ public class LongestPalindromicSubstring {
                 }
             }
         }
+        System.out.println(Arrays.deepToString(dp));
         return result;
     }
 

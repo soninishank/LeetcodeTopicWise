@@ -1,5 +1,6 @@
 package Coding.Math;
 
+// https://leetcode.com/problems/powx-n/
 public class PowXN {
 
     // 1.if condition -> power is 0 then return 1

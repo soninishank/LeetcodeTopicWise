@@ -1,58 +1,55 @@
 package Coding.Stack.Parentheses;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RemoveInvalidParentheses {
-    List<String> resultList = new ArrayList<>();
-    HashSet<String> visitedSet = new HashSet<>();
-
-    private List<String> removeInvalidParentheses(String s) {
-        int invalidParenthesesToRemove = invalidParentheses(s);
-        solution(s, invalidParenthesesToRemove);
-        if (resultList.isEmpty()) {
-            return Collections.emptyList();
-        }
-        return resultList;
+    public List<String> removeInvalidParentheses(String s) {
+        List<String> res = new ArrayList<>();
+        char[] check = new char[]{'(', ')'};
+        dfs(s, res, check, 0, 0);
+        return res;
     }
 
-    private void solution(String str, int minimumAllowed) {
-        if (visitedSet.contains(str)) {
-            return;
-        }
-        visitedSet.add(str);
-        if (minimumAllowed == 0) {
-            if (invalidParentheses(str) == 0) {
-                resultList.add(str);
+    public static void dfs(String s, List<String> res, char[] check, int last_i, int last_j) {
+        int count = 0;
+        int i = last_i;
+        while (i < s.length() && count >= 0) {
+            if (s.charAt(i) == check[0]) {
+                count++;
+            } else if (s.charAt(i) == check[1]) {
+                count--;
             }
+            i++;
         }
-        for (int i = 1; i < str.length(); i++) {
-            String s = str.substring(0, i) + str.substring(i + 1);
-            solution(s, minimumAllowed - 1);
-        }
-    }
 
-    private int invalidParentheses(String s) {
-        Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
-                stack.push('(');
-            } else if (s.charAt(i) == ')') {
-                if (stack.isEmpty()) {
-                    stack.push(')');
-                } else if (stack.peek() == '(') {
-                    stack.pop();
-                } else {
-                    stack.push(')');
+        if (count >= 0) {
+            // no extra ')' is detected. We now have to detect extra '(' by reversing the string.
+            String reversed = new StringBuffer(s).reverse().toString();
+            if (check[0] == '(') {
+                dfs(reversed, res, new char[]{')', '('}, 0, 0);
+            } else {
+                res.add(reversed);
+            }
+
+        } else {  // extra ')' is detected, and we have to do something
+            i -= 1; // 'i-1' is the index of abnormal ')' which makes count<0
+            for (int j = last_j; j <= i; j++) {
+                if (s.charAt(j) == check[1]) {
+                    if (j == last_j || s.charAt(j - 1) != check[1]) {
+                        dfs(s.substring(0, j) + s.substring(j + 1), res, check, i, j);
+                    }
                 }
             }
         }
-        return stack.size();
     }
 
-
     public static void main(String[] args) {
-        String s = ")(";
+        String s = "()())";
         List<String> strings = new RemoveInvalidParentheses().removeInvalidParentheses(s);
         System.out.println(strings);
     }
 }
+
+// ()())
+// )()()
