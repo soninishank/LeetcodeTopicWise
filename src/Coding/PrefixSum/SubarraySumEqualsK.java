@@ -4,8 +4,10 @@ import java.util.HashMap;
 
 // running sum - subarray with given sum
 // https://leetcode.com/problems/subarray-sum-equals-k/
+// hashmap contains key as running sum & its value is count
+// 1. if the running sum == k , count++
+// 2. if hashmap contains runningSum-k, count++
 public class SubarraySumEqualsK {
-
     public int subarraySum(int[] nums, int k) {
         HashMap<Integer, Integer> hashMap = new HashMap<>();
         int runningSum = 0;
@@ -22,9 +24,6 @@ public class SubarraySumEqualsK {
         }
         return count;
     }
-
-
-
 
 
     public static void main(String[] args) {
