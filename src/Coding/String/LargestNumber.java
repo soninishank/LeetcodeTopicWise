@@ -20,4 +20,10 @@ public class LargestNumber {
             sb.append(s);
         return sb.toString();
     }
+
+    public static void main(String[] args) {
+        int[] arr = {54, 546, 548, 60};
+        String s = new LargestNumber().largestNumber(arr);
+        System.out.println(s);
+    }
 }
