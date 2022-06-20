@@ -7,7 +7,7 @@ pessimistic locks(lot of conflicts) : washroom - if one person is inside the oth
 - cons : Always need to acquire & release locks
 
 optimistic locks (Not many conflicts):
-
+- compare and swap - before writing it compares 
 - assumes there is no race condition
 - int x = 2;
 - Thread 1 Thread 2
