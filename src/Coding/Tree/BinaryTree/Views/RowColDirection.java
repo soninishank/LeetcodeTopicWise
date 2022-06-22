@@ -15,10 +15,9 @@ public class RowColDirection {
         this.col = col;
         this.treeNode = treeNode;
     }
-
-    public RowColDirection(int col, int row, TreeNode treeNode) {
+    public RowColDirection(int row, int col, TreeNode treeNode) {
+        this.row = row;
         this.col = col;
         this.treeNode = treeNode;
-        this.row = row;
     }
 }

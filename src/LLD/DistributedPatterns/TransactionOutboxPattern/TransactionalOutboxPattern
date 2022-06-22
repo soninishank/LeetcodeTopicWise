@@ -1,0 +1,6 @@
+https://www.youtube.com/watch?v=Fey_l_M0IJk
+
+Eventing out atomically using Transactional outbox pattern
+
+1.creating an outbox table and publishing the events to kafka queue
+2.write data + cdc -> listen events on the table

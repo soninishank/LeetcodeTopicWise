@@ -1,14 +1,16 @@
 package LLD.Multithreading.ProducerConsumer.UsingLocksConditions;
 
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Queue;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class MyBlockingQueue<E> {
     private Queue<E> queue;
     private int max;
-    private ReentrantLock reentrantLock = new ReentrantLock(true);
+    private Lock reentrantLock = new ReentrantLock(true);
     private Condition queueNotEmpty = reentrantLock.newCondition();
     private Condition queueNotFull = reentrantLock.newCondition();
 

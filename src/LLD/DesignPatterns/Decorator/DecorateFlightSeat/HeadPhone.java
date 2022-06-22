@@ -16,4 +16,11 @@ public class HeadPhone extends FlightSeatDecorator {
     public Double getCost() {
         return this.flightSeat.getCost() + 2.0;
     }
+
+    @Override
+    public String toString() {
+        return "HeadPhone{" +
+                "flightSeat=" + getFacilities() +
+                '}';
+    }
 }

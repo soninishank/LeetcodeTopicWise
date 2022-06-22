@@ -9,8 +9,8 @@ public class CyclicSort {
     void sortCycleFrom0toN(int[] arr) {
         int i = 0;
         while (i < arr.length) {
-            int j = arr[i]; // index where value needs to swapped
-            if (arr[i] != arr[j]) { // 4 != 0
+            int j = arr[i]; // index where value needs to swapped - 4,3,2
+            if (arr[i] != arr[j]) { // 0,1,2,3,4     2 != 1
                 swap(arr, i, j);
             } else {
                 i++;

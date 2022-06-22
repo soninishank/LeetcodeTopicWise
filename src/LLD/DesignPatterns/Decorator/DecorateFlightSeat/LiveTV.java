@@ -16,4 +16,11 @@ public class LiveTV extends FlightSeatDecorator {
     public Double getCost() {
         return this.flightSeat.getCost() + 5.0;
     }
+
+    @Override
+    public String toString() {
+        return "LiveTV{" +
+                "flightSeat=" + flightSeat +
+                '}';
+    }
 }

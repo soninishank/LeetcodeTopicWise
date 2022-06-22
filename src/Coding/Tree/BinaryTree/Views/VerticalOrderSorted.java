@@ -9,11 +9,10 @@ import java.util.*;
  * @project Leet Code Topic Wise on 4/1/22 - 987 leetcode
  */
 // treemap of treemap
-// Inside TreeMap<Key,Value> -> key is row and value is Coding.PriorityQueue
-// Main TreeMap<Key,Value> -> key is column  and Value is above treeMap
+// Main TreeMap<Key,Value> -> key is column  and Value is treeMap - see below line
+// Inside TreeMap<Key,Value> -> key is row and value is PriorityQueue - minPQ - to get sortedOrder
 // https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
 public class VerticalOrderSorted {
-    List<List<Integer>> resultList = new ArrayList<>();
 
     public List<List<Integer>> verticalTraversal(TreeNode root) {
         if (root == null) {
@@ -54,5 +53,17 @@ public class VerticalOrderSorted {
             resultList.add(list);
         }
         return resultList;
+    }
+
+    public static void main(String[] args) {
+        TreeNode treeNode = new TreeNode(1);
+        treeNode.left = new TreeNode(2);
+        treeNode.right = new TreeNode(3);
+        treeNode.left.left = new TreeNode(4);
+        treeNode.left.right = new TreeNode(5);
+        treeNode.right.left = new TreeNode(6);
+        treeNode.right.right = new TreeNode(7);
+        List<List<Integer>> list = new VerticalOrderSorted().verticalTraversal(treeNode);
+        System.out.println(list);
     }
 }
