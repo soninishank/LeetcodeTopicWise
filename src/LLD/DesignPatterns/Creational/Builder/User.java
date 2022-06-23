@@ -17,7 +17,7 @@ public class User {
         this.address = builder.address;
     }
 
-    // only getters - no setters 
+    // only getters - no setters
     public String getFirstName() {
         return firstName;
     }
