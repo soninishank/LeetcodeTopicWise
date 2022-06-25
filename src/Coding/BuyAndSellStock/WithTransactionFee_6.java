@@ -3,10 +3,11 @@ package Coding.BuyAndSellStock;
 import java.util.Arrays;
 
 /**
- * @author akhilkalari
+ * @author nishank soni
  * @project Leetcode on 3/30/22
  */
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
+// When you are selling a transaction fee gets charged 
 public class WithTransactionFee_6 {
     public int maxProfit(int[] prices, int fee) {
         int[][] dp = new int[prices.length][2];

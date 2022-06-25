@@ -9,7 +9,7 @@ public class FileServiceImpl implements FileService {
     public File getFile(String name) {
         System.out.println("Loading file from disk " + name);
         try {
-            String filePath = "/Users/akhilkalari/IdeaProjects/Leetcode/src/LLD/DesignPatterns/Strategy/Proxy/proxy.md";
+            String filePath = "/Users/nishank soni/IdeaProjects/Leetcode/src/LLD/DesignPatterns/Strategy/Proxy/proxy.md";
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String content = reader.readLine();
             reader.close();

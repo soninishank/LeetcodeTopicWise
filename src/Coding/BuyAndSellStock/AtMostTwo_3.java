@@ -3,9 +3,10 @@ package Coding.BuyAndSellStock;
 import java.util.Arrays;
 
 /**
- * @author akhilkalari
+ * @author nishank soni
  * @project Leetcode on 3/29/22
  */
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
 public class AtMostTwo_3 {
     public int maxProfit(int[] prices) {
         int[][][] dp = new int[prices.length][2][2];

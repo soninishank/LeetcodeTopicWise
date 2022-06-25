@@ -1,0 +1,2 @@
+to handle this at a distributed level
+we need to put the hashmap in a distributed cache and store the results

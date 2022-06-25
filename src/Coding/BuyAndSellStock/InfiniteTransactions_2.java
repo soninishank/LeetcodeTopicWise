@@ -3,7 +3,7 @@ package Coding.BuyAndSellStock;
 import java.util.Arrays;
 
 /**
- * @author akhilkalari
+ * @author nishank soni
  * @project Leetcode on 3/30/22
  */
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/

@@ -6,9 +6,10 @@ import java.util.Arrays;
  * @author NISHANK SONI
  * @project Leetcode on 3/29/22
  */
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
 public class AtMostK_4 {
     public int maxProfit(int k, int[] prices) {
-        int[][][] dp = new int[prices.length][2][2];
+        int[][][] dp = new int[prices.length][2][k];
         for (int[][] ints : dp) {
             for (int[] internal : ints) {
                 Arrays.fill(internal, -1);
@@ -18,7 +19,7 @@ public class AtMostK_4 {
     }
 
     int getProfitTwoTransactions(int[] prices, int index, int buy, int transactionCount, int[][][] dp, int allowedTransactions) {
-        if (index > prices.length - 1){
+        if (index > prices.length - 1) {
             return 0;
         }
         if (transactionCount >= allowedTransactions) {
@@ -28,11 +29,11 @@ public class AtMostK_4 {
             return dp[index][buy][transactionCount];
         }
         if (buy == 1) {
-            return (dp[index][buy][transactionCount] = Math.max(-prices[index] + getProfitTwoTransactions(prices, index + 1, buy ^ 1, transactionCount, dp, 2), getProfitTwoTransactions(prices, index + 1, buy, transactionCount, dp, allowedTransactions)));
+            return (dp[index][buy][transactionCount] = Math.max(-prices[index] + getProfitTwoTransactions(prices, index + 1, buy ^ 1, transactionCount, dp, allowedTransactions), getProfitTwoTransactions(prices, index + 1, buy, transactionCount, dp, allowedTransactions)));
         }
         // transaction will get completed when we sell the stock completely
         else {
-            return (dp[index][buy][transactionCount] = Math.max(prices[index] + getProfitTwoTransactions(prices, index + 1, buy ^ 1, transactionCount + 1, dp, 2), getProfitTwoTransactions(prices, index + 1, buy, transactionCount, dp, allowedTransactions)));
+            return (dp[index][buy][transactionCount] = Math.max(prices[index] + getProfitTwoTransactions(prices, index + 1, buy ^ 1, transactionCount + 1, dp, allowedTransactions), getProfitTwoTransactions(prices, index + 1, buy, transactionCount, dp, allowedTransactions)));
         }
     }
 
