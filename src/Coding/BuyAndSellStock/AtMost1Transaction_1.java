@@ -20,14 +20,16 @@ public class AtMost1Transaction_1 {
         if (index >= prices.length) {
             return 0;
         }
-        if (0 >= allowedTransaction) {
+        if (allowedTransaction < 1) {
             return 0;
         }
+        // Memoization - caching
         if (dp[index][buy] != -1) {
             return dp[index][buy];
         }
         if (buy == 1) {
-            return dp[index][buy] = Math.max(-prices[index] + calcMaxProfit1Transaction(prices, index + 1, buy ^ 1, allowedTransaction, dp), calcMaxProfit1Transaction(prices, index + 1, buy, allowedTransaction, dp));
+            return dp[index][buy] = Math.max(-prices[index] + calcMaxProfit1Transaction(prices, index + 1, buy ^ 1, allowedTransaction, dp),
+                    calcMaxProfit1Transaction(prices, index + 1, buy, allowedTransaction, dp));
         } else {
             return dp[index][buy] = Math.max(prices[index] + calcMaxProfit1Transaction(prices, index + 1, buy ^ 1, allowedTransaction - 1, dp), calcMaxProfit1Transaction(prices, index + 1, buy, allowedTransaction, dp));
         }

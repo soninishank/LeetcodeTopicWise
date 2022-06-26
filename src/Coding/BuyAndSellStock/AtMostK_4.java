@@ -29,11 +29,11 @@ public class AtMostK_4 {
             return dp[index][buy][transactionCount];
         }
         if (buy == 1) {
-            return (dp[index][buy][transactionCount] = Math.max(-prices[index] + getProfitTwoTransactions(prices, index + 1, buy ^ 1, transactionCount, dp, allowedTransactions), getProfitTwoTransactions(prices, index + 1, buy, transactionCount, dp, allowedTransactions)));
+            return dp[index][buy][transactionCount] = Math.max(-prices[index] + getProfitTwoTransactions(prices, index + 1, buy ^ 1, transactionCount, dp, allowedTransactions), getProfitTwoTransactions(prices, index + 1, buy, transactionCount, dp, allowedTransactions));
         }
         // transaction will get completed when we sell the stock completely
         else {
-            return (dp[index][buy][transactionCount] = Math.max(prices[index] + getProfitTwoTransactions(prices, index + 1, buy ^ 1, transactionCount + 1, dp, allowedTransactions), getProfitTwoTransactions(prices, index + 1, buy, transactionCount, dp, allowedTransactions)));
+            return dp[index][buy][transactionCount] = Math.max(prices[index] + getProfitTwoTransactions(prices, index + 1, buy ^ 1, transactionCount + 1, dp, allowedTransactions), getProfitTwoTransactions(prices, index + 1, buy, transactionCount, dp, allowedTransactions));
         }
     }
 
