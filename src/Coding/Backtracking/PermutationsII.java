@@ -1,8 +1,6 @@
 package Coding.Backtracking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class PermutationsII {
     List<List<Integer>> permuteList = new ArrayList<>();
@@ -12,25 +10,28 @@ public class PermutationsII {
             return permuteList;
         }
         Arrays.sort(nums);// sorting is needed for duplicate
-        boolean[] number = new boolean[nums.length];
-        applyPermutationBacktracking(nums, new ArrayList<>(), number);
+        boolean[] visited = new boolean[nums.length];
+        Set<List<Integer>> set = new HashSet<>();
+        applyPermutationBacktracking(nums, set, visited, new ArrayList<>());
+        for (List<Integer> list : set) {
+            permuteList.add(list);
+        }
         return permuteList;
     }
 
-    private void applyPermutationBacktracking(int[] nums, ArrayList<Integer> arrayList, boolean[] number) {
-        if (arrayList.size() == nums.length) {
-            permuteList.add(new ArrayList<>(arrayList));
+    private void applyPermutationBacktracking(int[] nums, Set<List<Integer>> result, boolean[] visited, List<Integer> sublist) {
+        if (sublist.size() == nums.length) {
+            result.add(new ArrayList<>(sublist));
             return;
         }
         for (int i = 0; i < nums.length; i++) {
-            if ((number[i]) || (i > 0 && nums[i] == nums[i - 1] && !number[i - 1])) {
-                continue;
+            if (!visited[i]) {
+                sublist.add(nums[i]);
+                visited[i] = true;
+                applyPermutationBacktracking(nums, result, visited, sublist);
+                visited[i] = false;
+                sublist.remove(sublist.size() - 1);
             }
-            number[i] = true;
-            arrayList.add(nums[i]);
-            applyPermutationBacktracking(nums, arrayList, number);
-            number[i] = false;
-            arrayList.remove(arrayList.size() - 1);
         }
     }
 
