@@ -3,31 +3,34 @@ package Coding.SlidingWindow;
 import java.util.ArrayList;
 import java.util.List;
 
+// https://leetcode.com/problems/find-all-anagrams-in-a-string/
 public class FindAllAnagrams {
     int[] arr = new int[26];
 
-    List<Integer> resultList = new ArrayList<>();
-
     public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> list = new ArrayList<>();
         for (int i = 0; i < p.length(); i++) {
-            arr[p.charAt(i) - 'a']++;
+            int temp = p.charAt(i) - 'a';
+            arr[temp]--;
         }
-        int start = 0;
-        for (int i = 0; i < s.length(); i++) {
-            arr[s.charAt(i) - 'a']--;
-            if (i - start >= p.length() - 1) {
-                if (checkIsPattern()) {
-                    resultList.add(start);
-                }
+        int end = 0, start = 0;
+        while (end < s.length()) {
+            int endTemp = s.charAt(end) - 'a';
+            arr[endTemp]++;
+            end++;
+            if (end - start > p.length()) {
+                int startTemp = s.charAt(start) - 'a';
+                arr[startTemp]--;
+                start++;
             }
-            if (i - start > p.length() - 1) {
-                arr[s.charAt(start) - 'a']++;
+            if (end - start == p.length() && doValidation()) {
+                list.add(start);
             }
         }
-        return resultList;
+        return list;
     }
 
-    boolean checkIsPattern() {
+    private boolean doValidation() {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] != 0) {
                 return false;
@@ -42,7 +45,3 @@ public class FindAllAnagrams {
         System.out.println(anagrams);
     }
 }
-
-// abab
-// ab
-// ++
