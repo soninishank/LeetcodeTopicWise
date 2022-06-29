@@ -23,6 +23,7 @@ public class NumberOfProvinces {
             for (int j = 0; j < isConnected[i].length; j++) {
                 if (isConnected[i][j] == 1) {
                     adjList.get(i).add(j);
+                    adjList.get(j).add(i);
                 }
             }
         }

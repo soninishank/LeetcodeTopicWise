@@ -9,9 +9,6 @@ import java.util.List;
 // CTCI  - Chapter 10: Coding.Sorting and Searching
 public class GroupAnagrams {
 
-    List<List<String>> resultList = new ArrayList<>();
-    List<String> arrayList = new ArrayList<>();
-
     public List<List<String>> groupAnagrams(String[] strs) {
         HashMap<String, List<String>> hashmap = new HashMap<>();
         for (String str : strs) {

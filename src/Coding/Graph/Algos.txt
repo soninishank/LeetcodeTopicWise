@@ -1,6 +1,16 @@
 Dijkstra's : “Dijkstra’s algorithm” solves the “single-source shortest path” problem in a weighted directed graph with
 non-negative weights.
+https://www.youtube.com/watch?v=XB4MIexjvY0
+
 
 Bellman Ford Algorithm :
+
+
+
+Graph can contains cycles
+But tree will never contain cycles
+
+union find : https://www.youtube.com/watch?v=wU6udHRIkcc
+
 
 

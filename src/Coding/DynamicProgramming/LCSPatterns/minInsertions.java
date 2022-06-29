@@ -1,5 +1,6 @@
 package Coding.DynamicProgramming.LCSPatterns;
 
+// Bloomberg OA
 // https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/
 // MinInsertions = Total length - longestPalindromicSubsequence
 // https://www.geeksforgeeks.org/minimum-number-deletions-make-string-palindrome/

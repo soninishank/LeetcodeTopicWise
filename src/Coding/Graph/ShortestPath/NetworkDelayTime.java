@@ -1,4 +1,4 @@
-package Coding.Graph.Cost;
+package Coding.Graph.ShortestPath;
 
 import java.util.*;
 
@@ -8,6 +8,7 @@ import java.util.*;
 // n - total no of vertices
 // create min priorityQueue
 // https://leetcode.com/problems/network-delay-time/
+// https://www.youtube.com/watch?v=XB4MIexjvY0
 public class NetworkDelayTime {
     public int networkDelayTime(int[][] times, int n, int k) {
         // create an adjacency list from source to destination with weight
@@ -31,9 +32,11 @@ public class NetworkDelayTime {
                 }
                 visited.add(poll.destination);
                 totalCost = Math.max(totalCost, poll.distance);
+                // we traversed all the nodes
                 if (visited.size() == n) {
                     return totalCost;
                 }
+                // traverse neighboring nodes
                 if (hashMap.containsKey(poll.destination)) {
                     for (WeightData weightData : hashMap.get(poll.destination)) {
                         int newDistance = poll.distance + weightData.distance;
