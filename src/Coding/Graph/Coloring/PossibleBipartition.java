@@ -2,6 +2,7 @@ package Coding.Graph.Coloring;
 
 import java.util.*;
 
+// we are creating adjacencyList because it starts from 1 not 0
 // https://leetcode.com/discuss/interview-experience/751636/coupang-seattle-wa-july-2020-software-engineer
 // https://leetcode.com/problems/possible-bipartition/
 //Think of graph, node coloring, and DFS.
