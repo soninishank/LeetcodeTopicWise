@@ -2,7 +2,7 @@ E.g : File size = 8 GB, Ram Size = 2 GB
 1.chunk size = file size / ram size 
              = 8 / 2 = 4
 2. sort each chunk one by one and place it back to the disk 
-3. Apply Merge k sorted list - using priority queue - which occupies only O(K) time complexity
+3. Apply Merge k sorted list - using priority queue - which occupies only O(NlogK) time complexity
 
 Space Complexity :O(k), If Output is not stored then the only space required is the Min-Heap of k elements. So space Complexity is O(k).
 

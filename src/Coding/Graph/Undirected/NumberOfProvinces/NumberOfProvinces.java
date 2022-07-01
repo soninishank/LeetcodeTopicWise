@@ -5,8 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 
 // https://leetcode.com/problems/number-of-provinces/
-// similar like number of unconnected components in graph
+// similar like number of connected components in graph
 // similar like - https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+// Time complexity - O(N^2) : The complete matrix of size n^2 is traversed.
+// Space complexity : O(n)  : visited array of size n is used
 public class NumberOfProvinces {
     List<List<Integer>> adjList = new ArrayList<>();
     HashSet<Integer> visited = new HashSet<>();

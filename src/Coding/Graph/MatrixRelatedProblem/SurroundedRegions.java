@@ -1,10 +1,10 @@
-package Coding.Graph;
-
-import java.util.Arrays;
+package Coding.Graph.MatrixRelatedProblem;
 
 // check all surrounded regions with value 0 - apply DFS and apply newColor -'E'
 // again traverse grid -surroundedColor to X and newColor to 0
 // https://leetcode.com/problems/surrounded-regions/
+// 1. If any 0 is there on the border, and it is connected to any other 0 four directionally than you can't flip it
+// 2. Flip all other 0's which are surrounded by x
 public class SurroundedRegions {
     public void solve(char[][] board) {
         if (board.length == 0) {
@@ -12,11 +12,12 @@ public class SurroundedRegions {
         }
         int totalRows = board.length - 1;
         int totalCols = board[0].length - 1;
-        // Mark all those cells which are at boundary and if there any connected cells
+        // 1. Mark all those cells which are at boundary and if there are any connected cells - handling 1st use case
         char surroundedColor = 'O';
         char newColor = 'E';
         for (int i = 0; i <= totalRows; i++) {
             for (int j = 0; j <= totalCols; j++) {
+                // only boundaries
                 if ((i == 0 || j == 0 || i == totalRows || j == totalCols)) {
                     if (board[i][j] == surroundedColor) {
                         applyDFS(i, j, board, surroundedColor, newColor);
@@ -24,6 +25,7 @@ public class SurroundedRegions {
                 }
             }
         }
+        // 2. change the color's
         for (int i = 0; i <= totalRows; i++) {
             for (int j = 0; j <= totalCols; j++) {
                 if (board[i][j] == surroundedColor) {

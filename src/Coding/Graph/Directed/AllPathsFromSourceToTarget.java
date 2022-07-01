@@ -3,12 +3,15 @@ package Coding.Graph.Directed;
 import java.util.ArrayList;
 import java.util.List;
 
-// // [[4,3,1],[3,2,4],[3],[4],[]]
+// Backtracking
+// 0 to n-1 : o to totalLength -1
+//  [[4,3,1],[3,2,4],[3],[4],[]]
 //// It means at index 0 -> [4,3,1] means 0 is connected to 4,3,1
 //// At index 1 -> [3,2,1] means 1 is connected to 3,2,4
 //// At index 2 -> [3] means 2 is connected to 3
 //// At index 3 -> [4] means 3 is connected to 4
 //// at index 4 -> [] means no connection
+// All paths will start from 0 and ends at destination i.e edges -1
 // https://leetcode.com/problems/all-paths-from-source-to-target/
 public class AllPathsFromSourceToTarget {
     List<List<Integer>> adjList;

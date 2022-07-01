@@ -1,16 +1,19 @@
-package Coding.Graph;
+package Coding.Graph.UnionFind;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 // https://leetcode.com/problems/evaluate-division/
+// 1. same number - exist in equations - a / a = 1
+// 2. same number - not exist in equations - x / x = -1
+// 3. reflection of a equation - b / a - 1/ value
 public class EvaluateDivision {
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
         Map<String, Map<String, Double>> adjMap = buildGraph(equations, values);
         double[] result = new double[queries.size()];
         int i = 0;
         for (List<String> query : queries) {
-            Set<String> visited = new HashSet<String>();
+            Set<String> visited = new HashSet<>();
             // if both the keys are same
             if (query.get(0).equals(query.get(1))) {
                 // if present in graph -- ["a","a"]
