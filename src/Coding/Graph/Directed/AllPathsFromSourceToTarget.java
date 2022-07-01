@@ -42,9 +42,9 @@ public class AllPathsFromSourceToTarget {
             return;
         }
         for (int neighbour : adjList.get(source)) {
-            arrayList.add(neighbour);
-            applyBacktracking(adjList, neighbour, destination, arrayList);
-            arrayList.remove(arrayList.size() - 1);
+            arrayList.add(neighbour);// add
+            applyBacktracking(adjList, neighbour, destination, arrayList); // recurse
+            arrayList.remove(arrayList.size() - 1);// remove
         }
     }
 

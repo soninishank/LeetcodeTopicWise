@@ -4,20 +4,15 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
 // coloring with newColor the old colors
 // https://leetcode.com/problems/flood-fill/
 public class FloodFill {
     // 1 : using Coding.BFS
     private int[][] floodFillBFS(int[][] image, int sr, int sc, int newColor) {
-
         int m = image.length, n = image[0].length;
         boolean[][] visited = new boolean[m][n];
-
         for (boolean[] row : visited) Arrays.fill(row, false);
-
         int initialColour = image[sr][sc];
-
         Queue<int[]> q = new LinkedList<>();
         q.add(new int[]{sr, sc});
         visited[sr][sc] = true;

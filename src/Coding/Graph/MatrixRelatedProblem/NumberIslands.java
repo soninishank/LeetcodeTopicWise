@@ -5,7 +5,8 @@ import java.util.Queue;
 
 // https://leetcode.com/problems/number-of-islands/
 // you need to count the islands which are connected together in 4 directions
-// if the island value is 1 - applyDFS - mark it as *
+// 1 - island, 0 - water
+// so you just need to count all the islands present in it - just start the dfs and start count
 // then check other unconnected 1s
 public class NumberIslands {
     int[][] dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
@@ -46,25 +47,26 @@ public class NumberIslands {
     // 2.Apply DFS
     private int numIslandsDFS(char[][] grid) {
         int count = 0;
-        char color = '1';
+        char islandColor = '1';
+        char maskColor = '*';
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == color) {
+                if (grid[i][j] == islandColor) {
                     count++;
-                    applyDfs(i, j, grid, color);
+                    applyDfs(i, j, grid, islandColor, maskColor);
                 }
             }
         }
         return count;
     }
 
-    private void applyDfs(int row, int col, char[][] grid, int color) {
-        if (row >= 0 && col >= 0 && row < grid.length && col < grid[0].length && grid[row][col] == color) {
-            grid[row][col] = '*';
-            applyDfs(row, col - 1, grid, color);
-            applyDfs(row, col + 1, grid, color);
-            applyDfs(row - 1, col, grid, color);
-            applyDfs(row + 1, col, grid, color);
+    private void applyDfs(int row, int col, char[][] grid, char islandColor, char maskColor) {
+        if (row >= 0 && col >= 0 && row < grid.length && col < grid[0].length && grid[row][col] == islandColor) {
+            grid[row][col] = maskColor;
+            applyDfs(row, col - 1, grid, islandColor, maskColor);
+            applyDfs(row, col + 1, grid, islandColor, maskColor);
+            applyDfs(row - 1, col, grid, islandColor, maskColor);
+            applyDfs(row + 1, col, grid, islandColor, maskColor);
         } else {
             return;
         }

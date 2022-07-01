@@ -7,6 +7,7 @@ import java.util.Queue;
 // get maximum value among those 1s
 // firstly check if the current grid value is 1 -> apply DFS (return its value) - note max at every step
 // https://leetcode.com/problems/max-area-of-island/
+// similar like number of islands except that you need to maintain the max for every DFS call
 public class MaxAreaIsland {
     int[][] dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
@@ -48,7 +49,7 @@ public class MaxAreaIsland {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == '1') {
-                    maxCount = Math.max(1 + dfsIsland(i, j, grid), maxCount);
+                    maxCount = Math.max(maxCount, 1 + dfsIsland(i, j, grid));
                 }
             }
         }

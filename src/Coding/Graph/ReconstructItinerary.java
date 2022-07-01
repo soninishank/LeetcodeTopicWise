@@ -45,3 +45,17 @@ public class ReconstructItinerary {
         System.out.println(itinerary);
     }
 }
+
+
+// JFK -> ATL,SFO
+// SFO -> ATL
+// ATL -> JFK,SFO
+
+// dfs("jfk") -
+// DFS("ATL")
+// DFS("JFK")
+// DFS("SFO")
+// DFS("ATL")
+// DFS("SFO")
+
+//jfk  > ATL-> JFK -> SFO -> ATL -> SFO  ( using linkedList addFirst)

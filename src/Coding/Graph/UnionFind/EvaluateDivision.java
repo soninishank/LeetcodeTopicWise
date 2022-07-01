@@ -23,7 +23,8 @@ public class EvaluateDivision {
                 else {
                     result[i] = -1.0;
                 }
-            } else {
+            }
+            else {
                 result[i] = applyDFS(adjMap, query.get(0), query.get(1), visited);
             }
             i++;
