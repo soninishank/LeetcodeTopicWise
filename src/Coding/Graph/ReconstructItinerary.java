@@ -2,6 +2,7 @@ package Coding.Graph;
 
 import java.util.*;
 
+// Hierholzer's algorithm for Eulerian circuits.
 // https://leetcode.com/problems/reconstruct-itinerary/
 // Eulerian Path
 // adjList value is PriorityQueue because we want output in lexicographical order

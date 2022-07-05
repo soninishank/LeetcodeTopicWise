@@ -5,6 +5,12 @@ import java.util.Queue;
 
 // https://leetcode.com/problems/rotting-oranges/
 // in this you need to collect all data in the queue which are rotten
+// Given : any fresh orange that is 4-directionally adjacent to a rotten orange becomes rotten.
+// Return the minimum number of minutes that must elapse until no cell has a fresh orange. If this is impossible, return -1.
+// 1. Firstly count all fresh oranges
+// 2. Put all rotten oranges in a queue
+// 3. iterate queue and check if any adjacent neighbour is fresher than mark it as rotten and reduce count
+// 4. Note time after every iteration
 public class RottingOranges {
     int[][] dir = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
 

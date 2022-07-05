@@ -12,5 +12,11 @@ But tree will never contain cycles
 
 union find : https://www.youtube.com/watch?v=wU6udHRIkcc
 
+Minimum Spanning Tree: In an undirected weighted graph, there is a tree (N nodes, N - 1 edges so no circle) that connects all nodes in the graph, and the sum of path weights are minimum.
 
+Kruskal's Algorithm: The approach to find the Minimum Spanning Tree in the Graph. We sort the edges by weight in non- descending order and loop sorted edges, pick the edge as long as there are no connectivity already set up between two nodes and add this edge weight to the total weight.
+
+Disjoint Set: The data structure used to check the connectivity of graph efficiently in dynamic by union the nodes into one set, and find the number of disconnected sets.
+
+https://leetcode.com/discuss/study-guide/1212004/Binary-Trees-study-guide
 

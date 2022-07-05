@@ -10,12 +10,12 @@ public class WordBreakII {
     HashMap<String, List<String>> caching = new HashMap<>();
 
     public List<String> wordBreakRecursive(String str, Set<String> wordDictionary) {
-        if (caching.containsKey(str)) {
-            return caching.get(str);
-        }
         List<String> result = new ArrayList<>();
         if (str.length() == 0) {
             return result;
+        }
+        if (caching.containsKey(str)) {
+            return caching.get(str);
         }
         if (wordDictionary.contains(str)) {
             result.add(str);
@@ -23,9 +23,9 @@ public class WordBreakII {
         for (int i = 1; i <= str.length(); i++) {
             String first = str.substring(0, i);
             if (wordDictionary.contains(first)) {
-                List<String> subList = wordBreakRecursive(str.substring(i), wordDictionary);
-                for (String sen : subList) {
-                    result.add(first + " " + sen); // first word with - remaining sentences - check result
+                List<String> subList = wordBreakRecursive(str.substring(i), wordDictionary);// getting a sublist
+                for (String remaining : subList) {
+                    result.add(first + " " + remaining); // first word with - remaining sentences - check result
                 }
             }
         }

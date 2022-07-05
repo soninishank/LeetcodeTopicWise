@@ -3,6 +3,7 @@ package Coding.LinkedList.Design;
 import java.util.HashMap;
 
 // https://leetcode.com/problems/lru-cache/
+// https://www.youtube.com/watch?v=jkbS-bKXTEE
 public class LRUCache {
     int size;
     Node head, tail;

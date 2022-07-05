@@ -20,7 +20,7 @@ public class NetworkDelayTime {
         // visited nodes
         Set<Integer> visited = new HashSet<>();
         // create a Min PriorityQueue
-        PriorityQueue<WeightData> priorityQueue = new PriorityQueue<>((a, b) -> (a.distance - b.distance));
+        PriorityQueue<WeightData> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(a -> a.distance));
         int totalCost = 0;
         priorityQueue.offer(new WeightData(k, 0)); // start from k vertices and distance is 0
         while (!priorityQueue.isEmpty()) {

@@ -20,7 +20,7 @@ public class WordBreakI {
             return true;
         }
         if (caching.containsKey(str)) {
-            return caching.get(str);
+            return caching.get(str); // return true or false
         }
         for (int i = 1; i <= str.length(); i++) {
             String firstSubstring = str.substring(0, i);

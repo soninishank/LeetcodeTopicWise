@@ -1,5 +1,6 @@
 package Coding.Graph.Cost;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/path-with-minimum-effort/
@@ -18,7 +19,7 @@ public class PathWithMinimumEffort {
             int source = poll[0];
             int destination = poll[1];
             int currentDistance = poll[2];
-
+            // we have reached the bottom right cell
             if (source == heights.length - 1 && destination == heights[0].length - 1) {
                 return currentDistance;
             }
@@ -33,6 +34,7 @@ public class PathWithMinimumEffort {
                     }
                 }
             }
+            System.out.println(Arrays.deepToString(minDistanceMatrix));
         }
         return -1;
     }

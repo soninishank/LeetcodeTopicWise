@@ -15,24 +15,15 @@ public class PossibleBipartition {
     public boolean possibleBipartition(int N, int[][] dislikes) {
         int[] color = new int[N + 1];
         Arrays.fill(color, -1);
-        List<List<Integer>> adjList = new ArrayList<>();
-        for (int i = 0; i <= N; i++) {
-            adjList.add(new ArrayList<>());
-        }
-        for (int[] arr : dislikes) {
-            adjList.get(arr[0]).add(arr[1]);
-            adjList.get(arr[1]).add(arr[0]);
-        }
         for (int i = 1; i <= N; i++) {
             // Not colored
             if (color[i] == -1) {
                 Queue<Integer> queue = new LinkedList<>();
                 queue.add(i);
                 color[i] = 1;
-
                 while (!queue.isEmpty()) {
                     Integer poll = queue.poll();
-                    for (int neighbour : adjList.get(poll)) {
+                    for (int neighbour : dislikes[poll]) {
                         if (color[neighbour] == -1) {
                             color[neighbour] = color[poll] ^ 1;
                             queue.add(neighbour);

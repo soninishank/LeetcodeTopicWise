@@ -1,26 +1,37 @@
 package Coding.PriorityQueue;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/merge-k-sorted-lists/
 // Blind-75
 public class MergeKSortedList {
     public ListNode mergeKLists(ListNode[] lists) {
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+        PriorityQueue<ListNode> priorityQueue = new PriorityQueue<>((o1, o2) -> {
+            if (o1.val < o2.val) {
+                return -1;
+            } else if (o1.val == o2.val) {
+                return 0;
+            } else {
+                return 1;
+            }
+        });
         for (ListNode listNode : lists) {
-            while (listNode != null) {
-                priorityQueue.add(listNode.val);
-                listNode = listNode.next;
+            if (listNode != null) {
+                priorityQueue.add(listNode);
             }
         }
         ListNode dummy = new ListNode();
         ListNode temp = dummy;
         while (!priorityQueue.isEmpty()) {
-            ListNode listNode = new ListNode(priorityQueue.poll());
-            temp.next = listNode;
+            ListNode poll = priorityQueue.poll();
+            temp.next = poll;
             temp = temp.next;
+            if (poll.next != null) {
+                priorityQueue.add(poll.next);
+            }
         }
-        return dummy;
+        return dummy.next;
     }
 
     public ListNode mergeKListsUsingRecursion(ListNode[] lists) {
@@ -37,7 +48,7 @@ public class MergeKSortedList {
         return head;
     }
 
-    ListNode merge(ListNode list1, ListNode list2) {
+    private ListNode merge(ListNode list1, ListNode list2) {
         if (list1 == null && list2 == null) {
             return null;
         }

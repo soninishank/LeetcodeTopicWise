@@ -21,7 +21,7 @@ public class IsGraphBipartite {
                     Integer poll = queue.poll();
                     for (int neighbour : graph[poll]) {
                         if (color[neighbour] == -1) {
-                            color[neighbour] = color[poll] ^ 1;
+                            color[neighbour] = color[poll] ^ 1; // 0
                             queue.add(neighbour);
                         } else if (color[neighbour] == color[poll]) {
                             return false;
