@@ -1,4 +1,4 @@
-package Coding.Tree.BinaryTree.BFS;
+package Coding.Graph.BFS;
 
 import java.util.LinkedList;
 import java.util.Queue;
