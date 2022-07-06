@@ -1,48 +1,45 @@
 package Coding.Graph.KahnAlgoTopologicalSort;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 // https://leetcode.com/problems/course-schedule/
 public class CourseScheduleI {
 
-    List<Integer> resultTopologicalOrder = new ArrayList<>();
+    List<List<Integer>> adjList = new ArrayList<>();
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        List<List<Integer>> adjList = new ArrayList<>();
-        HashMap<Integer, Integer> inDegree = new HashMap<>();
-
-        // create graph and inDegree
+        int[] incomingEdges = new int[numCourses];
         for (int i = 0; i < numCourses; i++) {
             adjList.add(new ArrayList<>());
-            inDegree.put(i, 0);
         }
-        for (int[] prerequisite : prerequisites) {
-            int parent = prerequisite[0];
-            int child = prerequisite[1];
-            adjList.get(parent).add(child);
-            inDegree.put(child, inDegree.getOrDefault(child, 0) + 1);
+        for (int[] arr : prerequisites) {
+            incomingEdges[arr[0]]++;
+            adjList.get(arr[1]).add(arr[0]);
         }
+
         Queue<Integer> queue = new LinkedList<>();
-        for (Map.Entry<Integer, Integer> entry : inDegree.entrySet()) {
-            if (entry.getValue() == 0) {
-                queue.add(entry.getKey()); // starting point of queue which have inDegree 0
+        for (int i = 0; i < numCourses; i++) {
+            if (incomingEdges[i] == 0) {
+                queue.add(i);
             }
         }
+        int edgeCnt = prerequisites.length;
         while (!queue.isEmpty()) {
-            Integer poll = queue.poll();
-            resultTopologicalOrder.add(poll); // add in topological sort
-            for (Integer child : adjList.get(poll)) {
-                inDegree.put(child, inDegree.getOrDefault(child, 0) - 1); // reducing inDegree
-                if (inDegree.get(child) == 0) {
-                    queue.add(child);
+            int current = queue.poll();
+            for (int neig : adjList.get(current)) {
+                edgeCnt--;
+                incomingEdges[neig]--;
+                if (incomingEdges[neig] == 0) {
+                    queue.add(neig);
                 }
             }
         }
-        if (resultTopologicalOrder.size() != numCourses) {
-            return false;
-        }
-        return true;
+        return edgeCnt == 0;
     }
+
 
     public static void main(String[] args) {
         int numCourses = 5, prerequisites[][] = {{1, 4}, {2, 4}, {3, 1}, {3, 2}};
@@ -50,3 +47,5 @@ public class CourseScheduleI {
         System.out.println(b);
     }
 }
+//
+//   1 -> 4

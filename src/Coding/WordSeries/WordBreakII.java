@@ -24,6 +24,7 @@ public class WordBreakII {
             String first = str.substring(0, i);
             if (wordDictionary.contains(first)) {
                 List<String> subList = wordBreakRecursive(str.substring(i), wordDictionary);// getting a sublist
+                System.out.println(subList);
                 for (String remaining : subList) {
                     result.add(first + " " + remaining); // first word with - remaining sentences - check result
                 }
@@ -40,3 +41,12 @@ public class WordBreakII {
         System.out.println(list);
     }
 }
+
+// [dog]        //[dog]
+//[sand dog]    //[and dog]
+//[cat sand dog] // [cats and dog]
+
+
+// 1 4 3 4 5
+// k = 8
+//
