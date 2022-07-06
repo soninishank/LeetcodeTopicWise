@@ -1,4 +1,4 @@
-package BinarySearch;
+package Coding.BinarySearch;
 
 public class FirstLastPositionInSortedArray {
     public int[] searchRange(int[] nums, int target) {
