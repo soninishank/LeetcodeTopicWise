@@ -20,3 +20,21 @@ Disjoint Set: The data structure used to check the connectivity of graph efficie
 
 https://leetcode.com/discuss/study-guide/1212004/Binary-Trees-study-guide
 
+
+https://www.youtube.com/watch?v=FtN3BYH2Zes : Bellman Ford Algorithm
+
+
+Topological Sort : there is an ordering on the nodes in the graph. Directed graph with cycle is not a topological order.
+These are graphs with directed edges and no cycles.All rooted trees have a topological ordering since they do not contain
+any cycles.
+
+Djikstra : used for finding out the shortest path in a graph - minimum cost - single source shortest path
+         : combination of BFS + PriorityQueue
+	 : can only work with graph which contain positive weights
+	 : we can do node relaxation only one time - once the node are relaxed we will not check them that's why it doesn't work with negative values. With negative values it can lead to the wrong result.
+
+
+
+To resolve Djikstra issues we will use bellman ford algorithm - which uses the concept of dynamic programming.In that we can do node relaxation for all the vertices.
+
+Bellman Ford Algorithm : Whenever we need to reconsider a node even with positive values we can go with Bellman ford.

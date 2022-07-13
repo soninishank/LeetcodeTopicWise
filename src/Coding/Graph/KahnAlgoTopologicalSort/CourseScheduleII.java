@@ -5,48 +5,38 @@ import java.util.*;
 // https://leetcode.com/problems/course-schedule-ii/
 // similar like course schedule I
 public class CourseScheduleII {
+
+    List<List<Integer>> adjList = new ArrayList<>();
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        List<List<Integer>> adjList = new ArrayList<>();
-        HashMap<Integer, Integer> inDegree = new HashMap<>();
-        int[] topologicalOrder = new int[numCourses];
-
-
+        int[] incomingEdges = new int[numCourses];
         for (int i = 0; i < numCourses; i++) {
             adjList.add(new ArrayList<>());
-            inDegree.put(i, 0);
         }
-        // Create the adjacency list representation of the graph
-        for (int[] prerequisite : prerequisites) {
-            int destination = prerequisite[0];
-            int source = prerequisite[1];
-            adjList.get(destination).add(source);
-            inDegree.put(source, inDegree.getOrDefault(source, 0) + 1);
+        for (int[] arr : prerequisites) {
+            incomingEdges[arr[0]]++;
+            adjList.get(arr[1]).add(arr[0]);
         }
-        // Find inDegree with value 0
         Queue<Integer> queue = new LinkedList<>();
-        for (Map.Entry<Integer, Integer> entry : inDegree.entrySet()) {
-            if (entry.getValue() == 0) {
-                queue.add(entry.getKey());
+        for (int i = 0; i < numCourses; i++) {
+            if (incomingEdges[i] == 0) {
+                queue.add(i);
             }
         }
-        // Iterate queue with inDegree 0
+        int edgeCnt = prerequisites.length;
+        int[] res = new int[numCourses];
         int index = 0;
         while (!queue.isEmpty()) {
-            Integer poll = queue.poll();
-            topologicalOrder[index] = poll;
+            int current = queue.poll();
+            res[index] = current;
             index++;
-            // check neighbouring nodes
-            for (Integer child : adjList.get(poll)) {
-                inDegree.put(child, inDegree.getOrDefault(child, 0) - 1); // reduce the indegree
-                if (inDegree.get(child) == 0) {
-                    queue.add(child);
+            for (int neighbour : adjList.get(current)) {
+                edgeCnt--;
+                incomingEdges[neighbour]--;
+                if (incomingEdges[neighbour] == 0) {
+                    queue.add(neighbour);
                 }
             }
         }
-        // Check to see if topological sort is possible or not.
-        if (index == numCourses) {
-            return topologicalOrder;
-        }
-        return new int[0];// return 0 value
+        return edgeCnt == 0 ? res : new int[0];
     }
 }

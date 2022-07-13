@@ -1,7 +1,6 @@
 package Coding.Graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class TimeNeededToInformAllEmployees {
 

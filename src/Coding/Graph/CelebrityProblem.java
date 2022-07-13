@@ -65,6 +65,42 @@ public class CelebrityProblem {
         return ans;
     }
 
+    // celebrity does not know anyone
+    // but everyone knows the celebrity
+
+//    public int findCelebrity(int n) {
+//        Stack<Integer> stack = new Stack<>();
+//        for (int i = 0; i < n; i++) {
+//            stack.push(i);
+//        }
+//        while (stack.size() > 1) {
+//            Integer pop1 = stack.pop();
+//            Integer pop2 = stack.pop();
+//            if (knows(pop1, pop2)) {
+//                stack.push(pop2); // pop1 is not a celebrity if it knows pop2
+//            } else {
+//                stack.push(pop1); // pop1 doesn't know pop2 , it means pop2 is not a celebrity
+//            }
+//        }
+//        // Either way, one person is gonna get eliminated. At the end, you have one person left that might be a cele. You confirm that by do a walk through again.
+//        int c = stack.pop();
+//        for (int i = 0; i < n; i++) {
+//            // if both are same - dont check it
+//            if (i != c) {
+//                // c knows anyone - it is not a celebrity
+//                if (knows(c, i)) {
+//                    return -1;
+//                }
+//                // if anyone does not know c
+//                if (!knows(i, c)) {
+//                    return -1;
+//                }
+//            }
+//        }
+//        return c;
+//    }
+
+
     public static void main(String[] args) {
         int[][] arr = {{1, 1, 0}, {0, 1, 0}, {1, 1, 1}};
         int celebrity = new CelebrityProblem().findCelebrity(arr, arr.length);

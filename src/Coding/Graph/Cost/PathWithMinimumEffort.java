@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/path-with-minimum-effort/
+// There are multiple paths from top left to bottom right
+// choose the path which have minimum absolute difference value
 public class PathWithMinimumEffort {
 
     int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
@@ -26,8 +28,7 @@ public class PathWithMinimumEffort {
             for (int k = 0; k < dir.length; k++) {
                 int newRow = source + dir[k][0];
                 int newCol = destination + dir[k][1];
-                if (newRow >= 0 && newRow < heights.length && newCol >= 0 && newCol < heights[0].length)
-                {
+                if (newRow >= 0 && newRow < heights.length && newCol >= 0 && newCol < heights[0].length) {
                     int newDistance = Math.max(currentDistance, Math.abs(heights[newRow][newCol] - heights[source][destination]));
                     if (minDistanceMatrix[newRow][newCol] == null || minDistanceMatrix[newRow][newCol] > newDistance) {
                         minDistanceMatrix[newRow][newCol] = newDistance;

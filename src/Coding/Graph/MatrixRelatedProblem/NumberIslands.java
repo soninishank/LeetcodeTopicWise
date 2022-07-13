@@ -3,6 +3,7 @@ package Coding.Graph.MatrixRelatedProblem;
 import java.util.LinkedList;
 import java.util.Queue;
 
+// count number of connected 1s present in matrix
 // https://leetcode.com/problems/number-of-islands/
 // you need to count the islands which are connected together in 4 directions
 // 1 - island, 0 - water

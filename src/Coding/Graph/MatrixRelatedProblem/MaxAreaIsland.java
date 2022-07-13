@@ -49,7 +49,7 @@ public class MaxAreaIsland {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == '1') {
-                    maxCount = Math.max(maxCount, 1 + dfsIsland(i, j, grid));
+                    maxCount = Math.max(maxCount, 1 + dfsIsland(i, j, grid));// we need to take max of connected 1s
                 }
             }
         }

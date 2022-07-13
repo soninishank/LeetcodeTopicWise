@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 // https://leetcode.com/problems/lru-cache/
 // https://www.youtube.com/watch?v=jkbS-bKXTEE
+// Time complexity - O(1) both for put and get
+// Space complexity - O(c) - if capacity is defined
 public class LRUCache {
     int size;
     Node head, tail;

@@ -4,8 +4,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+// color changing
 // coloring with newColor the old colors
 // https://leetcode.com/problems/flood-fill/
+// Time complexity - O(N) - because we need to change all 1 to 2 -> N is number of 1s
+// Space complexity - O(N) - call stack
 public class FloodFill {
     // 1 : using Coding.BFS
     private int[][] floodFillBFS(int[][] image, int sr, int sc, int newColor) {

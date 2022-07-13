@@ -1,6 +1,5 @@
 package Coding.PriorityQueue;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/merge-k-sorted-lists/

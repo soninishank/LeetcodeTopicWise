@@ -29,11 +29,11 @@ public class CourseScheduleI {
         int edgeCnt = prerequisites.length;
         while (!queue.isEmpty()) {
             int current = queue.poll();
-            for (int neig : adjList.get(current)) {
+            for (int neighbour : adjList.get(current)) {
                 edgeCnt--;
-                incomingEdges[neig]--;
-                if (incomingEdges[neig] == 0) {
-                    queue.add(neig);
+                incomingEdges[neighbour]--;
+                if (incomingEdges[neighbour] == 0) {
+                    queue.add(neighbour);
                 }
             }
         }
