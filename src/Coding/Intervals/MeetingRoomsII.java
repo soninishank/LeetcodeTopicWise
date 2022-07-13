@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 // https://leetcode.com/problems/meeting-rooms-ii/
 // similar like minimum number of platforms
+// O(NlogN)
 public class MeetingRoomsII {
     public int minMeetingRooms(int[][] intervals) {
         int[] arrival = new int[intervals.length];
@@ -16,23 +17,24 @@ public class MeetingRoomsII {
         }
         Arrays.sort(arrival);
         Arrays.sort(dept);
-        return getTotalMeetingRooms(arrival, dept);
+        return minNoOfMeetingRooms(arrival, dept);
     }
 
-    private int getTotalMeetingRooms(int[] arrival, int[] dept) {
-        int confRoom = 1;
-        int i = 1, j = 0;
-        int result = confRoom;
-        while (i < arrival.length && j < dept.length) {
-            if (arrival[i] < dept[j]) {
+    private int minNoOfMeetingRooms(int[] arrival, int[] departure) {
+        int i = 0;
+        int j = 0;
+        int rooms = 0;
+        int maxRooms = 0;
+        while (i < arrival.length && j < departure.length) {
+            if (arrival[i] < departure[j]) {
+                rooms++;
                 i++;
-                confRoom++;
+                maxRooms = Math.max(maxRooms, rooms);
             } else {
                 j++;
-                confRoom--;
+                rooms--;
             }
-            result = Math.max(result, confRoom);
         }
-        return result;
+        return maxRooms;
     }
 }

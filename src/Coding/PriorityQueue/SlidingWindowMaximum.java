@@ -24,23 +24,20 @@ public class SlidingWindowMaximum {
 
     private int[] maxSlidingWindow(int[] nums, int k) {
         // Works like queue - FIFO
-        // peek - first element which is inserted
-        // peek means looking at first element of deque and peeklast means looking at last element of the deque
-        Deque<Integer> deque = new LinkedList<>();
+        Deque<Integer> deque = new LinkedList<>();// store by index
         int[] result = new int[nums.length - k + 1];
-        int index = 0;
         for (int i = 0; i < nums.length; i++) {
-            while (!deque.isEmpty() && deque.peek() < i - k + 1) {
-                deque.poll(); // remove the first element
+            // removing the start candidates -
+            while (!deque.isEmpty() && deque.peekFirst() <= i - k) {
+                deque.pollFirst();
             }
-            // For storing the max we will do
-            while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[i]) {
+            // if the last element is smaller than current element
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
                 deque.pollLast();
             }
-            deque.offer(i);
+            deque.addLast(i);
             if (i >= k - 1) {
-                result[index] = nums[deque.peek()];
-                index++;
+                result[i - k + 1] = nums[deque.peekFirst()];
             }
         }
         return result;

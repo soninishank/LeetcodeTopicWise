@@ -4,6 +4,8 @@ import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/merge-k-sorted-lists/
 // Blind-75
+// Time complexity - O(NlogK)
+// Space complexity - O(N)
 public class MergeKSortedList {
     public ListNode mergeKLists(ListNode[] lists) {
         PriorityQueue<ListNode> priorityQueue = new PriorityQueue<>((o1, o2) -> {

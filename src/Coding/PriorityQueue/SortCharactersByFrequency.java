@@ -12,7 +12,7 @@ public class SortCharactersByFrequency {
         for (int i = 0; i < s.length(); i++) {
             hashMap.put(s.charAt(i), hashMap.getOrDefault(s.charAt(i), 0) + 1);
         }
-        PriorityQueue<Character> pq = new PriorityQueue<>((o1, o2) -> hashMap.get(o2) - hashMap.get(o1));
+        PriorityQueue<Character> pq = new PriorityQueue<>((o1, o2) -> hashMap.get(o2) - hashMap.get(o1));// maxPQ - largest to smallest
         // Iterating over hashmap keyset because priority queue you don't know exact ordering
         for (char c : hashMap.keySet()) {
             pq.add(c);

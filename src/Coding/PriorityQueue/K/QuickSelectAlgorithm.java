@@ -1,8 +1,11 @@
 package Coding.PriorityQueue.K;
 
 // https://www.youtube.com/watch?v=ooLKYx1TlSE
+// we are sorting from smallest to largest till kth position
 // For smallest = k is same
-// For largest = pass k as - arr.length - k + 1
+// For largest = pass k as -> arr.length - k + 1
+// Time complexity : O(N) in the average case,O(N^2) in the worst case.
+// Space complexity : O(1).
 public class QuickSelectAlgorithm {
 
     // we are sorting the array till the kth element

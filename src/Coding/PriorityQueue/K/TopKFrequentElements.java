@@ -14,7 +14,7 @@ public class TopKFrequentElements {
         for (int num : nums) {
             hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
         }
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((o1, o2) -> hashMap.get(o1) - hashMap.get(o2)); // descending
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((o1, o2) -> hashMap.get(o1) - hashMap.get(o2)); // ascending
         for (int num : hashMap.keySet()) {
             priorityQueue.add(num);
             if (priorityQueue.size() > k) {
