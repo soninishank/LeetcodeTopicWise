@@ -42,7 +42,8 @@ public class CourseScheduleI {
 
 
     public static void main(String[] args) {
-        int numCourses = 5, prerequisites[][] = {{1, 4}, {2, 4}, {3, 1}, {3, 2}};
+        int numCourses = 5;
+        int[][] prerequisites = {{1, 4}, {2, 4}, {3, 1}, {3, 2}};
         boolean b = new CourseScheduleI().canFinish(numCourses, prerequisites);
         System.out.println(b);
     }

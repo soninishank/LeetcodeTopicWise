@@ -25,6 +25,4 @@ public class LowestCommonAncestorIII {
         public Node right;
         public Node parent;
     }
-
-    ;
 }

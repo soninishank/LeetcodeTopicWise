@@ -29,7 +29,7 @@ public class SortColors {
     }
 
     public static void main(String[] args) {
-        int arr[] = {2, 0, 2, 1, 1, 0};
+        int[] arr = {2, 0, 2, 1, 1, 0};
         new SortColors().sortColors(arr);
         System.out.println(Arrays.toString(arr));
     }

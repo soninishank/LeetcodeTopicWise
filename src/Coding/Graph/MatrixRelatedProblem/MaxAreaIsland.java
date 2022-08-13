@@ -12,7 +12,7 @@ public class MaxAreaIsland {
     int[][] dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
     public int maxAreaOfIslandBFS(int[][] grid) {
-        boolean visited[][] = new boolean[grid.length][grid[0].length];
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
         int maxValue = 0;
         Queue<int[]> queue = new LinkedList<>();
         for (int i = 0; i < grid.length; i++) {

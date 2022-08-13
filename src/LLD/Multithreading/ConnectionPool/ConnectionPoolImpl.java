@@ -7,13 +7,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class ConnectionPoolImpl implements ConnectionPool {
-    private Driver driver;
-    private String jdbcUrl;
-    private String username;
-    private String password;
-    private int maximumPoolSize;
+    private final Driver driver;
+    private final String jdbcUrl;
+    private final String username;
+    private final String password;
+    private final int maximumPoolSize;
     private int size;
-    private Queue<Connection> connections;
+    private final Queue<Connection> connections;
 
     public ConnectionPoolImpl(String driverClassName, String jdbcUrl, String username, String password, int maximumPoolSize) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class c = Class.forName(driverClassName);

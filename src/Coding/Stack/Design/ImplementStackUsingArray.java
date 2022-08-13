@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImplementStackUsingArray {
-    private List<Integer> list;
+    private final List<Integer> list;
 
     private ImplementStackUsingArray() {
         this.list = new ArrayList<>();

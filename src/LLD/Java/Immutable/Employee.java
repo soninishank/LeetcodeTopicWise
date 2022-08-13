@@ -1,61 +1,57 @@
 package LLD.Java.Immutable;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
+// immutable class
+// final - no one can extend this
 public final class Employee {
-
     private final String name;
-    private final Date doj;//mutable
-    private final List<String> mobile;
+    private final int empId;
+    private final Company company;
 
-    private final Address address;
-
-    public Employee(String name, Date doj, List<String> mobile, Address address) {
+    /*
+    all argument constructor so that all object fields can be
+    initialized at the time of object creation only. (Step 2)
+     */
+    public Employee(String name, int empId, Company company) {
         this.name = name;
-        this.doj = doj;
-        this.mobile = mobile;
-        this.address = address;
+        this.empId = empId;
+        /*
+        If we use 'company' reference to assign the value to 'company'  field of 'Employee' class then using the reference which is passed
+        to this constructor , one can change 'companyName' or 'companySize' fields of the reference passed to constructor as 'Company' class is mutable class. (Step 4)
+        //this.company = company; //do not use this as 'company' can be modified
+         */
+        this.company = new Company(company.getCompanyName(), company.getCompanySize());
+        //here new object of 'Company' class is created using value of object passed to constructor
     }
 
+    /*
+    only getters so that no one can change object fields using
+    setter methods for object fields (Step 1)
+     */
     public String getName() {
         return name;
     }
 
-    public Date getDoj() {
-        return (Date) doj.clone();
+    public int getEmpId() {
+        return empId;
     }
 
-    public List<String> getMobile() {
-        // Collections.unmodifiableList(mobile);
-        return new ArrayList<>(mobile); // create a new object and return it so that it will not get modified
-    }
+    public Company getCompany() {
+        /*
+        returning clone object of 'company' field of 'Employee' class so no one can
+        modify the fields of 'company' using the reference returned by getCompany().
+        (Step 5)
+         */
+        //return company;//do not use this as using 'company' reference its fields can be modified .
 
-    public Address getAddress() {
-        return new Address(address.getCity(), address.getZip());
+        return new Company(company.getCompanyName(), company.getCompanySize());
     }
 
     @Override
     public String toString() {
         return "Employee{" +
                 "name='" + name + '\'' +
-                ", doj=" + doj +
-                ", mobile=" + mobile +
-                ", address=" + address +
+                ", empId=" + empId +
+                ", company=" + company +
                 '}';
-    }
-
-    public static void main(String[] args) {
-        Address address = new Address("blr", "1012");
-        Employee employee = new Employee("Basant", new Date(),
-                Arrays.stream(new String[]{"1234", "5678"}).collect(Collectors.toList()), address);
-
-        employee.getDoj().setDate(20);
-        employee.getMobile().add("9010");
-        employee.getAddress().setCity("Pune");
-
-        System.out.println(employee); // immutable - nothing will get changed
-
-
     }
 }

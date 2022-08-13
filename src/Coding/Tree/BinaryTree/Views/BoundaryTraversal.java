@@ -2,21 +2,23 @@ package Coding.Tree.BinaryTree.Views;
 
 import Coding.Tree.TreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Nishank Soni
  * @project Leet Code Topic Wise on 4/1/22
  */
+// https://leetcode.com/problems/boundary-of-binary-tree/
 // print root
-// print left view - without leaf node
+// print left view - without leaf nodes
 // print bottom view - include only leaf node
-// print right view - without leaf node
+// print right view - without leaf node - but bottom to top
 public class BoundaryTraversal {
 
     List<Integer> resultList = new ArrayList<>();
 
-    private List<Integer> printBoundary(TreeNode root) {
+    public List<Integer> boundaryOfBinaryTree(TreeNode root) {
         if (root == null) {
             return resultList;
         }
@@ -29,29 +31,14 @@ public class BoundaryTraversal {
     }
 
     private void printLeftViewExcludeLeafNode(TreeNode root) {
-        if (root == null) {
+        if (root == null || root.left == null && root.right == null) {
             return;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode poll = queue.poll();
-                // exclude leaf node
-                if (poll.left == null && poll.right == null) {
-                    continue;
-                }
-                if (i == 0) {
-                    resultList.add(poll.val);
-                }
-                if (poll.left != null) {
-                    queue.add(poll.left);
-                }
-                if (poll.right != null) {
-                    queue.add(poll.right);
-                }
-            }
+        resultList.add(root.val);
+        if (root.left == null) {
+            printLeftViewExcludeLeafNode(root.right);
+        } else {
+            printLeftViewExcludeLeafNode(root.left);
         }
     }
 
@@ -66,29 +53,15 @@ public class BoundaryTraversal {
     }
 
     private void printRightViewExcludeLeafNode(TreeNode root) {
-        if (root == null) {
+        if (root == null || root.left == null && root.right == null) {
             return;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode poll = queue.poll();
-                if (poll.left == null && poll.right == null) {
-                    continue;
-                }
-                if (i == size - 1) {
-                    resultList.add(poll.val);
-                }
-                if (poll.left != null) {
-                    queue.add(poll.left);
-                }
-                if (poll.right != null) {
-                    queue.add(poll.right);
-                }
-            }
+        if (root.right == null) {
+            printRightViewExcludeLeafNode(root.left);
+        } else {
+            printRightViewExcludeLeafNode(root.right);
         }
+        resultList.add(root.val);
     }
 
 // 4 10 N 5 5 N 6 7 N 8 8 N 8 11 N 3 4 N 1 3 N 8 6 N 11 11 N 5 8
@@ -111,7 +84,7 @@ public class BoundaryTraversal {
         tree.right.left.right = new TreeNode(10);
 
 
-        List<Integer> integers = new BoundaryTraversal().printBoundary(tree);
+        List<Integer> integers = new BoundaryTraversal().boundaryOfBinaryTree(tree);
         System.out.println(integers);
     }
 }

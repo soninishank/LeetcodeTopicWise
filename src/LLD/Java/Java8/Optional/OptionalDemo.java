@@ -1,12 +1,10 @@
 package LLD.Java.Java8.Optional;
 
+import LLD.Java.Interfaces.interfaceTest;
 import LLD.Java.Java8.Streams.MapFlatMap.Customer;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
-
-import static LLD.Java.Java8.Streams.MapFlatMap.Map.getAll;
 
 public class OptionalDemo {
 
@@ -35,6 +33,7 @@ public class OptionalDemo {
         // of - will throw NullPointerException
         Optional<String> email = Optional.of(customer.getEmail());
         System.out.println(email);
+
 
 
     }

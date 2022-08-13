@@ -14,7 +14,7 @@ public class NumberIslands {
 
     // 1.Apply Coding.BFS
     private int numIslandsBFS(char[][] grid) {
-        boolean visited[][] = new boolean[grid.length][grid[0].length];
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
         int count = 0;
         Queue<int[]> queue = new LinkedList<>();
         for (int i = 0; i < grid.length; i++) {

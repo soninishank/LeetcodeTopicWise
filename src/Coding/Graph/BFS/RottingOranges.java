@@ -37,7 +37,7 @@ public class RottingOranges {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 int[] poll = queue.poll();
-                for (int arr[] : dir) {
+                for (int[] arr : dir) {
                     int x = poll[0] + arr[0];
                     int y = poll[1] + arr[1];
                     if (x >= 0 && y >= 0 && x <= grid.length - 1 && y <= grid[0].length - 1 && grid[x][y] == 1) {

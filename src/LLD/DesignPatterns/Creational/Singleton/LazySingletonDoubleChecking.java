@@ -1,5 +1,7 @@
 package LLD.DesignPatterns.Creational.Singleton;
 
+// We can make constructor as private. So that We can not create an
+//object outside of the class.
 public class LazySingletonDoubleChecking {
     private LazySingletonDoubleChecking() {
     }

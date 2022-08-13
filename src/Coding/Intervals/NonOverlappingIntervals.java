@@ -10,7 +10,7 @@ public class NonOverlappingIntervals {
         if (intervals == null || intervals.length == 0) return 0;
         Arrays.sort(intervals, Comparator.comparingInt(i -> i[0]));
         int result = 0;
-        int newInterval[] = intervals[0];
+        int[] newInterval = intervals[0];
         for (int i = 1; i < intervals.length; i++) {
             if (newInterval[1] > intervals[i][0]) { // overlap  newInterval-> {1,2} currentInterval -> {1,3}
                 result++;

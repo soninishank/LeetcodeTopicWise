@@ -44,7 +44,7 @@ public class GroupAnagrams {
     }
 
     public static void main(String[] args) {
-        String str[] = {"eat", "tea", "tan", "ate", "nat", "bat"};
+        String[] str = {"eat", "tea", "tan", "ate", "nat", "bat"};
         List<List<String>> lists = new GroupAnagrams().groupAnagramsBetterWay(str);
         System.out.println(lists);
     }

@@ -32,7 +32,7 @@ public class WithTransactionFee_6 {
     }
 
     public static void main(String[] args) {
-        int arr[] = {1, 3, 2, 8, 4, 9};
+        int[] arr = {1, 3, 2, 8, 4, 9};
         int fee = 2;
         int i = new WithTransactionFee_6().maxProfit(arr, fee);
         System.out.println(i);

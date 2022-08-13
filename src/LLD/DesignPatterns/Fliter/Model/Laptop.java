@@ -1,12 +1,12 @@
 package LLD.DesignPatterns.Fliter.Model;
 
 public class Laptop {
-    private Integer id;
-    private String hardDisk;
-    private String processor;
-    private String ram;
-    private String operatingSystem;
-    private String screenSize;
+    private final Integer id;
+    private final String hardDisk;
+    private final String processor;
+    private final String ram;
+    private final String operatingSystem;
+    private final String screenSize;
 
     public Laptop(Integer id, String hardDisk, String processor, String ram, String operatingSystem, String screenSize) {
         this.id = id;

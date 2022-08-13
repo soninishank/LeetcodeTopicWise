@@ -2,9 +2,12 @@ package Coding.Backtracking;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class DecodeWays {
     int count = 0;
+    String name = "nishank";
+    boolean flag;
 
     public int numDecodings(String s) {
         if (s.length() == 0) {
@@ -42,15 +45,15 @@ public class DecodeWays {
     }
 
     private void doBacktracking(String str, HashMap<Integer, Character> hashMap, int index, ArrayList<Integer> list) {
-        if (index > str.length()){
+        if (index > str.length()) {
             return;
         }
-        for (int i = 0 ; i < str.length(); i++){
+        for (int i = 0; i < str.length(); i++) {
             String substring = str.substring(0, i + 1);
-            if (hashMap.containsKey(Integer.valueOf(substring))){
+            if (hashMap.containsKey(Integer.valueOf(substring))) {
                 count++;
                 String remainingSubstring = str.substring(i + 1);
-                doBacktracking(remainingSubstring,hashMap,index+1,list);
+                doBacktracking(remainingSubstring, hashMap, index + 1, list);
             }
         }
     }
@@ -59,5 +62,18 @@ public class DecodeWays {
         String s = "226";
         int i = new DecodeWays().numDecodings(s);
         System.out.println(i);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DecodeWays)) return false;
+        DecodeWays that = (DecodeWays) o;
+        return count == that.count && flag == that.flag && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(count, name, flag);
     }
 }

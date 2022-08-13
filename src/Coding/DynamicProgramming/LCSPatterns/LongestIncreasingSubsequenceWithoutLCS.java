@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class LongestIncreasingSubsequenceWithoutLCS {
 
-    int dp[];
+    int[] dp;
 
     private int lengthOfLIS(int[] arr) {
         dp = new int[arr.length];
@@ -26,7 +26,7 @@ public class LongestIncreasingSubsequenceWithoutLCS {
     }
 
     public static void main(String[] args) {
-        int arr[] = {50, 3, 10, 7, 40, 80};
+        int[] arr = {50, 3, 10, 7, 40, 80};
         int i = new LongestIncreasingSubsequenceWithoutLCS().lengthOfLIS(arr);
         System.out.println(i);
     }

@@ -10,7 +10,7 @@ import java.util.HashMap;
 // https://leetcode.com/problems/path-sum-iii/
 // Coding.HashMap - key value - key is current sum and value is Index
 public class PathSumIII {
-    private HashMap<Integer, Integer> hashMap = new HashMap<>();
+    private final HashMap<Integer, Integer> hashMap = new HashMap<>();
     private int count = 0;
 
     public int pathSum(TreeNode root, int targetSum) {

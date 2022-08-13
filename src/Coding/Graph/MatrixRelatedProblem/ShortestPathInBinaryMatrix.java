@@ -13,7 +13,7 @@ import java.util.Queue;
 // All the visited cells of the path are 0.
 public class ShortestPathInBinaryMatrix {
 
-    private int dir[][] = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, -1}, {-1, 1}, {-1, -1}, {1, 1}};
+    private final int[][] dir = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, -1}, {-1, 1}, {-1, -1}, {1, 1}};
 
     Queue<int[]> queue = new LinkedList<>();
     int distance = 0;

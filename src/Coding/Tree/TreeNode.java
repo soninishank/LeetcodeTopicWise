@@ -15,5 +15,14 @@ public class TreeNode {
     public TreeNode(int data) {
         this.val = data;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "" + val +
+                ", " + left +
+                ", " + right +
+                '}';
+    }
 }
 

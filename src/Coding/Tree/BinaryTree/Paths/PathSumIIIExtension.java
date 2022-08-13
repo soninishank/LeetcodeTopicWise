@@ -13,7 +13,7 @@ import java.util.List;
 public class PathSumIIIExtension {
 
     List<List<Integer>> resultKPathSum = new ArrayList<>();
-    private HashMap<Integer, List<Integer>> hashMap = new HashMap<>(); // key is cumulative sum and value is List<Integers>
+    private final HashMap<Integer, List<Integer>> hashMap = new HashMap<>(); // key is cumulative sum and value is List<Integers>
 
     private List<List<Integer>> KPathSum(TreeNode root, int targetSum) {
         if (root == null) {

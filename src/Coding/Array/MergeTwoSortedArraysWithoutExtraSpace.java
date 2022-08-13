@@ -16,8 +16,8 @@ public class MergeTwoSortedArraysWithoutExtraSpace {
     }
 
     public static void main(String[] args) {
-        int X[] = {1, 4, 7, 8, 10};
-        int Y[] = {2, 3, 9};
+        int[] X = {1, 4, 7, 8, 10};
+        int[] Y = {2, 3, 9};
         new MergeTwoSortedArraysWithoutExtraSpace().merge(X, Y);
     }
 }

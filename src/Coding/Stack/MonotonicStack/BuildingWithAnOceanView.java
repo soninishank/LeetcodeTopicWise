@@ -29,7 +29,7 @@ public class BuildingWithAnOceanView {
     }
 
     public static void main(String[] args) {
-        int arr[] = {4, 2, 3, 1};
+        int[] arr = {4, 2, 3, 1};
         // 2,2,2,2 -> only index 3
         int[] buildings = new BuildingWithAnOceanView().findBuildings(arr);
         System.out.println(Arrays.toString(buildings));

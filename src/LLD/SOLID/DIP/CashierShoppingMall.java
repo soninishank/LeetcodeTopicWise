@@ -2,7 +2,7 @@ package LLD.SOLID.DIP;
 
 public class CashierShoppingMall {
 
-    private BankCard bankCard;
+    private final BankCard bankCard;
 
     public CashierShoppingMall(BankCard bankCard) {
         this.bankCard = bankCard;

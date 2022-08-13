@@ -20,7 +20,7 @@ public class CanPlaceFlowers {
                 }
             }
         }
-        return n == 0 ? true : false;
+        return n == 0;
     }
 
     public boolean canPlaceFlowersOptimized(int[] flowerbed, int n) {
@@ -34,7 +34,7 @@ public class CanPlaceFlowers {
                 }
             }
         }
-        return n == 0 ? true : false;
+        return n == 0;
     }
 
 

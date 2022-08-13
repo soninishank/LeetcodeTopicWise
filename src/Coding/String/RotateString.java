@@ -13,10 +13,10 @@ public class RotateString {
     // beginIndex – the beginning index, inclusive.
     // endIndex – the ending index, exclusive.
     private void testJavaSubstring(String str) {
-        System.out.println(str.substring(0)); // abcde
+        System.out.println(str); // abcde
         System.out.println(str.substring(1)); // bcde
-        System.out.println(str.substring(0, 1)); // a
-        System.out.println(str.substring(0, str.length())); // abcde
+        System.out.println(str.charAt(0)); // a
+        System.out.println(str); // abcde
     }
 
     public static void main(String[] args) {

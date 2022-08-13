@@ -36,7 +36,7 @@ public class MissingNumber {
     }
 
     public static void main(String[] args) {
-        int arr0[] = {4, 0, 3, 1};
+        int[] arr0 = {4, 0, 3, 1};
         new MissingNumber().findMissingNumber(arr0);
     }
 

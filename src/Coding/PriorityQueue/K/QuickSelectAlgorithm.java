@@ -42,7 +42,7 @@ public class QuickSelectAlgorithm {
 
 
     public static void main(String[] args) {
-        int arr[] = {4, 5, 10, 11, 1, 3, 19, 8, 7};
+        int[] arr = {4, 5, 10, 11, 1, 3, 19, 8, 7};
         int kthSmallestElement = new QuickSelectAlgorithm().getKthSmallestElement(arr, 2, 0, arr.length - 1);
         System.out.println(kthSmallestElement);
     }

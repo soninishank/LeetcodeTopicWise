@@ -4,7 +4,6 @@ package LLD.DesignPatterns.Creational.Singleton;
 public class LazyInnerClassSingleton {
 
     private LazyInnerClassSingleton() {
-
     }
 
     private static class SingletonHelper {

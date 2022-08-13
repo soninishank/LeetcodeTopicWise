@@ -33,7 +33,7 @@ public class WithCoolDown_5 {
     }
 
     public static void main(String[] args) {
-        int arr[] = {1, 2, 3, 0, 2};
+        int[] arr = {1, 2, 3, 0, 2};
         int i = new WithCoolDown_5().maxProfit(arr);
         System.out.println(i);
     }

@@ -34,7 +34,7 @@ public class IsGraphBipartite {
     }
 
     public static void main(String[] args) {
-        int arr[][] = {{1, 3}, {0, 2}, {1, 3}, {0, 2}};
+        int[][] arr = {{1, 3}, {0, 2}, {1, 3}, {0, 2}};
         boolean bipartite = new IsGraphBipartite().isBipartite(arr);
         System.out.println(bipartite);
     }

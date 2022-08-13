@@ -13,10 +13,7 @@ public class PalindromeNumber {
             rev = rev * 10 + temp;
             x = x / 10;
         }
-        if (rev == originalValue) {
-            return true;
-        }
-        return false;
+        return rev == originalValue;
     }
 
     public static void main(String[] args) {

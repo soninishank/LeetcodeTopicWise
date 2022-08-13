@@ -6,7 +6,7 @@ package LLD.Java.StringPool;
 public class StringObject {
     public static void main(String[] args) {
         //how many object created here
-        String s1 = new String("javatechie");
+        String s1 = "javatechie";
         //1 object -> new -> heap reference
         //2 object -> literal -> SCP (String constant pool area)
         String s2 = "javatechie";

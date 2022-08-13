@@ -1,7 +1,7 @@
 package LLD.DesignPatterns.Creational.Factory;
 
 public class IngestionService {
-    private FactoryOfSource factoryOfSource;
+    private final FactoryOfSource factoryOfSource;
 
     public IngestionService() {
         factoryOfSource = new FactoryOfSource();

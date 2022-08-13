@@ -1,6 +1,5 @@
 package Coding.PriorityQueue.K;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/k-closest-points-to-origin/
@@ -13,7 +12,7 @@ public class KClosestPointsToOrigin {
 
     public int[][] kClosest(int[][] points, int k) {
         PriorityQueue<EuclideanDistance> priorityQueue = new PriorityQueue<>((o1, o2) -> o2.distance - o1.distance);
-        for (int arr[] : points) {
+        for (int[] arr : points) {
             int distance = euclideanDistance.calDistance(arr);
             priorityQueue.add(new EuclideanDistance(distance,arr));
             if (priorityQueue.size() > k){
@@ -32,7 +31,7 @@ public class KClosestPointsToOrigin {
 
 class EuclideanDistance {
     int distance;
-    int points[];
+    int[] points;
 
     public EuclideanDistance(int distance, int[] points) {
         this.distance = distance;

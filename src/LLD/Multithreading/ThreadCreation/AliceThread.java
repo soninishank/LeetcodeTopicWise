@@ -2,8 +2,8 @@ package LLD.Multithreading.ThreadCreation;
 
 public class AliceThread extends Thread {
 
-    private BankAccount aliceAccount;
-    private BankAccount bobAccount;
+    private final BankAccount aliceAccount;
+    private final BankAccount bobAccount;
 
     public AliceThread(BankAccount aliceAccount, BankAccount bobAccount) {
         this.aliceAccount = aliceAccount;

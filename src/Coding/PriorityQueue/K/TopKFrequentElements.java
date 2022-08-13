@@ -32,7 +32,7 @@ public class TopKFrequentElements {
     }
 
     public static void main(String[] args) {
-        int arr[] = {1, 1, 1, 2, 2, 3};
+        int[] arr = {1, 1, 1, 2, 2, 3};
         int k = 2;
         int[] ints = new TopKFrequentElements().topKFrequent(arr, k);
         System.out.println(Arrays.toString(ints));

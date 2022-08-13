@@ -26,7 +26,7 @@ public class CelebrityProblem {
     }
 
     // O(N) time complexity
-    private int celebrity(int graph[][], int n) {
+    private int celebrity(int[][] graph, int n) {
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < n; i++) {
             stack.push(i);

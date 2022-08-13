@@ -50,16 +50,16 @@ public class CyclicSort {
     }
 
     public static void main(String[] args) {
-        int arr[] = {4, 3, 1, 2, 0};
+        int[] arr = {4, 3, 1, 2, 0};
         new CyclicSort().sortCycleFrom0toN(arr);
-        int arr1[] = {3, 1, 5, 4, 0, 2};
+        int[] arr1 = {3, 1, 5, 4, 0, 2};
 
-        int arr0[] = {3, 1, 5, 4, 2};
-        int arr00[] = {2, 6, 4, 3, 1, 5};
+        int[] arr0 = {1,2,3,4,2};
+        int[] arr00 = {2, 6, 4, 3, 1, 5};
         new CyclicSort().sortCycleFrom1toN(arr0);
         new CyclicSort().sortCycleFrom1toN(arr00);
 
-        int arr2[] = {5, 6, 2, 3, 4};
+        int[] arr2 = {5, 6, 2, 3, 4};
         new CyclicSort().sortCycleFrom2toN(arr2);
     }
 

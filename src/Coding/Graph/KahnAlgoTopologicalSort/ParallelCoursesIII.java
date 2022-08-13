@@ -23,7 +23,6 @@ public class ParallelCoursesIII {
                 queue.add(i);
             }
         }
-        int edgeCount = n;
         int maxMonths = 0;
         while (!queue.isEmpty()) {
             int sum = Integer.MIN_VALUE;
@@ -31,7 +30,6 @@ public class ParallelCoursesIII {
             for (int i = 0; i < size; i++) {
                 Integer poll = queue.poll();
                 sum = Math.max(sum, time[poll - 1]);
-                edgeCount--;
                 for (int neighbour : adjList.get(poll)) {
                     incomingEdges[neighbour]--;
                     if (incomingEdges[neighbour] == 0) {

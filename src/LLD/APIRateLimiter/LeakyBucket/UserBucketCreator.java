@@ -1,7 +1,5 @@
 package LLD.APIRateLimiter.LeakyBucket;
 
-import LLD.APIRateLimiter.LeakyBucket.LeakyBucket;
-
 import java.util.HashMap;
 import java.util.Map;
 

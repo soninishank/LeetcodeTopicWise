@@ -23,7 +23,7 @@ public class RemoveDuplicatesFromSortedArray {
     }
 
     public static void main(String[] args) {
-        int arr[] = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4}; // 1,1,2 -
+        int[] arr = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4}; // 1,1,2 -
         int i = new RemoveDuplicatesFromSortedArray().removeDuplicates(arr);
         System.out.println(i);
     }

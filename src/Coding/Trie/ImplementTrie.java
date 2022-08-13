@@ -1,7 +1,7 @@
 package Coding.Trie;
 
 public class ImplementTrie {
-    private TrieNode root;
+    private final TrieNode root;
 
     public ImplementTrie() {
         root = new TrieNode();

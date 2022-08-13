@@ -75,7 +75,7 @@ public class EvaluateDivision {
     public static void main(String[] args) {
         String[][] dataSet = {{"a", "b"}, {"b", "c"}};
         String[][] queries = {{"a", "c"}, {"b", "a"}, {"a", "e"}, {"a", "a"}, {"x", "x"}};
-        double values[] = {2.0, 3.0};
+        double[] values = {2.0, 3.0};
         List<List<String>> equations = Arrays.stream(dataSet).map(Arrays::asList).collect(Collectors.toList());
         List<List<String>> collect = Arrays.stream(queries).map(Arrays::asList).collect(Collectors.toList());
         double[] doubles = new EvaluateDivision().calcEquation(equations, values, collect);

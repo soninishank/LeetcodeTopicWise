@@ -31,7 +31,7 @@ public class StringCompression {
     }
 
     public static void main(String[] args) {
-        char str[] = {'a', 'a', 'a', 'b', 'b', 'a', 'a'};
+        char[] str = {'a', 'a', 'a', 'b', 'b', 'a', 'a'};
         int compress = new StringCompression().compress(str);
         System.out.println(compress);
     }

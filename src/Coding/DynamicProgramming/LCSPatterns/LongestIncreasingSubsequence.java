@@ -18,7 +18,7 @@ public class LongestIncreasingSubsequence {
     }
 
     private int lcs(int[] X, int[] Y, int m, int n) {
-        int dp[][] = new int[m + 1][n + 1];
+        int[][] dp = new int[m + 1][n + 1];
         for (int i = 0; i <= m; i++) {
             for (int j = 0; j <= n; j++) {
                 if (i == 0 || j == 0) {
@@ -34,7 +34,7 @@ public class LongestIncreasingSubsequence {
     }
 
     public static void main(String[] args) {
-        int arr[] = {50, 3, 10, 7, 40, 80};
+        int[] arr = {50, 3, 10, 7, 40, 80};
         int i = new LongestIncreasingSubsequence().lengthOfLIS(arr);
         System.out.println(i);
     }

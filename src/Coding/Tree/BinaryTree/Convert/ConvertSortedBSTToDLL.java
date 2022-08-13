@@ -1,6 +1,7 @@
-package Coding.Tree.BinaryTree;
+package Coding.Tree.BinaryTree.Convert;
 
 // https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/
+// same code will work for Binary Tree to DLL
 public class ConvertSortedBSTToDLL {
     Node prev = null;
     Node headLinkedList = null;

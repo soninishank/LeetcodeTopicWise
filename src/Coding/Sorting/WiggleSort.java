@@ -14,7 +14,7 @@ public class WiggleSort {
     }
 
     public static void main(String[] args) {
-        int arr[] = {3, 5, 2, 1, 6, 4};
+        int[] arr = {3, 5, 2, 1, 6, 4};
         new WiggleSort().wiggleSort(arr);
     }
 }

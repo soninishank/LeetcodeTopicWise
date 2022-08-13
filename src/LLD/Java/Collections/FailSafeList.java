@@ -1,19 +1,15 @@
 package LLD.Java.Collections;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 // it will not throw an error
 public class FailSafeList {
     public static void main(String[] args) {
-
         List<String> list = new CopyOnWriteArrayList<>();
         Map<String, Integer> map = new ConcurrentHashMap<>();
-        map.put("",11);
+        map.put("", 11);
         list.add("a");
         list.add("b");
 

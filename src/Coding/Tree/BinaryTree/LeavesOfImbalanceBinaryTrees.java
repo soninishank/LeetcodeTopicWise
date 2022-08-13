@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LeavesOfImbalanceBinaryTrees {
-    private List<List<Integer>> result = new ArrayList<>();
-    private HashMap<Integer, List<Integer>> hashMap = new HashMap<>();
+    private final List<List<Integer>> result = new ArrayList<>();
+    private final HashMap<Integer, List<Integer>> hashMap = new HashMap<>();
 
     public List<List<Integer>> findLeaves(TreeNode root) {
         if (root == null) {

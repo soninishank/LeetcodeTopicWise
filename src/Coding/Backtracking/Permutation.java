@@ -31,7 +31,7 @@ public class Permutation {
 
 
     public static void main(String[] args) {
-        int arr[] = {1, 2, 3};
+        int[] arr = {1, 2, 3};
         List<List<Integer>> permute = new Permutation().permute(arr);
         System.out.println(permute);
     }

@@ -38,7 +38,7 @@ public class AtMostTwo_3 {
     }
 
     public static void main(String[] args) {
-        int arr[] = {3, 3, 5, 0, 0, 3, 1, 4};
+        int[] arr = {3, 3, 5, 0, 0, 3, 1, 4};
         int i = new AtMostTwo_3().maxProfit(arr);
         System.out.println(i);
     }

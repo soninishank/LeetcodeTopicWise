@@ -4,9 +4,9 @@ import java.util.concurrent.locks.Lock;
 
 public class BankAccount {
 
-    private String name;
+    private final String name;
     private Integer amount;
-    private Lock lock;
+    private final Lock lock;
 
     public BankAccount(String name, Integer val, Lock lock) {
         this.name = name;

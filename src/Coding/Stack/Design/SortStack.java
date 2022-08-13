@@ -18,7 +18,7 @@ public class SortStack {
     }
 
     public static void main(String[] args) {
-        int arr[] = {34, 3, 31, 98, 92, 23};
+        int[] arr = {34, 3, 31, 98, 92, 23};
         Stack<Integer> stack = new Stack<>();
         for (int i : arr) {
             stack.add(i);
