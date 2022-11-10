@@ -6,46 +6,45 @@ import java.util.List;
 // https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
 // https://www.youtube.com/watch?v=uzVUw90ZFIg
 public class DetectCycleInDirectedGraph {
-    private boolean isCyclic(int[][] graph, int edges) {
-        List<List<Integer>> adjList = new ArrayList<>(edges);
-        for (int i = 0; i < edges; i++) {
-            adjList.add(new ArrayList<>());
-        }
-        for (int i = 0; i < graph.length; i++) {
-            adjList.get(graph[i][0]).add(graph[i][1]);
-        }
-        boolean[] visited = new boolean[edges];
-        boolean[] dfsVisited = new boolean[edges];
-        for (int i = 0; i < edges; i++) {
-            if (!visited[i]) {
-                if (checkCyclic(i, visited, dfsVisited, adjList)) {
+    
+    // Function to detect cycle in a directed graph.
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+        // code here
+        boolean visited[] = new boolean[V];
+        boolean dfsVisited[] = new boolean[V];
+        
+        for(int i = 0 ; i < V ; i++)
+        {
+            // if not visited
+            if(visited[i] == false)
+            {
+                if(isCycle(adj,visited,dfsVisited,i)) // if there is any cycle present 
+                {
                     return true;
                 }
             }
         }
         return false;
     }
-
-    private boolean checkCyclic(int parent, boolean[] visited, boolean[] dfsVisited, List<List<Integer>> adjList) {
-        // visited in both - return true - cycle present
-        if (dfsVisited[parent] && visited[parent]) {
-            return true;
-        }
-        // mark both as visited
-        dfsVisited[parent] = true;
-        visited[parent] = true;
-        for (Integer child : adjList.get(parent)) {
-            // if child is not visited - check cyclicity
-            if (!visited[child]) {
-                if (checkCyclic(child, visited, dfsVisited, adjList)) {
-                    return true;
+    
+    public boolean isCycle(ArrayList<ArrayList<Integer>> adj,boolean visited[],boolean dfsVisited[],int current)
+    {
+        visited[current] = true;
+        dfsVisited[current] = true;
+        for(int child : adj.get(current))
+        {
+            if(visited[child] == false)
+            {
+                if(isCycle(adj,visited,dfsVisited,child))
+                {
+                   return true; 
                 }
-            }// if DFSChild is visited  - cycle
-            else if (dfsVisited[child]) {
+            }else if(dfsVisited[child])
+            {
                 return true;
             }
-            dfsVisited[parent] = false; // backtrack
         }
+        dfsVisited[current] = false;
         return false;
     }
 
