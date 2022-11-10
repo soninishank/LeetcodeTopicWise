@@ -38,6 +38,14 @@ public class DetectCycleInUndirectedGraph {
                 visited.add(neighbour);
                 hasCycle(visited, neighbour, current);
             }
+            /*
+            Any adjCent node other than the previous node is already visited
+            1.Marks visited
+            2.Not previous
+            return true
+            */
+            
+            
             // If the adjacent node is not parent and already visited then return true.
             else if (neighbour != parent) { // if its already visited and its parent is not equal to neighbour
                 return true;
