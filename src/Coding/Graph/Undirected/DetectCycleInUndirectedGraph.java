@@ -31,6 +31,7 @@ public class DetectCycleInUndirectedGraph {
         return false;
     }
 
+    // parent means previous value which is already visited 
     private boolean hasCycle(HashSet<Integer> visited, int current, int parent) {
         for (int neighbour : adjList.get(current)) {
             if (!visited.contains(neighbour)) {
