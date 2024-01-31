@@ -1,5 +1,6 @@
 package Coding.Stack;
 
+// https://leetcode.com/problems/decode-string/
 public class DecodeString {
     private String decodeString(String str, int index) {
         StringBuilder result = new StringBuilder();
