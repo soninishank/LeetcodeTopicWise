@@ -1,5 +1,7 @@
 // https://leetcode.com/problems/majority-element/
 // https://medium.com/@snehakweera77/169-majority-element-c43b10155375
+// It's very easy - just write it down on pen and paper
+// Do the dry run
 
 class MajorityElement {
     public int majorityElement(int[] nums) {
