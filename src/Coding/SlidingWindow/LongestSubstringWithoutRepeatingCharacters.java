@@ -4,15 +4,18 @@ package Coding.SlidingWindow;
 // s consists of English letters, digits, symbols and spaces.
 public class LongestSubstringWithoutRepeatingCharacters {
     public int lengthOfLongestSubstring(String s) {
-        int[] arr = new int[256];
         int end = 0, start = 0, result = 0;
+        int[] arr = new int[256];
+        int max = 0;
         while (end < s.length()) {
-            arr[s.charAt(end)]++;
-            while (arr[s.charAt(end)] > 1) {
-                arr[s.charAt(start)]--;
+            int c1 = s.charAt(end);
+            arr[c1]++;
+            end++;
+            while (arr[c1] > 1) {
+                int c2 = s.charAt(start);
+                arr[c2]--;
                 start++;
             }
-            end++;
             result = Math.max(result, end - start);
         }
         return result;
