@@ -1,6 +1,10 @@
 package Coding.String;
 
 // https://leetcode.com/problems/add-binary/
+// No need of knowing any Binary operations
+// Use simple mathematics
+// To get the sum , use sum % 2 
+// To get the carry, use carry / 2
 public class AddBinary {
     public String addBinary(String num1, String num2) {
         int i = num1.length() - 1;

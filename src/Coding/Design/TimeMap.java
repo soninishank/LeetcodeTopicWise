@@ -27,6 +27,8 @@ public class TimeMap {
             return "";
         }
         Integer floor = treeMap.floorKey(timestamp);
+        // The reason to add null because when you don't have the timestamp equivalent to 
+        // asked timestamp get
         if (floor == null) {
             return "";
         }
