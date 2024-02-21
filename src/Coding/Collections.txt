@@ -1,8 +1,0 @@
-Runtime/dynamic polymorphism :
-
-In our controller we inject interface class , not the implementation
-@Autowired
-private InventoryService inventoryService;
-
-
-inventoryService interface can have multiple implementations
