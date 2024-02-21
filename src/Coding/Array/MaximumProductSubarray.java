@@ -10,7 +10,7 @@ public class MaximumProductSubarray {
         int result = 1;
         for (int i = 0; i < nums.length; i++) {
             result *= nums[i];
-            max = Math.max(max, result);
+            max = Math.max(max, result); // Jaise hi 3 hua , yha pe meri max me 3 store ho gya 
 
             if (result == 0) {
                 result = 1;
