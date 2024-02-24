@@ -62,3 +62,40 @@ class Node {
         right = _right;
     }
 }
+
+// Easy solution and working one
+
+class Solution {
+    
+    Node head;
+    Node current;
+    
+    public Node treeToDoublyList(Node root) {
+        if(root == null){
+            return null;
+        }
+        buildDLL(root);
+
+        // Now make it circular
+        current.right = head;
+        head.left = current;
+        
+        return head;
+    }
+    
+    private void buildDLL(Node root){
+        if(root == null){
+            return;
+        }
+        buildDLL(root.left);
+        if(head == null){
+            head = root;
+        }else{
+            root.left = current;
+            current.right = root;
+        }
+        current = root; // moving current
+        
+        buildDLL(root.right);
+    }
+}
