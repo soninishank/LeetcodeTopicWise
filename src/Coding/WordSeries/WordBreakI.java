@@ -44,3 +44,28 @@ public class WordBreakI {
         System.out.println(b);
     }
 }
+
+
+// Without memoization
+// public boolean wordBreak(String s, List<String> wordDict) {
+//         if (s.length() == 0) {
+//             return false;
+//         }
+//         HashSet<String> hashSet = new HashSet<>(wordDict);
+//         return applyDFS(s, hashSet);
+//     }
+
+//     private boolean applyDFS(String str, HashSet<String> wordDict) {
+//         if (str.length() == 0) {
+//             return true;
+//         }
+//         for (int i = 1; i <= str.length(); i++) {
+//             String substring = str.substring(0, i);
+//             if (wordDict.contains(substring)) {
+//                 if (applyDFS(str.substring(i), wordDict)) {
+//                     return true;
+//                 }
+//             }
+//         }
+//         return false;
+//     }
