@@ -12,6 +12,8 @@ import java.util.*;
 // Main TreeMap<Key,Value> -> key is column  and Value is treeMap - see below line
 // Inside TreeMap<Key,Value> -> key is row and value is PriorityQueue - minPQ - to get sortedOrder
 // https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
+// Use this example for learning -> [3,1,4,0,2,2] , you can't use old code beacuse it will make the result as [[0],[1],[3,2,2],[4]]
+// instead of [[0],[1],[2,2,3],[4]]. 
 public class VerticalOrderSorted {
 
     public List<List<Integer>> verticalTraversal(TreeNode root) {
