@@ -1,4 +1,4 @@
-package Coding.Grid;
+package Coding.Matrix;
 
 // https://leetcode.com/problems/unique-paths/
 // Row & col = 1 -> only 1 value

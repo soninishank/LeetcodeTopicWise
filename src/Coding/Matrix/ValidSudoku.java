@@ -3,6 +3,8 @@ package Coding.Matrix;
 import java.util.HashSet;
 
 // https://leetcode.com/problems/valid-sudoku/
+// Time Complexity (TC): O(1) (constant time, since the board size is fixed at 9x9)
+// Space Complexity (SC): O(1) (constant space, since the number of entries in the sets is limited to 81)
 public class ValidSudoku {
 
     HashSet<String> rowSet = new HashSet<>();
@@ -29,15 +31,7 @@ public class ValidSudoku {
     }
 
     public static void main(String[] args) {
-        char[][] board = {{'5', '3', '.', '.', '7', '.', '.', '.', '.'},
-                {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
-                {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
-                {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
-                {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
-                {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
-                {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
-                {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
-                {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
+        char[][] board = {{'5', '3', '.', '.', '7', '.', '.', '.', '.'}, {'6', '.', '.', '1', '9', '5', '.', '.', '.'}, {'.', '9', '8', '.', '.', '.', '.', '6', '.'}, {'8', '.', '.', '.', '6', '.', '.', '.', '3'}, {'4', '.', '.', '8', '.', '3', '.', '.', '1'}, {'7', '.', '.', '.', '2', '.', '.', '.', '6'}, {'.', '6', '.', '.', '.', '.', '2', '8', '.'}, {'.', '.', '.', '4', '1', '9', '.', '.', '5'}, {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
         boolean validSudoku = new ValidSudoku().isValidSudoku(board);
         System.out.println(validSudoku);
     }

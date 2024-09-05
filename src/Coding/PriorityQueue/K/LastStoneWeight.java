@@ -1,4 +1,7 @@
-// https://leetcode.com/problems/last-stone-weight/
+package Coding.PriorityQueue.K;// https://leetcode.com/problems/last-stone-weight/
+
+import java.util.Collections;
+import java.util.PriorityQueue;
 
 class LastStoneWeight {
      public int lastStoneWeight(int[] stones) {
@@ -24,7 +27,7 @@ class LastStoneWeight {
 
     public static void main(String[] args){
         int[] arr = {2,7,4,1,8,1};
-        int res = new LastStoneWeight().lastStoneWeight(stones);
+        int res = new LastStoneWeight().lastStoneWeight(arr);
         System.out.println(res);
     }
 }

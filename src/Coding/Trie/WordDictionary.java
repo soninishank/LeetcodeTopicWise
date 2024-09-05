@@ -1,3 +1,5 @@
+package Coding.Trie;
+
 class WordDictionary {
     TrieNode trieMap;
 

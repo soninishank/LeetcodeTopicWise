@@ -1,4 +1,4 @@
-package Coding.Grid;
+package Coding.Matrix;
 
 // https://leetcode.com/problems/minimum-path-sum/
 // Three steps
@@ -6,6 +6,9 @@ package Coding.Grid;
 // 2.Fill first row
 // 3.Fill first column
 // 4.Fill inner row and columns - current grid + Coding.Math.min(left side,vertical side)
+
+// Time Complexity (TC): O(m * n)
+// Space Complexity (SC): O(m * n)
 public class MinimumPathSum {
     public int minPathSum(int[][] grid) {
         int[][] dp = new int[grid.length][grid[0].length];

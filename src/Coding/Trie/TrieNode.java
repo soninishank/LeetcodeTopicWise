@@ -2,7 +2,7 @@ package Coding.Trie;
 
 public class TrieNode {
     // R links to node children
-    private final TrieNode[] links;
+    final TrieNode[] links;
     private boolean isEnd;
 
     public TrieNode() {

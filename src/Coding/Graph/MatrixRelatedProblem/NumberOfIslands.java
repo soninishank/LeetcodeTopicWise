@@ -9,10 +9,12 @@ import java.util.Queue;
 // 1 - island, 0 - water
 // so you just need to count all the islands present in it - just start the dfs and start count
 // then check other unconnected 1s
-public class NumberIslands {
+public class NumberOfIslands {
     int[][] dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
     // 1.Apply Coding.BFS
+    // TC - O(m * n)
+    // SC - O(m * n)
     private int numIslandsBFS(char[][] grid) {
         boolean[][] visited = new boolean[grid.length][grid[0].length];
         int count = 0;
@@ -42,10 +44,11 @@ public class NumberIslands {
                 queue.offer(new int[]{x, y});
             }
         }
-
     }
 
     // 2.Apply DFS
+    // TC - O(m * n)
+    // SC - O(m * n)
     private int numIslandsDFS(char[][] grid) {
         int count = 0;
         char islandColor = '1';
@@ -68,15 +71,13 @@ public class NumberIslands {
             applyDfs(row, col + 1, grid, islandColor, maskColor);
             applyDfs(row - 1, col, grid, islandColor, maskColor);
             applyDfs(row + 1, col, grid, islandColor, maskColor);
-        } else {
-            return;
         }
     }
 
 
     public static void main(String[] args) {
         char[][] ch = {{'1', '1', '0', '0', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}, {'0', '0', '0', '1', '1'}};
-        int i = new NumberIslands().numIslandsBFS(ch);
+        int i = new NumberOfIslands().numIslandsBFS(ch);
         System.out.println(i);
     }
 }

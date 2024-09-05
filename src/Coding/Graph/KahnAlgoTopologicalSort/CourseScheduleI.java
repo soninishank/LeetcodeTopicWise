@@ -8,36 +8,46 @@ import java.util.Queue;
 // https://leetcode.com/problems/course-schedule/
 public class CourseScheduleI {
 
-    List<List<Integer>> adjList = new ArrayList<>();
-
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        int[] incomingEdges = new int[numCourses];
+        // Create an adjacency list to represent the graph
+        List<List<Integer>> graph = new ArrayList<>();
         for (int i = 0; i < numCourses; i++) {
-            adjList.add(new ArrayList<>());
+            graph.add(new ArrayList<>());
         }
-        for (int[] arr : prerequisites) {
-            incomingEdges[arr[0]]++;
-            adjList.get(arr[1]).add(arr[0]);
+        // Array to track the in-degree (number of prerequisites) of each course
+        int[] inDegree = new int[numCourses];
+        // Build the graph and in-degree array
+        for (int[] prerequisite : prerequisites) {
+            int course = prerequisite[0];
+            int prerequisiteCourse = prerequisite[1];
+            graph.get(prerequisiteCourse).add(course);
+            inDegree[course]++;
         }
-
+        // Use a queue to perform BFS
         Queue<Integer> queue = new LinkedList<>();
+        // Add courses with in-degree 0 (no prerequisites) to the queue
         for (int i = 0; i < numCourses; i++) {
-            if (incomingEdges[i] == 0) {
+            if (inDegree[i] == 0) {
                 queue.add(i);
             }
         }
-        int edgeCnt = prerequisites.length;
+        // Track the number of courses that can be completed
+        int completedCourses = 0;
+        // Process courses in topological order
         while (!queue.isEmpty()) {
-            int current = queue.poll();
-            for (int neighbour : adjList.get(current)) {
-                edgeCnt--;
-                incomingEdges[neighbour]--;
-                if (incomingEdges[neighbour] == 0) {
-                    queue.add(neighbour);
+            int course = queue.poll();
+            completedCourses++;
+            // For each neighbor (dependent course), reduce the in-degree
+            for (int neighbor : graph.get(course)) {
+                inDegree[neighbor]--;
+                // If in-degree becomes 0, add the course to the queue
+                if (inDegree[neighbor] == 0) {
+                    queue.add(neighbor);
                 }
             }
         }
-        return edgeCnt == 0;
+        // If all courses are completed, return true
+        return completedCourses == numCourses;
     }
 
 

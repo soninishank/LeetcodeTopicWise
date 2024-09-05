@@ -6,6 +6,9 @@ package Coding.Graph.MatrixRelatedProblem;
 // 1. If any 0 is there on the border, and it is connected to any other 0 four directionally than you can't flip it
 // 2. Flip all other 0's which are surrounded by x
 public class SurroundedRegions {
+
+    // TC - O(m * n)
+    // SC - O(m * n)
     public void solve(char[][] board) {
         if (board.length == 0) {
             return;
@@ -38,7 +41,8 @@ public class SurroundedRegions {
     }
 
     private void applyDFS(int i, int j, char[][] board, char surroundedColor, char newColor) {
-        if (i > board.length - 1 || i < 0 || j < 0 || j > board[0].length - 1 || board[i][j] != surroundedColor) return;
+        if (i > board.length - 1 || i < 0 || j < 0 || j > board[0].length - 1 || board[i][j] != surroundedColor)
+            return;
         board[i][j] = newColor;
         applyDFS(i + 1, j, board, surroundedColor, newColor);
         applyDFS(i - 1, j, board, surroundedColor, newColor);

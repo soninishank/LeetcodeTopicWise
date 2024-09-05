@@ -4,22 +4,36 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-// 0 - gate
+// 0 -> gate
+// -1 -> obstacle
 // https://leetcode.com/problems/walls-and-gates/
 // Normal BFS traversal
 public class WallsAndGates {
 
     int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-    Queue<int[]> queue = new LinkedList<>();
 
+    // TC - O(m * n)
+    // SC - O(m * n)
     public void wallsAndGates(int[][] rooms) {
-        for (int i = 0; i < rooms.length; i++) {
-            for (int j = 0; j < rooms[i].length; j++) {
-                if (rooms[i][j] == 0) {
-                    queue.add(new int[]{i, j});
+        if (rooms.length == 0 || rooms[0].length == 0) return;
+
+        int GATE = 0;
+        int EMPTY = Integer.MAX_VALUE;
+
+        int m = rooms.length;
+        int n = rooms[0].length;
+        Queue<int[]> queue = new LinkedList<>();
+
+        // Step 1: Add all gates to the queue
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (rooms[i][j] == GATE) {
+                    queue.offer(new int[]{i, j});
                 }
             }
         }
+
+        // Step 2: BFS from each gate
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
@@ -27,10 +41,11 @@ public class WallsAndGates {
                 for (int[] direction : dir) {
                     int x = direction[0] + poll[0];
                     int y = direction[1] + poll[1];
-                    if (x >= 0 && y >= 0 && x <= rooms.length - 1 && y <= rooms[0].length - 1 && rooms[x][y] == 2147483647) {
+                    // empty room direction
+                    if (x >= 0 && y >= 0 && x <= rooms.length - 1 && y <= rooms[0].length - 1 && rooms[x][y] == EMPTY) {
                         int value = rooms[poll[0]][poll[1]] + 1;
-                        rooms[x][y] = Math.min(value, rooms[x][y]);
-                        queue.add(new int[]{x, y});
+                        rooms[x][y] = Math.min(value, rooms[x][y]); // it is not needed because it is already minimum
+                        queue.add(new int[]{x, y});// due to the nature of the BFS
                     }
                 }
             }

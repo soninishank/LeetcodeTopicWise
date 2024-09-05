@@ -8,41 +8,50 @@ import java.util.*;
 // 2.visited -> to not go in the loop
 // 3.set -> to have a list of all words
 // Just change the characters from a to z
+
+// Generating transformations =  O(26 * M) = O(M)
+// BFS Traversal = O(N)
+// Total TC = O (M * N)
+// Space Complexity = O(N)
 public class WordLadderI {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        Set<String> set = new HashSet<>(wordList);
-        if (!set.contains(endWord)) return 0;
-
+        Set<String> wordSet = new HashSet<>(wordList);
+        if (!wordSet.contains(endWord)) {
+            return 0;  // If the endWord is not in wordList, there's no valid sequence.
+        }
+        // Initialize the queue for BFS
         Queue<String> queue = new LinkedList<>();
         queue.add(beginWord);
-
+        // Initialize visited set to keep track of visited words
         Set<String> visited = new HashSet<>();
         visited.add(beginWord);
-
-        int changes = 1;
-
+        // To keep track of the levels in BFS
+        int level = 1;
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                String word = queue.poll();
-                if (word.equals(endWord)) return changes;
-
-                for (int j = 0; j < word.length(); j++) {
-                    for (int k = 'a'; k <= 'z'; k++) {
-                        char[] arr = word.toCharArray();
-                        arr[j] = (char) k;
-
-                        String str = new String(arr);
-                        if (set.contains(str) && !visited.contains(str)) {
-                            queue.add(str);
-                            visited.add(str);
+                String currentWord = queue.poll();
+                // Try to transform the current word by changing each character
+                for (int j = 0; j < currentWord.length(); j++) {
+                    char[] wordChars = currentWord.toCharArray();
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        wordChars[j] = c;
+                        String newWord = new String(wordChars);
+                        // If we find the endWord, return the level + 1
+                        if (newWord.equals(endWord)) {
+                            return level + 1;
+                        }
+                        // If the newWord is in the wordSet and not visited, add it to the queue
+                        if (wordSet.contains(newWord) && !visited.contains(newWord)) {
+                            queue.add(newWord);
+                            visited.add(newWord);  // Mark this word as visited
                         }
                     }
                 }
             }
-            ++changes;
+            level++;  // Increase the level after processing all words in this level
         }
-        return 0;
+        return 0;  // No transformation sequence found
     }
 
     public static void main(String[] args) {

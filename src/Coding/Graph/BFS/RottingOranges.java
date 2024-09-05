@@ -11,6 +11,8 @@ import java.util.Queue;
 // 2. Put all rotten oranges in a queue
 // 3. iterate queue and check if any adjacent neighbour is fresher than mark it as rotten and reduce count
 // 4. Note time after every iteration
+// Time Complexity: O( m * n )
+// Space Complexity: O( m * n)
 public class RottingOranges {
     int[][] dir = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
 
