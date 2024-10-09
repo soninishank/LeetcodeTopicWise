@@ -1,5 +1,6 @@
 package Coding.Trie;
 
+// https://leetcode.com/problems/implement-trie-prefix-tree/
 public class ImplementTrie {
     private final TrieNode root;
 
@@ -7,6 +8,8 @@ public class ImplementTrie {
         root = new TrieNode();
     }
 
+    // Time complexity - O (n)
+    // Space complexity - O ( m * n )
     private void insert(String word) {
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
@@ -20,31 +23,42 @@ public class ImplementTrie {
     }
 
     // search a key in trie
-    private TrieNode searchPrefix(String word) {
+    // Time complexity - O (n)
+    public boolean search(String word) {
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
-            char currentLetter = word.charAt(i);
-            if (node.containsKey(currentLetter)) {
-                node = node.get(currentLetter);
+            char currentChar = word.charAt(i);
+            if (node.containsKey(currentChar)) {
+                node = node.get(currentChar);
             } else {
-                return null;
+                return false;
             }
         }
-        return node;
+        return node.isEnd();
     }
 
-    // check if the word is in trie
-    private boolean search(String word) {
-        TrieNode trieNode = searchPrefix(word);
-        return trieNode != null && trieNode.isEnd();
-    }
-
+    // Time complexity - O (n)
     public boolean startsWith(String prefix) {
-        TrieNode trieNode = searchPrefix(prefix);
-        return trieNode != null;
+        TrieNode node = root;
+        for (int i = 0; i < prefix.length(); i++) {
+            char currentChar = prefix.charAt(i);
+            if (node.containsKey(currentChar)) {
+                node = node.get(currentChar);
+            } else {
+                return false;
+            }
+        }
+        return node != null;
     }
 
     public static void main(String[] args) {
-        new ImplementTrie().insert("nishank");
+        ImplementTrie trie = new ImplementTrie();
+        trie.insert("hello");
+        trie.search("hell");   // return True
+        trie.search("helloa");     // return False
+        trie.startsWith("app"); // return True
+        trie.insert("app");
+        trie.search("app");     // return True
+        trie.startsWith("a"); //
     }
 }

@@ -4,10 +4,6 @@ import Coding.Tree.TreeNode;
 
 import java.util.*;
 
-/**
- * @author Nishank Soni
- * @project Leet Code Topic Wise on 4/1/22
- */
 // Just add all the column
 // then get the last value of that column
 public class BottomView {
@@ -45,4 +41,5 @@ public class BottomView {
         }
         return resultList;
     }
+
 }

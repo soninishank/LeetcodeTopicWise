@@ -2,21 +2,21 @@ package Coding.Backtracking;
 
 import java.util.Arrays;
 
-// // Each block is of size 3 - 3 rows & 3 cols
-//    // starting row no. are -> 0,3,6 - Horizontally
-//    // starting col No are -> 0,3,6 - vertically
-//    // rowNo = 5 , colNo = 7
-//    // startRowNoBlock = 3 * (5/3) = 3 * 1 = 3  - always same
-//    // startColNoBlock = 3 * (7/3) = 3 * 3 = 6  - always same
-//    // startRowNoBlock + (i/3) -> i = 0 -> 3 + 0 -> 3
-//    //                         -> i = 1 -> 3 + 0 -> 3
-//    //                         -> i = 2 -> 3 + 0 -> 3
-//    //                         -> i = 3 -> 3 + 1 -> 4 -> the row gets changed
-//    //                         -> i = 4 -> 3 + 1 -> 4
-//    // startColNoBlock = 6 + (i % 3) = 6 + (0 % 3 ) = 6
-//    //                 = 6 + (i % 3) = 6 + (1 % 3)  = 7
-//    //                 = 6 + (i % 3) = 6 + (2 % 3 ) = 8
-//    //                 = 6 + (i % 3) = 6 + (3 % 3 ) = 6 - repeat the same column
+// Each block is of size 3 - 3 rows & 3 cols
+// starting row no. are -> 0,3,6 - Horizontally
+// starting col No are -> 0,3,6 - vertically
+// rowNo = 5 , colNo = 7
+// startRowNoBlock = 3 * (5/3) = 3 * 1 = 3  - always same
+// startColNoBlock = 3 * (7/3) = 3 * 3 = 6  - always same
+// startRowNoBlock + (i/3) -> i = 0 -> 3 + 0 -> 3
+//                         -> i = 1 -> 3 + 0 -> 3
+//                         -> i = 2 -> 3 + 0 -> 3
+//                         -> i = 3 -> 3 + 1 -> 4 -> the row gets changed
+//                         -> i = 4 -> 3 + 1 -> 4
+// startColNoBlock = 6 + (i % 3) = 6 + (0 % 3 ) = 6
+//                 = 6 + (i % 3) = 6 + (1 % 3)  = 7
+//                 = 6 + (i % 3) = 6 + (2 % 3 ) = 8
+//                 = 6 + (i % 3) = 6 + (3 % 3 ) = 6 - repeat the same column
 public class SudokuSolver {
 
     public void solveSudoku(char[][] board) {

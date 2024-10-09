@@ -1,17 +1,34 @@
 package Coding.LinkedList;
 
+// 82. Remove Duplicates from Sorted List II
 public class RemoveDuplicatesFromSortedListII {
     public ListNode deleteDuplicates(ListNode head) {
-        ListNode dummy = new ListNode();
+        // Create a dummy node to handle edge cases where the first node has duplicates
+        ListNode dummy = new ListNode(0);
         dummy.next = head;
-        ListNode temp = dummy;
 
-        while (temp.next != null) {
-            while (temp.next.next != null && temp.next.val == temp.next.next.val) {
-                temp = temp.next.next.next;
+        // Use two pointers: prev to track the node before the current sequence of duplicates, and curr to iterate
+        ListNode prev = dummy;
+        ListNode curr = head;
+
+        while (curr != null) {
+            // Check if current node has duplicates
+            if (curr.next != null && curr.val == curr.next.val) {
+                // Skip all nodes with the same value
+                while (curr.next != null && curr.val == curr.next.val) {
+                    curr = curr.next;
+                }
+                // Skip the last duplicate node as well
+                prev.next = curr.next;
+            } else {
+                // Move prev pointer to the current node if no duplicates
+                prev = prev.next;
             }
-            temp = temp.next;
+            // Move curr to the next node
+            curr = curr.next;
         }
+
+        // Return the modified list, starting from dummy's next node
         return dummy.next;
     }
 

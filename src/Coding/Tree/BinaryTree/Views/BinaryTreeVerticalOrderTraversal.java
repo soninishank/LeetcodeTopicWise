@@ -4,13 +4,9 @@ import Coding.Tree.TreeNode;
 
 import java.util.*;
 
-/**
- * @author Nishank Soni
- * @project Leet Code Topic Wise on 4/1/22
- */
+// 314. Binary Tree Vertical Order Traversal
 // https://leetcode.com/problems/binary-tree-vertical-order-traversal/
-// https://www.geeksforgeeks.org/print-binary-tree-vertical-order/
-public class VerticalOrder {
+public class BinaryTreeVerticalOrderTraversal {
     List<List<Integer>> result = new ArrayList<>();
 
     public List<List<Integer>> verticalOrder(TreeNode root) {

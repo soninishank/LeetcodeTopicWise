@@ -1,11 +1,39 @@
 package Coding.Intervals;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
+
 
 // https://leetcode.com/problems/meeting-rooms-ii/
 // similar like minimum number of platforms
-// O(NlogN)
+// Time Complexity: O(NlogN)
+// Space Complexity: O(N)
+
 public class MeetingRoomsII {
+
+    public int minMeetingRoomsUsingPQ(int[][] intervals) {
+        if (intervals == null || intervals.length == 0) {
+            return 0;
+        }
+        // Sort the intervals by start time
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        // Use a min-heap to track the end time of ongoing meetings
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        // Add the first meeting's end time to the heap
+        minHeap.add(intervals[0][1]);
+        // Iterate over the remaining intervals
+        for (int i = 1; i < intervals.length; i++) {
+            // If the room due to free up the earliest is free, remove it from the heap
+            if (intervals[i][0] >= minHeap.peek()) {
+                minHeap.poll();
+            }
+            // Add the current meeting's end time to the heap
+            minHeap.add(intervals[i][1]);
+        }
+        // The size of the heap is the number of rooms required
+        return minHeap.size();
+    }
+
     public int minMeetingRooms(int[][] intervals) {
         int[] arrival = new int[intervals.length];
         int[] dept = new int[intervals.length];

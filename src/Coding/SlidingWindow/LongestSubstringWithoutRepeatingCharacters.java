@@ -3,10 +3,11 @@ package Coding.SlidingWindow;
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
 // s consists of English letters, digits, symbols and spaces.
 public class LongestSubstringWithoutRepeatingCharacters {
+    // TC - O(n)
+    // SC - O(1)
     public int lengthOfLongestSubstring(String s) {
         int end = 0, start = 0, result = 0;
         int[] arr = new int[256];
-        int max = 0;
         while (end < s.length()) {
             int c1 = s.charAt(end);
             arr[c1]++;

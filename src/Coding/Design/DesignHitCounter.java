@@ -7,10 +7,10 @@ import java.util.Queue;
 // some request might be concurrent
 // TODO - good question
 //
-public class HitCounter {
+public class DesignHitCounter {
     Queue<Integer> queue;
 
-    public HitCounter() {
+    public DesignHitCounter() {
         queue = new LinkedList<>();
     }
 

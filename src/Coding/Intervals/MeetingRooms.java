@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 // https://leetcode.com/problems/meeting-rooms/
+// O(NlogN)
 public class MeetingRooms {
     private boolean canAttendMeetings(int[][] intervals) {
         if (intervals.length == 0) {

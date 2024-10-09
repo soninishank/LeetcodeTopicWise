@@ -26,13 +26,13 @@ public class TimeMap {
         if (treeMap == null) {
             return "";
         }
-        Integer floor = treeMap.floorKey(timestamp);
+        Integer floorKey = treeMap.floorKey(timestamp);
         // The reason to add null because when you don't have the timestamp equivalent to 
         // asked timestamp get
-        if (floor == null) {
+        if (floorKey == null) {
             return "";
         }
-        return treeMap.get(floor);
+        return treeMap.get(floorKey);
     }
 
     public static void main(String[] args) {

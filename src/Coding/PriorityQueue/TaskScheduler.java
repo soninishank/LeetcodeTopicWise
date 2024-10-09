@@ -1,60 +1,40 @@
 package Coding.PriorityQueue;
 
-import java.util.*;
-
 public class TaskScheduler {
-
-    Map<Character, Integer> hashMap = new HashMap<>();
-
     public int leastInterval(char[] tasks, int n) {
-        for (char c : tasks) {
-            hashMap.put(c, hashMap.getOrDefault(c, 0) + 1);
+        // Step 1: Count frequency of each task
+        int[] freq = new int[26];
+        for (char task : tasks) {
+            freq[task - 'A']++;
         }
-        return taskScheduler(tasks, n);
+
+        // Step 2: Find the frequency of the most common task
+        int f_max = 0;
+        for (int f : freq) {
+            f_max = Math.max(f_max, f);
+        }
+
+        // Step 3: Count how many tasks have the max frequency
+        int m_max = 0;
+        for (int f : freq) {
+            if (f == f_max) {
+                m_max++;
+            }
+        }
+
+        // Step 4: Calculate the minimum intervals required
+        // This is the number of "full" cycles you need to complete the most frequent tasks, excluding the last occurrence
+        // of the task. For example, if f_max = 3, you need 2 cycles to place the first two occurrences of the task, because
+        // the last occurrence does not require a cycle after it.
+        int maxFreq = f_max - 1;
+        int total = maxFreq * (n + 1);
+        return Math.max(tasks.length, total + m_max);
     }
 
-    public int taskScheduler(char[] tasks, int n) {
-        PriorityQueue<Task> maxHeap = new PriorityQueue<>(((o1, o2) -> o2.freq - o1.freq));
-        for (Map.Entry<Character, Integer> entry : hashMap.entrySet()) {
-            maxHeap.add(new Task(entry.getKey(), entry.getValue(), -n - 1));
-        }
-        int i = 0;
-        StringBuilder sb = new StringBuilder();
-        while (i < tasks.length) {
-            List<Task> cooling = new ArrayList<>();
-            while (!maxHeap.isEmpty()) {
-                if (maxHeap.peek().lastUsed >= sb.length() - n) {
-                    cooling.add(maxHeap.peek());
-                    maxHeap.poll();
-                } else
-                    break;
-            }
-            if (!maxHeap.isEmpty()) {
-                sb.append(maxHeap.peek().s);
-                maxHeap.peek().freq--;
-                maxHeap.peek().lastUsed = sb.length() - 1;
-                if (maxHeap.peek().freq == 0)
-                    maxHeap.poll();
-
-                i++;
-            } else {
-                sb.append('#');
-            }
-            maxHeap.addAll(cooling);
-        }
-        return sb.length();
-    }
-}
-
-class Task {
-
-    char s;
-    int freq;
-    int lastUsed;
-
-    Task(char s, int freq, int lastUsed) {
-        this.s = s;
-        this.freq = freq;
-        this.lastUsed = lastUsed;
+    public static void main(String[] args) {
+        TaskScheduler scheduler = new TaskScheduler();
+        System.out.println(scheduler.leastInterval(new char[]{'A', 'A', 'A', 'B', 'B', 'B'}, 2));  // Output: 8
+        System.out.println(scheduler.leastInterval(new char[]{'A', 'C', 'A', 'B', 'D', 'B'}, 1));  // Output: 6
+        System.out.println(scheduler.leastInterval(new char[]{'A', 'A', 'A', 'B', 'B', 'B'}, 3));  // Output: 10
     }
 }

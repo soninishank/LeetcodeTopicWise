@@ -3,10 +3,11 @@ package Coding.Trie;
 public class TrieNode {
     // R links to node children
     final TrieNode[] links;
-    private boolean isEnd;
+    public boolean isEnd;
+    private String actualWord;
 
     public TrieNode() {
-        this.links = new TrieNode[26];
+        this.links = new TrieNode[256];
     }
 
     public boolean containsKey(char ch) {
@@ -23,6 +24,14 @@ public class TrieNode {
 
     public void setEnd() {
         isEnd = true;
+    }
+
+    public void setActualWord(String actualWord) {
+        this.actualWord = actualWord;
+    }
+
+    public String getActualWord() {
+        return actualWord;
     }
 
     public boolean isEnd() {

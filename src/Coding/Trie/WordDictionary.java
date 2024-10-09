@@ -1,14 +1,16 @@
 package Coding.Trie;
 
+// https://leetcode.com/problems/design-add-and-search-words-data-structure/
+// Design Add and Search Words Data Structure
 class WordDictionary {
-    TrieNode trieMap;
+    TrieNode trieNode;
 
     public WordDictionary() {
-        trieMap = new TrieNode();
+        trieNode = new TrieNode();
     }
 
     public void addWord(String word) {
-        TrieNode start = trieMap;
+        TrieNode start = trieNode;
         for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
             if (!start.containsKey(ch)) {
@@ -20,7 +22,7 @@ class WordDictionary {
     }
 
     public boolean search(String word) {
-        TrieNode search = trieMap;
+        TrieNode search = trieNode;
         return helper(word, 0, search);
     }
 
@@ -38,12 +40,12 @@ class WordDictionary {
                 }
             }
             return false;
-        } // if its not a dot
+        } // if it's not a dot
         else {
             if (!root.containsKey(word.charAt(currentIndex))) {
                 return false;
             }
-            root = root.get(word.charAt(currentIndex));
+            root = root.get(word.charAt(currentIndex)); // updating the root reference
             return helper(word, currentIndex + 1, root);
         }
     }

@@ -4,37 +4,47 @@ import java.util.Arrays;
 
 // https://leetcode.com/problems/next-permutation/
 // https://leetcode.com/problems/next-greater-element-iii/
+// 1. Find the first decreasing element
+// 2. Find the next larger element
+// 3. Swap the pivot and the next larger element
+// 4. Reverse the suffix
 public class NextPermutation {
     public void nextPermutation(int[] nums) {
-        // Finding the first decreasing element
-        int i = 0;
-        for (i = nums.length - 2; i >= 0; i--) {
-            if (nums[i] < nums[i + 1]) {
-                break;
-            }
+        int n = nums.length;
+        int i = n - 2;
+
+        // Step 1: Find the first decreasing element
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
         }
-        // Finding the just larger number than the above element
+
+        // Step 2: If found, find the next larger element
         if (i >= 0) {
-            int j = 0;
-            for (j = nums.length - 1; j >= 0; j--) {
-                if (nums[j] > nums[i]) {
-                    break;
-                }
+            int j = n - 1;
+            while (j >= 0 && nums[j] <= nums[i]) {
+                j--;
             }
-            int temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp;
+            // Step 3: Swap the pivot element with the next larger element
+            swap(nums, i, j);
         }
-        reverse(nums, i + 1, nums.length - 1);
+
+        // Step 4: Reverse the elements after the pivot
+        reverse(nums, i + 1, n - 1);
     }
 
-    private void reverse(int[] nums, int low, int high) {
-        while (low <= high) {
-            int temp = nums[low];
-            nums[low] = nums[high];
-            nums[high] = temp;
-            low++;
-            high--;
+    // Helper method to swap two elements in an array
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    // Helper method to reverse a portion of the array
+    private void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            swap(nums, start, end);
+            start++;
+            end--;
         }
     }
 
@@ -64,7 +74,7 @@ public class NextPermutation {
 
 
     public static void main(String[] args) {
-        int[] arr = {2,1};
+        int[] arr = {2, 1, 3};
         new NextPermutation().nextPermutation(arr);
         System.out.println("The next permutations " + Arrays.toString(arr));
 

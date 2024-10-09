@@ -3,11 +3,12 @@ package Coding.LinkedList.Design;
 import java.util.HashMap;
 
 // https://leetcode.com/problems/lru-cache/
+// 146. LRU Cache
 // https://www.youtube.com/watch?v=jkbS-bKXTEE
 // Time complexity - O(1) both for put and get
 // Space complexity - O(c) - if capacity is defined
 public class LRUCache {
-    int size;
+    int capacity;
     Node head, tail;
     HashMap<Integer, Node> hashmap = new HashMap<>();
 
@@ -22,7 +23,7 @@ public class LRUCache {
     }
 
     public LRUCache(int capacity) {
-        this.size = capacity;
+        this.capacity = capacity;
         head = null;
         tail = null;
     }
@@ -30,6 +31,7 @@ public class LRUCache {
     public int get(int key) {
         if (hashmap.containsKey(key)) {
             Node poll = hashmap.get(key);
+            // Move the accessed node to the head (most recently used)
             remove(poll);
             addHead(poll);
             return poll.value;
@@ -39,21 +41,25 @@ public class LRUCache {
 
     public void put(int key, int value) {
         if (hashmap.containsKey(key)) {
+            // Key exists, update the value and move it to the head
             Node node = hashmap.get(key);
             node.value = value;
             remove(node);
             addHead(node);
         } else {
-            if (hashmap.size() == this.size) {
+            if (hashmap.size() == this.capacity) {
+                // Evict the least recently used (tail) node
                 hashmap.remove(tail.key);
                 remove(tail);
             }
-            Node node = new Node(key, value);
-            hashmap.put(key, node);
-            addHead(node);
+            // Add the new key-value pair
+            Node newNode = new Node(key, value);
+            hashmap.put(key, newNode);
+            addHead(newNode);
         }
     }
 
+    // Utility functions
     void remove(Node node) {
         // Previous Node
         if (node.prev != null) {
@@ -88,7 +94,7 @@ public class LRUCache {
 }
 
 /*
-// Add node at the front of the list
+//  Add node at the front of the list
     public void push(int new_data) {
         1. allocate node
          *2. put in the data
