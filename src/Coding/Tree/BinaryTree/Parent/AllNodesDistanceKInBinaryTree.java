@@ -7,17 +7,21 @@ import java.util.*;
 // Hashmap -> for storing the reference of parent pointers
 // visited hashset -> to mark the visited node
 // traversal - left , right , upwards - Coding.BFS
+// https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
+// 863. All Nodes Distance K in Binary Tree
 public class AllNodesDistanceKInBinaryTree {
 
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
         HashMap<TreeNode, TreeNode> parentRefHashMap = new HashMap<>();
-        List<Integer> list = new ArrayList<>();
         buildParentRef(root, parentRefHashMap);
+
+        List<Integer> list = new ArrayList<>();
         dfs(root, target, k, parentRefHashMap, list);
         return list;
     }
 
 
+    // create hashmap of <Node, ParentNode>
     private void buildParentRef(TreeNode root, HashMap<TreeNode, TreeNode> parentRef) {
         if (root == null) {
             return;
@@ -72,7 +76,6 @@ public class AllNodesDistanceKInBinaryTree {
                 }
             }
         }
-        List<Integer> list1 = new ArrayList<>();
         while (!queue.isEmpty()) {
             TreeNode poll = queue.poll();
             resultList.add(poll.val);

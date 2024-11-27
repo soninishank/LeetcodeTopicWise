@@ -41,3 +41,35 @@ public class BSTIterator {
         BSTIterator bSTIterator = new BSTIterator(treeNode);
     }
 }
+
+// This is an optimized approach
+//class BSTIterator {
+//    Stack<Node> stack;
+//    TreeNode node;
+//
+//    public BSTIterator(TreeNode root) {
+//        node = root;
+//        stack = new Stack<>();
+//        while (root != null) {
+//            stack.push(root);
+//            root = root.left;
+//        }
+//    }
+//
+//    public int next() {
+//        TreeNode currentElement = stack.pop();
+//        int val = currentElement.val;
+//        currentElement = currentElement.right; // only go to one time right
+//
+//        // than again process all its left
+//        while (currentElement != null) {
+//            stack.push(currentElement);
+//            currentElement = currentElement.left;
+//        }
+//        return val;
+//    }
+//
+//    public boolean hasNext() {
+//        return stack.isEmpty();
+//    }
+//}

@@ -1,5 +1,9 @@
 package Coding.LinkedList;
 
+import java.util.PriorityQueue;
+
+// https://leetcode.com/problems/merge-k-sorted-lists/
+// 23. Merge k Sorted Lists
 public class MergeKSortedList {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) {
@@ -45,6 +49,33 @@ public class MergeKSortedList {
         }
         if (list2 != null) {
             temp.next = list2;
+        }
+        return dummy.next;
+    }
+
+    public ListNode mergeKListsUsingPQ(ListNode[] lists) {
+        if (lists == null) {
+            return null;
+        }
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((list1, list2) -> list1.val - list2.val);
+
+        for (ListNode list : lists) {
+            if (list != null) {
+                pq.add(list);
+            }
+        }
+        ListNode dummy = new ListNode(0);
+        ListNode temp = dummy;
+
+        while (!pq.isEmpty()) {
+            ListNode poll = pq.poll();
+
+            temp.next = poll;
+            temp = temp.next;
+
+            if (poll.next != null) {
+                pq.add(poll.next);
+            }
         }
         return dummy.next;
     }

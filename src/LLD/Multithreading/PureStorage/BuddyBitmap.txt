@@ -1,0 +1,29 @@
+You are given a complete binary tree with nodes whose values are either 1 or 0, with the following rules:
+
+A node's value is 1 if and only if all its subtree nodes' values are 1.
+A leaf node can have a value of either 1 or 0.
+
+For example, consider the following tree:
+             0
+          /     \
+         0        1
+       /  \      /  \
+      1    0    1    1
+     /\   / \   /
+    1  1 1   0 1
+
+
+Since this is a complete binary tree, its nodes can be represented as an array:
+[0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1].
+
+Task:
+Implement the following two APIs:
+
+1.set_bit(offset, length): Sets the bits in the range [offset, offset + length - 1] to 1.
+2.clear_bit(offset, length): Clears the bits in the range [offset, offset + length - 1] to 0.
+
+Notes:
+
+The tree structure does not follow the heap convention where the children of a node at index i are at indices 2i + 1
+and 2i + 2. Instead, this is a general representation of a complete binary tree in a two-dimensional array format.
+This problem is inspired by challenges in memory allocation and bit manipulation.

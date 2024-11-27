@@ -6,13 +6,6 @@ import java.util.Stack;
 // https://youtu.be/T5s96ynzArg
 // https://www.callicoder.com/nearest-greater-to-left/
 public class NearestGreaterToLeft {
-
-    public static void main(String[] args) {
-        int[] arr = {9, 4, 15, 6, 2, 10}; // -1,-1,3,-1
-        int[] nearestGreaterLeft = new NearestGreaterToLeft().nearestGreaterToLeft(arr);
-        System.out.println(Arrays.toString(nearestGreaterLeft));
-    }
-
     private int[] nearestGreaterToLeft(int[] arr) {
         Stack<Integer> stack = new Stack<>();
         int[] result = new int[arr.length];
@@ -29,4 +22,11 @@ public class NearestGreaterToLeft {
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        int[] arr = {9, 4, 15, 6, 2, 10}; //-1, 9, -1, 15, 6, 15
+        int[] nearestGreaterLeft = new NearestGreaterToLeft().nearestGreaterToLeft(arr);
+        System.out.println(Arrays.toString(nearestGreaterLeft));
+    }
+
 }

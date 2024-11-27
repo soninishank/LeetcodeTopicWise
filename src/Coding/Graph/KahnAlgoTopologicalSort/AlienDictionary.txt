@@ -1,0 +1,48 @@
+Certainly! Let’s go through the example step by step:
+
+### Example: `words = ["wrt", "wrf", "er", "ett", "rftt"]`
+
+The goal is to determine the order of the letters based on how the words are sorted. Let’s compare each pair of adjacent words to see what we can infer about the order of letters.
+
+#### Step-by-Step Comparison
+
+1. **Compare "wrt" and "wrf"**:
+   - The words are the same up to the third letter.
+   - The third letter in "wrt" is `t`, and in "wrf" it's `f`.
+   - Since "wrt" comes before "wrf", we infer that `t` must come before `f` in the alien language order.
+
+2. **Compare "wrf" and "er"**:
+   - The first letter in "wrf" is `w`, and in "er" it's `e`.
+   - Since "wrf" comes before "er", we infer that `w` must come before `e` in the alien language order.
+
+3. **Compare "er" and "ett"**:
+   - The words are the same up to the second letter.
+   - The second letter in "er" is `r`, and in "ett" it’s `t`.
+   - Since "er" comes before "ett", we infer that `r` must come before `t` in the alien language order.
+
+4. **Compare "ett" and "rftt"**:
+   - The first letter in "ett" is `e`, and in "rftt" it’s `r`.
+   - Since "ett" comes before "rftt", we infer that `e` must come before `r` in the alien language order.
+
+#### Summary of Observations
+
+From these comparisons, we’ve inferred the following relationships:
+   - `t` comes before `f`
+   - `w` comes before `e`
+   - `r` comes before `t`
+   - `e` comes before `r`
+
+#### Building the Order
+
+With these relationships, we can build a directed graph where each letter is a node, and each ordering relationship (`a` before `b`) is a directed edge from `a` to `b`. By performing a topological sort on this graph, we get the order of letters:
+
+   - One possible valid order from these relationships is `"wertf"`.
+
+### Final Output
+
+Thus, for this example, the output is:
+```plaintext
+"wertf"
+```
+
+This is one possible valid order of letters based on the relationships derived from the words. There might be other valid orders if they still satisfy all the inferred relationships, but `"wertf"` is a correct answer.

@@ -14,24 +14,26 @@ import java.util.Stack;
 // 2.addition and subtraction
 // https://leetcode.com/problems/basic-calculator/
 public class BasicCalculatorII {
-    private int calculate(String s) {
+    // TC - O(n)
+    // SC - O(n)
+    public int calculate(String s) {
         if (s == null || s.length() == 0) {
             return 0;
         }
         Stack<Integer> stack = new Stack<>();
-        char prevOp = '+'; // TODO Very important
+        char prevOperator = '+'; // TODO Very important
         int num = 0;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (Character.isDigit(c)) {
                 num = 10 * num + c - '0';
-            } else if ("+-*/".indexOf(c) >= 0) {
-                evaluate(stack, prevOp, num); // just dump the existing num value
-                prevOp = c;// set this operation as new value
+            } else if (c == '+' || c == '-' || c == '*' || c == '/') {
+                evaluate(stack, prevOperator, num); // just dump the existing num value
+                prevOperator = c;// set this operation as new value
                 num = 0;
             }
         }
-        evaluate(stack, prevOp, num);
+        evaluate(stack, prevOperator, num);
         int result = 0;
         while (!stack.isEmpty()) {
             result += stack.pop();
@@ -39,20 +41,16 @@ public class BasicCalculatorII {
         return result;
     }
 
-    private void evaluate(Stack<Integer> stack, char operation, int num) {
+    private void evaluate(Stack<Integer> stack, char prevOperator, int num) {
         // we can do addition and subtraction later on also
-        if (operation == '+') {
+        if (prevOperator == '+') {
             stack.push(num);
-            return;
-        } else if (operation == '-') {
+        } else if (prevOperator == '-') {
             stack.push(-num);
-            return;
-        } else if (operation == '*') {
+        } else if (prevOperator == '*') {
             stack.push(stack.pop() * num);
-            return;
-        } else if (operation == '/') {
+        } else if (prevOperator == '/') {
             stack.push(stack.pop() / num);
-            return;
         }
     }
 

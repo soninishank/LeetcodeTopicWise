@@ -5,7 +5,8 @@ import Coding.Tree.TreeNode;
 import java.util.Stack;
 
 // https://leetcode.com/problems/validate-binary-search-tree/
-// Similar like  https://leetcode.com/problems/recover-binary-search-tree/
+// Similar like https://leetcode.com/problems/recover-binary-search-tree/
+// 98. Validate Binary Search Tree
 public class ValidateBST {
     Integer prev;
     boolean flag = true;

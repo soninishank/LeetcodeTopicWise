@@ -8,11 +8,8 @@ import java.util.HashMap;
 // Time complexity - O(1) both for put and get
 // Space complexity - O(c) - if capacity is defined
 public class LRUCache {
-    int capacity;
-    Node head, tail;
-    HashMap<Integer, Node> hashmap = new HashMap<>();
 
-    class Node {
+    private class Node {
         int key, value;
         Node prev, next;
 
@@ -21,6 +18,11 @@ public class LRUCache {
             this.value = value;
         }
     }
+
+    private int capacity;
+    private Node head, tail;
+    private HashMap<Integer, Node> hashmap = new HashMap<>();
+
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
@@ -49,7 +51,7 @@ public class LRUCache {
         } else {
             if (hashmap.size() == this.capacity) {
                 // Evict the least recently used (tail) node
-                hashmap.remove(tail.key);
+                hashmap.remove(tail.key); // removing from tail
                 remove(tail);
             }
             // Add the new key-value pair
@@ -59,13 +61,13 @@ public class LRUCache {
         }
     }
 
-    // Utility functions
+    // Utility functions - write on pen and paper to easily understand this
     void remove(Node node) {
         // Previous Node
         if (node.prev != null) {
             node.prev.next = node.next;
-        } else if (node.prev == null) { //Head Node
-            head = node.next;
+        } else if (node.prev == null) {
+            head = node.next; //we need to shift the Head Node
         }
         // Next node
         if (node.next != null) {

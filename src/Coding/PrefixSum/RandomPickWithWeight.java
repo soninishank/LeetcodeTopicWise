@@ -2,6 +2,7 @@ package Coding.PrefixSum;
 
 import java.util.Random;
 
+// https://leetcode.com/problems/random-pick-with-weight/
 public class RandomPickWithWeight {
     Random rand;
     int[] prefixSum;
@@ -26,7 +27,7 @@ public class RandomPickWithWeight {
         while (low < high) {
             int mid = low + (high - low) / 2;
             if (prefixSum[mid] == target) return mid;
-            if (prefixSum[mid] < target) { // if its less than target , it is clear that we need to increase low
+            if (prefixSum[mid] < target) { // if it's less than target , it is clear that we need to increase low
                 low = mid + 1;
             } else {
                 high = mid; // it means it might be a valid candidate

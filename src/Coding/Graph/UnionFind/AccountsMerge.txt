@@ -1,0 +1,43 @@
+The question is asking us to merge multiple accounts belonging to the same person, based on shared emails. Let’s break down what it means:
+
+1. **Accounts List**:
+   - We have a list of accounts, where each account is represented as a list of strings.
+   - The first element of each account list is the name of the person, and the remaining elements are email addresses linked to that account.
+
+2. **Merging Criteria**:
+   - Two accounts are considered to belong to the same person if they share at least one common email address.
+   - If two accounts have a common email, they should be merged, even if their names are the same or different (although, by problem constraints, we assume that all emails within a single account belong to the same person with a consistent name).
+
+3. **Example to Illustrate**:
+   - Suppose we have an input like this:
+     ```python
+     accounts = [
+         ["John", "johnsmith@mail.com", "john_newyork@mail.com"],
+         ["John", "johnsmith@mail.com", "john00@mail.com"],
+         ["Mary", "mary@mail.com"],
+         ["John", "johnnybravo@mail.com"]
+     ]
+     ```
+   - The accounts list has:
+     - Two accounts named "John" that both contain the email "johnsmith@mail.com". Since they share this email, they should be merged into a single account.
+     - An account for "Mary" that doesn’t share any emails with anyone else, so it remains separate.
+     - Another account for "John" with the email "johnnybravo@mail.com", which doesn’t share any emails with the others, so it also remains separate.
+
+4. **Output Requirements**:
+   - After merging, we need to output each unique account in the format:
+     - The first element is the person’s name.
+     - The remaining elements are all the unique emails associated with that person, sorted alphabetically.
+
+5. **Expected Output**:
+   - For the input above, the expected output could be:
+     ```python
+     [
+         ["John", "john00@mail.com", "john_newyork@mail.com", "johnsmith@mail.com"],
+         ["Mary", "mary@mail.com"],
+         ["John", "johnnybravo@mail.com"]
+     ]
+     ```
+   - Notice that the two accounts with the common email "johnsmith@mail.com" have been merged, and their emails are sorted alphabetically.
+
+### In Summary:
+The question is about finding and merging groups of emails that belong to the same person. Even if two accounts have the same name, they should only be merged if they share an email. The final output is a list of unique merged accounts with emails sorted in each list.

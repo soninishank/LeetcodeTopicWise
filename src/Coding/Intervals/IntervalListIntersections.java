@@ -6,6 +6,7 @@ import java.util.List;
 
 // Two Pointer
 // Meta
+// 986. Interval List Intersections
 // https://leetcode.com/problems/interval-list-intersections/
 public class IntervalListIntersections {
     public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
@@ -14,8 +15,9 @@ public class IntervalListIntersections {
         while (i < firstList.length && j < secondList.length) {
             int low = Math.max(firstList[i][0], secondList[j][0]);
             int high = Math.min(firstList[i][1], secondList[j][1]);
+            // we are adding only when low is less than high
             if (low <= high) {
-                list.add(new int[]{low, high}); // if low is less than high it means it's a valid intersection
+                list.add(new int[]{low, high}); // if low is less than equal to high, it means it's a valid intersection
             }
             if (firstList[i][1] < secondList[j][1]) {
                 i++;// move the pointer of a smaller one

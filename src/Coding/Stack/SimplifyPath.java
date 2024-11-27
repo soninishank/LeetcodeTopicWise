@@ -13,6 +13,7 @@ public class SimplifyPath {
         String[] str = path.split("/"); // /home/ -> ["","home"]
         System.out.println(Arrays.deepToString(str));
         for (String c : str) {
+            // pop
             if (c.equals("..")) {
                 if (!stack.isEmpty()) {
                     stack.pop();
@@ -32,7 +33,7 @@ public class SimplifyPath {
         if (strBuilder.length() > 0) {
             return strBuilder.toString();
         } else {
-            return "/";
+            return "/"; // edge case
         }
     }
 

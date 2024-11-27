@@ -81,3 +81,49 @@ public class NumberOfIslands {
         System.out.println(i);
     }
 }
+
+//
+//class Solution {
+//    // Define possible movement directions (right, left, down, up) for DFS traversal
+//    int[][] direction = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+//    int row = 0; // Total number of rows in the grid
+//    int col = 0; // Total number of columns in the grid
+//    int count = 0; // Counter to track the number of islands
+//
+//    // Method to count the number of islands in the grid
+//    public int numIslands(char[][] grid) {
+//        row = grid.length - 1; // Get the last index for rows
+//        col = grid[0].length - 1; // Get the last index for columns
+//
+//        // Iterate over each cell in the grid
+//        for (int i = 0; i <= row; i++) {
+//            for (int j = 0; j <= col; j++) {
+//                // If the cell contains '1', it is part of an island
+//                if (grid[i][j] == '1') {
+//                    count++; // Increment island count
+//                    // Perform DFS to mark the entire island as visited
+//                    applyDFS(grid, i, j);
+//                }
+//            }
+//        }
+//        return count; // Return the total number of islands
+//    }
+//
+//    // DFS method to mark all connected '1's as '0'
+//    private void applyDFS(char[][] grid, int i, int j) {
+//        // Base case: If the index is out of bounds or the cell is '0', return
+//        if (i < 0 || j < 0 || i > grid.length - 1 || j > grid[0].length - 1 || grid[i][j] == '0') {
+//            return;
+//        }
+//
+//        // Mark the current cell as visited by setting it to '0'
+//        grid[i][j] = '0';
+//
+//        // Recursively call DFS on all 4 adjacent cells (up, down, left, right)
+//        applyDFS(grid, i + 1, j); // Move down
+//        applyDFS(grid, i - 1, j); // Move up
+//        applyDFS(grid, i, j - 1); // Move left
+//        applyDFS(grid, i, j + 1); // Move right
+//        return; // Return after all adjacent cells are processed
+//    }
+//}

@@ -1,8 +1,9 @@
 package Coding.Easy;
 
+// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 public class RemoveDuplicatesFromSortedArray {
-    // Just dry run
-    // Don't panic - its very easy
+    // Just a dry run
+    // Doesn't panic - its very easy
     public int removeDuplicates(int[] nums) {
         if (nums.length == 0 || nums.length == 1) {
             return nums.length;
@@ -20,6 +21,20 @@ public class RemoveDuplicatesFromSortedArray {
             }
         }
         return low + 1;
+    }
+
+    public int removeDuplicatesUsingCursorIndex(int[] nums) {
+        if (nums.length == 0 || nums.length == 1) {
+            return nums.length;
+        }
+        int cursorIndex = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[i - 1]) {
+                nums[cursorIndex] = nums[i];
+                cursorIndex++;
+            }
+        }
+        return cursorIndex;
     }
 
     public static void main(String[] args) {

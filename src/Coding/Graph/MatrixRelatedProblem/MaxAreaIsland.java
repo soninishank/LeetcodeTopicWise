@@ -8,6 +8,7 @@ import java.util.Queue;
 // firstly check if the current grid value is 1 -> apply DFS (return its value) - note max at every step
 // https://leetcode.com/problems/max-area-of-island/
 // similar like number of islands except that you need to maintain the max for every DFS call
+// 695. Max Area of Island
 public class MaxAreaIsland {
     int[][] dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 

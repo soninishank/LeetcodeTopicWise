@@ -8,6 +8,9 @@ import java.util.Stack;
 // we are storing indexes
 // TODO : META
 public class MinimumRemoveToMakeValidParentheses {
+
+    // TC - O(N)
+    // SC - O(N)
     public String minRemoveToMakeValid(String s) {
         Stack<Integer> stack = new Stack<>();
         char[] chars = s.toCharArray();
@@ -37,37 +40,47 @@ public class MinimumRemoveToMakeValidParentheses {
         return stringBuilder.toString();
     }
 
+    // Approach 2
+    // Iterate left to right -> Eliminate extra closed parenthesis
+    // Iterate right to left -> Eliminate extra open parenthesis
+    // https://youtu.be/NNxaYz0nrk0?t=944
     public String minRemoveToMakeValid1(String s) {
         int open = 0;
         StringBuilder builder = new StringBuilder();
         // Step 1: Left-to-Right Pass
-        // skip closing door if there is no open door
+        // remove closed parentheses if there is no open parenthesis
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
-            if (ch == ')') {
+            if (ch == '(') {
+                open++;
+            } else if (ch == ')') {
                 if (open > 0) {
                     open--;
-                    builder.append(ch);
+                } else {
+                    continue;
                 }
-            } else if (ch == '(') {
-                open++;
-                builder.append(ch);
-            } else {
-                builder.append(ch);
             }
+            builder.append(ch);
         }
         // Step 2: Right-to-Left Pass
-        // If there are any openDoor which are unmatched -> so we remove them 
-        StringBuilder result = new StringBuilder();
-        for (int i = builder.length() - 1; i >= 0; i--) {
-            char ch = builder.charAt(i);
-            if (ch == '(' && open > 0) {
-                open--;
-            } else {
-                result.append(ch);
+        // remove open parentheses if there is no closed parenthesis
+        s = builder.toString(); // we need to use the same builder that we used above
+        int closed = 0;
+        StringBuilder finalBuilder = new StringBuilder();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            char ch = s.charAt(i);
+            if (ch == ')') {
+                closed++;
+            } else if (ch == '(') {
+                if (closed > 0) {
+                    closed--;
+                } else {
+                    continue;
+                }
             }
+            finalBuilder.append(ch);
         }
-        return result.reverse().toString();
+        return finalBuilder.reverse().toString();
     }
 
 

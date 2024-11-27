@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 // https://leetcode.com/problems/two-sum/
+// Time complexity - O(n)
+// The containsKey and put operations for HashMap have an average time complexity of 𝑂(1).
+// Space complexity - O(n)
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> hashMap = new HashMap<>();

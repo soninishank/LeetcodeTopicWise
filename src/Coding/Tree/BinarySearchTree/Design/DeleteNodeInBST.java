@@ -13,9 +13,11 @@ public class DeleteNodeInBST {
         if (root == null) {
             return root;
         }
+        // search in right
         if (key > root.val) {
             root.right = deleteNode(root.right, key); // we are always storing the state - root.right
-        } else if (key < root.val) {
+        } // search in left
+        else if (key < root.val) {
             root.left = deleteNode(root.left, key); // we are always storing the state - root.left
         } else {
             // leaf node

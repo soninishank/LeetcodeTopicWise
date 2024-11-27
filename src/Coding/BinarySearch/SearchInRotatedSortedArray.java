@@ -1,24 +1,29 @@
 package Coding.BinarySearch;
 
 // https://leetcode.com/problems/search-in-rotated-sorted-array/
-// It is similar as Minimum sorted array
+// It is similar as Minimum sorted array - we need to use this to firstly find the minimum index
+// so that we have two halves
 public class SearchInRotatedSortedArray {
+    // First way
     public int search(int[] nums, int target) {
-        int midValue = findMinIndex(nums);
-        if (midValue == -1) {
+        int minimumIndex = findMinIndex(nums);
+        if (minimumIndex == -1) {
             return -1;
         }
-        if (nums[midValue] == target) {
-            return midValue;
+        if (nums[minimumIndex] == target) {
+            return minimumIndex;
         }
-        int left = applyBinarySearch(nums, 0, midValue - 1, target);
+        // check in first half up to minIndex -1
+        int left = applyBinarySearch(nums, 0, minimumIndex - 1, target);
         if (left != -1) {
             return left;
         }
-        int right = applyBinarySearch(nums, midValue + 1, nums.length - 1, target);
+        // check in another half up from minIndex + 1
+        int right = applyBinarySearch(nums, minimumIndex + 1, nums.length - 1, target);
         return right;
     }
 
+    // we are returning index instead of value
     private int findMinIndex(int[] nums) {
         int low = 0, high = nums.length - 1;
         if (nums[low] < nums[high]) {

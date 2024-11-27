@@ -1,0 +1,49 @@
+The intuition behind this binary search approach to finding a peak element lies in leveraging the properties of a peak in a way that allows us to
+gradually narrow down the search space.
+
+Here’s a breakdown of the underlying intuition:
+
+1. Peaks in an Array
+A peak is defined as an element that is greater than its neighbors. In a typical unsorted array, there can be multiple peaks, and our goal is to find any one of them. The problem guarantees that at least one peak exists, so we don’t need to worry about cases with no peaks.
+
+2. Key Observations
+When we examine any element in the array, there are three possible scenarios:
+
+ - The element is on an ascending slope (i.e., nums[mid] < nums[mid + 1]).
+ - The element is on a descending slope (i.e., nums[mid] > nums[mid + 1]).
+ - The element is at a peak (greater than both its neighbors).
+
+Using these observations:
+
+1. If we're on an ascending slope (nums[mid] < nums[mid + 1]), then a peak must exist somewhere to the right of mid. This is because as we go up the slope, either we will eventually reach a peak, or we’ll hit the end of the array, which would also be a peak by definition.
+2. If we're on a descending slope (nums[mid] > nums[mid + 1]), then a peak must exist somewhere to the left of mid, including mid itself. As we go down the slope, we either hit a peak or reach the start of the array, which is also considered a peak.
+
+3. Why This Guarantees Finding a Peak
+By making the above observations, we can systematically eliminate half of the array in each step:
+
+If we find ourselves on an ascending slope (nums[mid] < nums[mid + 1]), we can ignore the left side, including mid, because the peak must be to the right.
+If we’re on a descending slope (nums[mid] > nums[mid + 1]), we ignore the right side past mid because the peak must be to the left or at mid.
+By repeatedly applying this logic, we’re guaranteed to converge on a peak.
+
+4. Why Binary Search Works Here
+The crucial insight is that moving towards the direction of the higher neighbor guarantees finding a peak:
+
+By moving towards the direction where the values increase, we ensure that we won’t miss a peak, as the array will eventually reach a point where it either starts descending (indicating a peak) or ends (which is a peak by definition).
+The array doesn’t need to be sorted; it only needs to have a defined peak structure where an element is greater than its neighbors. The binary search logic still applies because each half has at least one peak, allowing us to eliminate the unnecessary half in each step.
+Example to Solidify the Intuition
+Consider nums = [1, 2, 3, 1]:
+
+Start with low = 0 and high = 3.
+mid = 1, nums[mid] = 2, and nums[mid + 1] = 3.
+Since nums[mid] < nums[mid + 1], we know a peak must be on the right, so we set low = mid + 1 = 2.
+Now low = 2 and high = 3.
+mid = 2, nums[mid] = 3, and nums[mid + 1] = 1.
+Since nums[mid] > nums[mid + 1], we know the peak is at mid or to the left, so we set high = mid = 2.
+Now low == high == 2, and we return 2, where nums[2] = 3 is indeed a peak.
+Summary
+The intuition behind this approach is to use the structure of the array:
+
+Moving towards the higher neighbor guarantees finding a peak.
+By eliminating half of the array each time based on whether we’re on an ascending or descending slope, we reduce the search space logarithmically.
+This approach leverages binary search principles even in an unsorted context by relying on the presence of a peak in any segment, thus achieving an efficient
+O(logn) solution.

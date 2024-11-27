@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Stack;
 
 // https://leetcode.com/problems/buildings-with-an-ocean-view/
+// 1762. Buildings With an Ocean View
 // if there is no greater element to right it means building is having an ocean view
 public class BuildingWithAnOceanView {
     public int[] findBuildings(int[] heights) {
@@ -14,10 +15,10 @@ public class BuildingWithAnOceanView {
             while (!stack.isEmpty() && heights[stack.peek()] < heights[i]) {
                 stack.pop();
             }
-            if (stack.isEmpty()) { // we are adding only when stack is empty
+            if (stack.isEmpty()) { // we are adding only when stack is empty - it means it can clearly see
                 list.add(i);
             }
-            stack.push(i);
+            stack.push(i); // we need to add every element in stack at end
         }
         int[] result = new int[list.size()];
         int index = list.size() - 1;

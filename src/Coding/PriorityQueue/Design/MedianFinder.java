@@ -6,10 +6,11 @@ import java.util.PriorityQueue;
 // https://leetcode.com/problems/find-median-from-data-stream/
 // Time complexity is O(NlogN)
 // Space complexity - O(N)
+// 295. Find Median from Data Stream
 
 public class MedianFinder {
-    PriorityQueue<Integer> minPQ = new PriorityQueue<>();
-    PriorityQueue<Integer> maxPQ = new PriorityQueue<>(Collections.reverseOrder());
+    PriorityQueue<Integer> minPQ = new PriorityQueue<>(); // smallest to largest
+    PriorityQueue<Integer> maxPQ = new PriorityQueue<>(Collections.reverseOrder()); // largest to smallest
 
     public MedianFinder() {
     }
@@ -19,13 +20,14 @@ public class MedianFinder {
         if (maxPQ.isEmpty()) {
             maxPQ.add(num);
         }
-        // add all smaller numbers which are less than maxPQ
+        // add all smaller numbers that are less than maxPQ
         else if (maxPQ.peek() > num) {
             maxPQ.add(num);
         } else {
             minPQ.add(num);
         }
         // Balancing step
+
         if (maxPQ.size() > 1 + minPQ.size()) {
             Integer poll = maxPQ.poll();
             minPQ.add(poll);
@@ -48,8 +50,6 @@ public class MedianFinder {
         }
     }
 }
-
-
 
 
 //    There are so many ways around this problem, that frankly, it is scary. Here are a few more that I came across:

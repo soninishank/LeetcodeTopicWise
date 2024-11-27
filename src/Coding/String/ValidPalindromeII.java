@@ -1,6 +1,7 @@
 package Coding.String;
 
 // https://leetcode.com/problems/valid-palindrome-ii/
+// 680. Valid Palindrome II
 public class ValidPalindromeII {
     public boolean validPalindrome(String s) {
         int low = 0, high = s.length() - 1;
@@ -9,7 +10,7 @@ public class ValidPalindromeII {
                 low++;
                 high--;
             } else {
-                return checkIsValid(s, low, high - 1) || checkIsValid(s, low + 1, high);
+                return checkIsValid(s, low + 1, high) || checkIsValid(s, low, high - 1);
             }
         }
         return true;

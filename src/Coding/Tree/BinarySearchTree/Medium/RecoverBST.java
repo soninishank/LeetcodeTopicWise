@@ -28,6 +28,8 @@ public class RecoverBST {
             if (firstElement == null && prev.val >= root.val) {
                 firstElement = prev;
             }
+            // this will keep on updating every time it matches the condition
+            // so the value of secondElement updates multiple time
             if (firstElement != null && prev.val >= root.val) {
                 secondElement = root; // root because large one is covered up in above
             }

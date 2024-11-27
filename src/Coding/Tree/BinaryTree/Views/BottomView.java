@@ -9,37 +9,57 @@ import java.util.*;
 public class BottomView {
     ArrayList<Integer> resultList = new ArrayList<>();
 
-    private List<Integer> bottomView(TreeNode root) {
+    public List<Integer> bottomView(TreeNode root) {
+        List<Integer> resultList = new ArrayList<>();
         if (root == null) {
             return resultList;
         }
+
+        // Queue for level-order traversal
         Queue<RowColDirection> queue = new LinkedList<>();
         queue.add(new RowColDirection(0, root));
-        TreeMap<Integer, List<Integer>> hashMap = new TreeMap<>();
+
+        // TreeMap to store the bottom view (HD -> Node Value)
+        TreeMap<Integer, Integer> columnMap = new TreeMap<>();
+
+        // Level-order traversal
         while (!queue.isEmpty()) {
-            RowColDirection poll = queue.poll();
-            if (!hashMap.containsKey(poll.col)) {
-                hashMap.put(poll.col, new ArrayList<>());
-                hashMap.get(poll.col).add(poll.treeNode.val);
-            } else {
-                hashMap.get(poll.col).add(poll.treeNode.val);
+            RowColDirection current = queue.poll();
+            int col = current.col;
+            TreeNode node = current.treeNode;
+
+            // Update the map with the current node's value
+            columnMap.put(col, node.val);
+
+            // Add left and right children to the queue
+            if (node.left != null) {
+                queue.add(new RowColDirection(col - 1, node.left));
             }
-            if (poll.treeNode.left != null) {
-                queue.add(new RowColDirection(poll.col - 1, poll.treeNode.left));
-            }
-            if (poll.treeNode.right != null) {
-                queue.add(new RowColDirection(poll.col + 1, poll.treeNode.right));
-            }
-        }
-        for (int key : hashMap.keySet()) {
-            List<Integer> list = hashMap.get(key);
-            for (int i = 0; i < list.size(); i++) {
-                if (i == list.size() - 1) {
-                    resultList.add(list.get(i));
-                }
+            if (node.right != null) {
+                queue.add(new RowColDirection(col + 1, node.right));
             }
         }
+
+        // Add all column values to the result list
+        resultList.addAll(columnMap.values());
+
         return resultList;
+    }
+
+
+    public static void main(String[] args) {
+        TreeNode treeNode = new TreeNode(1);
+        treeNode.left = new TreeNode(2);
+        treeNode.right = new TreeNode(3);
+
+
+        treeNode.left.left = new TreeNode(4);
+        treeNode.left.right = new TreeNode(5);
+
+        treeNode.right.right = new TreeNode(6);
+
+        List<Integer> list = new BottomView().bottomView(treeNode);
+        System.out.println(list);
     }
 
 }

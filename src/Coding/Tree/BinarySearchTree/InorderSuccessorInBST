@@ -1,0 +1,9 @@
+case 1 : Node has right subtree
+
+- Go deep to leftmost node in right subtree
+- Find minimum in right subtree
+
+
+case 2 : No right subtree
+
+- Go to the nearest ancestor for which given node would be in left subtree.

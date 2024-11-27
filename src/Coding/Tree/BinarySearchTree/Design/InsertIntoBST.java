@@ -7,6 +7,7 @@ import Coding.Tree.TreeNode;
 // value is greater than root.val -> right subtree
 // root is null - create a node and return
 public class InsertIntoBST {
+
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root == null) {
             TreeNode node = new TreeNode(val);

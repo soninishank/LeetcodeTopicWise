@@ -8,13 +8,6 @@ import java.util.Stack;
 // https://leetcode.com/problems/online-stock-span/
 // TODO - important
 public class OnlineStockSpan {
-
-    public static void main(String[] args) {
-        int[] arr = {28, 14, 28, 35, 46, 53, 66}; // nearest greater to left
-        int[] ints = new OnlineStockSpan().nearestGreaterElementIndexToLeft(arr);
-        System.out.println(Arrays.toString(ints));
-    }
-
     private int[] nearestGreaterElementIndexToLeft(int[] arr) {
         int[] result = new int[arr.length];
         Stack<StackIndex> stack = new Stack<>();
@@ -31,6 +24,13 @@ public class OnlineStockSpan {
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        int[] arr = {28, 14, 28, 35, 46, 53, 66}; // nearest greater to left
+        int[] ints = new OnlineStockSpan().nearestGreaterElementIndexToLeft(arr);
+        System.out.println(Arrays.toString(ints));
+    }
+
 
 }
 

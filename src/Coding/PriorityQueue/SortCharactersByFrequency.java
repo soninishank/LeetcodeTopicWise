@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 // (o1, o2) -> hashMap.get(o2) - hashMap.get(o1)
 // sorting by size - largest to smallest, but we are not polling
 // https://leetcode.com/problems/sort-characters-by-frequency/
+// 451. Sort Characters By Frequency
 public class SortCharactersByFrequency {
     public String frequencySort(String s) {
         HashMap<Character, Integer> hashMap = new HashMap<>();
@@ -13,7 +14,7 @@ public class SortCharactersByFrequency {
             hashMap.put(s.charAt(i), hashMap.getOrDefault(s.charAt(i), 0) + 1);
         }
         PriorityQueue<Character> pq = new PriorityQueue<>((o1, o2) -> hashMap.get(o2) - hashMap.get(o1));// maxPQ - largest to smallest
-        // Iterating over hashmap keyset because priority queue you don't know exact ordering
+        // Iterating over hashmap keys et because priority queue you don't know exact ordering
         for (char c : hashMap.keySet()) {
             pq.add(c);
         }

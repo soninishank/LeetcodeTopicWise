@@ -4,13 +4,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 // Path :  top-left cell (i.e., (0, 0)) to the bottom-right cell (i.e., (n - 1, n - 1))
-// Shortest Path : Apply Coding.BFS - which works best
+// If there is a 1 , we can't go.
+// Shortest Path : Apply BFS - which works best
 // 8 directional
 // the path value must start from 0 - different from other questions
 // Instead of having extra visited set - just mark them with *
 // once you reached the last row and last column - return distance
 // https://leetcode.com/problems/shortest-path-in-binary-matrix/
 // All the visited cells of the path are 0.
+// 1091. Shortest Path in Binary Matrix
 public class ShortestPathInBinaryMatrix {
 
     private final int[][] dir = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, -1}, {-1, 1}, {-1, -1}, {1, 1}};
