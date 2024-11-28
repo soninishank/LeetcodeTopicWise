@@ -6,7 +6,7 @@ import java.util.*;
 // https://leetcode.com/problems/reconstruct-itinerary/
 // Eulerian Path
 // adjList value is PriorityQueue because we want output in lexicographical order
-// simple dfs & then removing every edges
+// simple dfs & then removing every edge
 // we need to add every element at first - starting backwards
 public class ReconstructItinerary {
     Map<String, PriorityQueue<String>> adjList;

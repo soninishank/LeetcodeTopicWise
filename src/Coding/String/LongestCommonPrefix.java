@@ -1,6 +1,7 @@
 package Coding.String;
 
 // https://leetcode.com/problems/longest-common-prefix/
+// 14. Longest Common Prefix
 public class LongestCommonPrefix {
     public String longestCommonPrefix(String[] strs) {
         if (strs.length == 0) {
@@ -45,6 +46,23 @@ public class LongestCommonPrefix {
                 prefix = prefix.substring(0, prefix.length() - 1);
                 // If the prefix becomes empty, return ""
                 if (prefix.isEmpty()) {
+                    return "";
+                }
+            }
+        }
+        return prefix;
+    }
+
+    // using startsWith
+    public String longestCommonPrefixStartsWith(String[] strs) {
+        if (strs.length == 0) {
+            return "";
+        }
+        String prefix = strs[0];
+        for (int i = 1; i < strs.length; i++) {
+            while (!strs[i].startsWith(prefix)) {
+                prefix = prefix.substring(0, prefix.length() - 1);
+                if (prefix.length() == 0) {
                     return "";
                 }
             }
