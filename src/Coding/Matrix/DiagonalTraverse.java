@@ -8,7 +8,8 @@ import java.util.List;
 public class DiagonalTraverse {
     HashMap<Integer, List<Integer>> hashMap = new HashMap<>();
 
-    public int[] findDiagonalOrder(int[][] mat) {
+    // using hashmap
+    public int[] findDiagonalOrderUsingHashmap(int[][] mat) {
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[0].length; j++) {
                 if (!hashMap.containsKey(i + j)) {
@@ -34,6 +35,50 @@ public class DiagonalTraverse {
                 }
             }
             flag = !flag;
+        }
+        return result;
+    }
+
+    // using simulation
+    // Analyze diagram
+    // 1. when row = first, last -> change direction
+    // 2. When col = first, last -> change a direction
+    // 3. When row = first, last, col++
+    // 4. When col = first,last, row++
+    public int[] findDiagonalOrder(int[][] mat) {
+        if (mat == null || mat.length == 0) {
+            return new int[0];
+        }
+        int m = mat.length;
+        int n = mat[0].length;
+        int[] result = new int[m * n];
+        int row = 0, col = 0, direction = 1;
+
+        for (int i = 0; i < result.length; i++) {
+            result[i] = mat[row][col];
+            if (direction == 1) { // Moving upward
+                if (col == n - 1) { // Hit the last column
+                    row++;
+                    direction = -1;
+                } else if (row == 0) { // Hit the first row
+                    col++;
+                    direction = -1;
+                } else { // Move diagonally up
+                    row--;
+                    col++;
+                }
+            } else { // Moving downward
+                if (row == m - 1) { // Hit the last row
+                    col++;
+                    direction = 1;
+                } else if (col == 0) { // Hit the first column
+                    row++;
+                    direction = 1;
+                } else { // Move diagonally down
+                    row++;
+                    col--;
+                }
+            }
         }
         return result;
     }

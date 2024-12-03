@@ -3,14 +3,14 @@ package Coding.BitWise;
 // https://leetcode.com/problems/missing-number/
 public class MissingNumber {
     public int missingNumber(int[] nums) {
-        int temp = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            temp = temp ^ nums[i];
+        int result = 0;
+        // we need to go to total length that's why it is i <= nums.length
+        for (int i = 0; i <= nums.length; i++) {
+            result = result ^ i;
         }
-        temp ^= nums.length;
         for (int i = 0; i < nums.length; i++) {
-            temp = temp ^ i;
+            result = result ^ nums[i];
         }
-        return temp;
+        return result;
     }
 }

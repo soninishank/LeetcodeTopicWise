@@ -1,4 +1,4 @@
-package Coding.BinarySearch;
+package Coding.TwoPointers;
 
 // https://leetcode.com/problems/sum-of-square-numbers/
 public class SumOfSquareNumbers {

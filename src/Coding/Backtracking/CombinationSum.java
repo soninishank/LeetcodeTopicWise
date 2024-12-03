@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // https://leetcode.com/problems/combination-sum/
-// same number can be used multiple times -
+// same number can be used multiple times
 public class CombinationSum {
     List<List<Integer>> resultList = new ArrayList<>();
 

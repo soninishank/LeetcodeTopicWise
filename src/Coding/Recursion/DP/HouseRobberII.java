@@ -30,7 +30,7 @@ public class HouseRobberII {
         if (n == 1)
             return nums[0]; // If there's only one house, return its value.
 
-        // Solve for both scenarios and take the maximum:
+        // Solve for both scenarios and take the maximum
         return Math.max(robHelperDp(nums, 0, n - 2), robHelperDp(nums, 1, n - 1));
     }
 

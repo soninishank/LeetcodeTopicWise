@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 // PostOrder -> left -> right -> root
 // InOrder -> left -> root -> right
-// The last value of PostOrder is root , we will pick that first
+// The last value of PostOrder is root, we will pick that first
 
 // when we are building - we can follow the same approach - just opposite of postorder - root -> right -> left
 public class BinaryTreeFromInOrderPostOrderTraversal {

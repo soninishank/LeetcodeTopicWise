@@ -6,81 +6,75 @@ import java.util.*;
 
 // Hashmap -> for storing the reference of parent pointers
 // visited hashset -> to mark the visited node
-// traversal - left , right , upwards - Coding.BFS
+// traversal - left, right, upwards - Coding.BFS
 // https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
 // 863. All Nodes Distance K in Binary Tree
+// 1. Build parent reference and put it in the hashmap
+// 2. Do BFS traversal and use a visited node
 public class AllNodesDistanceKInBinaryTree {
+    private HashMap<TreeNode, TreeNode> parentMap = new HashMap<>();
+    private List<Integer> resultList = new ArrayList<>();
 
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        HashMap<TreeNode, TreeNode> parentRefHashMap = new HashMap<>();
-        buildParentRef(root, parentRefHashMap);
-
-        List<Integer> list = new ArrayList<>();
-        dfs(root, target, k, parentRefHashMap, list);
-        return list;
-    }
-
-
-    // create hashmap of <Node, ParentNode>
-    private void buildParentRef(TreeNode root, HashMap<TreeNode, TreeNode> parentRef) {
         if (root == null) {
-            return;
+            return resultList;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        parentRef.put(root, null);
-        while (!queue.isEmpty()) {
-            TreeNode poll = queue.poll();
-            if (poll.left != null) {
-                queue.add(poll.left);
-                parentRef.put(poll.left, poll);
-            }
-            if (poll.right != null) {
-                queue.add(poll.right);
-                parentRef.put(poll.right, poll);
-            }
-        }
-    }
+        // Step 1: Build the parent reference map
+        buildParentReference(root, null);
 
-    private void dfs(TreeNode root, TreeNode target, int k, HashMap<TreeNode, TreeNode> parentRefHashMap, List<Integer> resultList) {
-        if (root == null) {
-            return;
-        }
-        HashSet<TreeNode> visitedHashset = new HashSet<>();
+        // Step 2: Initialize the BFS queue and visited set
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(target);
-        visitedHashset.add(target);
-        int currentLevel = 0;
+        HashSet<TreeNode> visited = new HashSet<>();
+
+        // Start BFS from the target node
+        queue.add(target);
+        visited.add(target);
+
+        // Perform BFS to find all nodes at distance K
         while (!queue.isEmpty()) {
             int size = queue.size();
-            if (currentLevel == k) {
-                break;
+            k--;  // Decrease distance K as we move level by level
+            if (k < 0) {
+                break;  // If we've reached the required distance, stop further traversal
             }
-            currentLevel++;
             for (int i = 0; i < size; i++) {
-                TreeNode poll = queue.poll();
-                // left
-                if (poll.left != null && !visitedHashset.contains(poll.left)) {
-                    queue.add(poll.left);
-                    visitedHashset.add(poll.left);
+                TreeNode node = queue.poll();
+                if (node.left != null && !visited.contains(node.left)) {
+                    queue.add(node.left);
+                    visited.add(node.left);
                 }
-                // right
-                if (poll.right != null && !visitedHashset.contains(poll.right)) {
-                    queue.add(poll.right);
-                    visitedHashset.add(poll.right);
+                if (node.right != null && !visited.contains(node.right)) {
+                    queue.add(node.right);
+                    visited.add(node.right);
                 }
-                // parent hash map - upward
-                if (parentRefHashMap.get(poll) != null && !visitedHashset.contains(parentRefHashMap.get(poll))) {
-                    queue.add(parentRefHashMap.get(poll));
-                    visitedHashset.add(parentRefHashMap.get(poll));
+                TreeNode parent = parentMap.get(node);
+                if (parent != null && !visited.contains(parent)) {
+                    queue.add(parent);
+                    visited.add(parent);
                 }
             }
         }
+        // Step 3: Collect the nodes at distance K
         while (!queue.isEmpty()) {
-            TreeNode poll = queue.poll();
-            resultList.add(poll.val);
+            TreeNode node = queue.poll();
+            if (node != null) {
+                resultList.add(node.val);
+            }
         }
-        return;
+        // Return the final result
+        return resultList;
+    }
+
+    // Helper method to build the parent reference map for each node
+    private void buildParentReference(TreeNode root, TreeNode parentRef) {
+        if (root == null) {
+            return;
+        }
+        // Map the parent reference for the current node
+        parentMap.put(root, parentRef);
+        // Recursively build the parent reference for left and right children
+        buildParentReference(root.left, root);
+        buildParentReference(root.right, root);
     }
 
     public static void main(String[] args) {

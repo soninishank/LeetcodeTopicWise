@@ -1,6 +1,9 @@
 package Coding.SlidingWindow;
 
 // https://leetcode.com/problems/minimum-window-substring/
+// Its very simple - not at all hard
+// Firstly make the pattern characters positive in 256 ascii array
+// than iterating the str, and decrement it
 public class MinimumWindowSubstring {
     public String minWindow(String s, String pattern) {
         int[] arr = new int[256];
@@ -28,6 +31,7 @@ public class MinimumWindowSubstring {
                 int initialVal = s.charAt(start);
                 arr[initialVal]++;
                 // it means it belongs to the pattern
+                // Because the ones that are not part of the pattern will become negative actually
                 if (arr[initialVal] > 0) {
                     count++;
                 }
@@ -35,7 +39,7 @@ public class MinimumWindowSubstring {
             }
         }
         if (minLength == Integer.MAX_VALUE) {
-            return "";
+            return ""; // This is used to handle the case when "a","aa"
         } else {
             return s.substring(minStart, minStart + minLength);
         }
@@ -44,5 +48,8 @@ public class MinimumWindowSubstring {
     public static void main(String[] args) {
         String s = new MinimumWindowSubstring().minWindow("ADOBECODEBANC", "ABC");
         System.out.println(s);
+
+        String s1 = new MinimumWindowSubstring().minWindow("ADOBECLMT", "ABC");
+        System.out.println(s1);
     }
 }

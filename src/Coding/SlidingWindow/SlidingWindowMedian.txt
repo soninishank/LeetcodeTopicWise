@@ -1,0 +1,29 @@
+Approach
+1. Understanding the Median:
+
+- The median is the middle value in a sorted list. If the size of the list is even, the median is the mean of the two middle values.
+
+2. Sliding Window Concept:
+- The sliding window moves one step at a time to the right across the array.
+- At each step, it contains exactly k elements, and we need to compute the median of these k elements.
+
+3. Efficiently Maintaining Order:
+
+- To calculate the median efficiently, we need to maintain the order of elements in the window.
+- A good data structure for this is two heaps (priority queues):
+    - A max heap for the left half of the window (to store smaller values).
+    - A min heap for the right half of the window (to store larger values).
+
+4. Operations with Heaps:
+
+   - Add the new number to one of the heaps.
+   - Balance the heaps such that their sizes differ by at most 1.
+   - Remove the element that is sliding out of the window.
+   - Compute the median:
+       - If the heaps are of the same size, the median is the average of the tops of the two heaps.
+       - If one heap is larger, the median is the top of the larger heap.
+
+5. Implementation:
+
+   - We will use a TreeMap or PriorityQueue in Java for heap operations.
+   - Iterate through the array and manage the sliding window using the above logic.

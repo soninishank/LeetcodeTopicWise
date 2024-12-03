@@ -1,4 +1,4 @@
-package Coding.Easy;
+package Coding.DynamicProgramming.Stock;
 
 import java.util.Arrays;
 

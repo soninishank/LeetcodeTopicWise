@@ -27,4 +27,27 @@ public class FindMinimumInRotatedSortedArray {
         }
         return -1;
     }
+
+    // There is more easy way, it is exactly similar to find peak index in a mountain array
+    // If the mid-element is greater than the rightmost element, the minimum must be in the right half.
+    //     Otherwise, the minimum lies in the left half (including mid).
+    public int findMinimum(int[] nums) {
+        int low = 0, high = nums.length - 1;
+        // Means the array is not rotated itself
+        if (nums[low] < nums[high]) {
+            return nums[low];
+        }
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            // iska matlab abhi me highest position pe hu
+            // 3 4 5 1 2
+            // if nums[mid] is 5 it means I need to go in right side
+            if (nums[mid] > nums[high]) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return nums[low];
+    }
 }

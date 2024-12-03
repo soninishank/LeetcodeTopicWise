@@ -7,7 +7,7 @@ import java.util.*;
 // Right side -> 0 - same value on each step
 // left side -> -1 on each step
 // https://www.geeksforgeeks.org/diagonal-traversal-of-binary-tree/
-public class DiagonalTraversal {
+public class DiagonalTraversalBinaryTree {
 
     List<List<Integer>> resultList = new ArrayList<>();
 
@@ -48,6 +48,6 @@ public class DiagonalTraversal {
         root.right.right.left = new TreeNode(13);
         root.left.right.left = new TreeNode(4);
         root.left.right.right = new TreeNode(7);
-        new DiagonalTraversal().diagonalPrint(root);
+        new DiagonalTraversalBinaryTree().diagonalPrint(root);
     }
 }

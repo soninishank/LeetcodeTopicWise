@@ -13,35 +13,52 @@ import java.util.Queue;
 // 1.left
 // 2.right
 // 3.Parent Node
+// https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
+// Exactly same as https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
 public class MinTimeToBurnACompleteTree {
+    private HashMap<TreeNode, TreeNode> parentMap = new HashMap<>();
+
+    public int amountOfTime(TreeNode root, int start) {
+        // Step 1: Find the start node in the tree
+        TreeNode startNode = findNode(root, start);
+        if (startNode == null) {
+            return 0;  // If the start node does not exist, return 0
+        }
+        buildParentReference(root, null);
+        // Step 2: Use the existing minTime function to calculate the time
+        return minTime(root, startNode);
+    }
+
+    private TreeNode findNode(TreeNode root, int value) {
+        if (root == null) {
+            return null;
+        }
+        if (root.val == value) {
+            return root;
+        }
+        TreeNode leftResult = findNode(root.left, value);
+        if (leftResult != null) {
+            return leftResult;
+        }
+        return findNode(root.right, value);
+    }
 
     public int minTime(TreeNode root, TreeNode target) {
-        HashMap<TreeNode, TreeNode> parentNodeReferenceHashMap = new HashMap<>();
-        buildParentRef(root, parentNodeReferenceHashMap);
-        int value = dfs(root, target, parentNodeReferenceHashMap);
+        int value = dfs(root, target, parentMap);
         return value;
     }
 
 
-    // Build a hashmap of node with parent reference
-    private void buildParentRef(TreeNode root, HashMap<TreeNode, TreeNode> parentRef) {
+    // Helper method to build the parent reference map for each node
+    private void buildParentReference(TreeNode root, TreeNode parentRef) {
         if (root == null) {
             return;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        parentRef.put(root, null);
-        while (!queue.isEmpty()) {
-            TreeNode poll = queue.poll();
-            if (poll.left != null) {
-                queue.add(poll.left);
-                parentRef.put(poll.left, poll);
-            }
-            if (poll.right != null) {
-                queue.add(poll.right);
-                parentRef.put(poll.right, poll);
-            }
-        }
+        // Map the parent reference for the current node
+        parentMap.put(root, parentRef);
+        // Recursively build the parent reference for left and right children
+        buildParentReference(root.left, root);
+        buildParentReference(root.right, root);
     }
 
     // when the adjacent node start burning they all start burning the nearby nodes at once
@@ -53,6 +70,7 @@ public class MinTimeToBurnACompleteTree {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(target);
         visitedHashset.add(target);
+
         int currentLevel = 0;
         while (!queue.isEmpty()) {
             int size = queue.size();
@@ -76,6 +94,6 @@ public class MinTimeToBurnACompleteTree {
             }
             currentLevel++;
         }
-        return currentLevel;
+        return currentLevel - 1;// Subtract 1 because we incremented at the last step
     }
 }

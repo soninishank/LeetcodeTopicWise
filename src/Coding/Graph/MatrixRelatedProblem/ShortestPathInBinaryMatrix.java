@@ -4,7 +4,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 // Path :  top-left cell (i.e., (0, 0)) to the bottom-right cell (i.e., (n - 1, n - 1))
+
 // If there is a 1 , we can't go.
+
 // Shortest Path : Apply BFS - which works best
 // 8 directional
 // the path value must start from 0 - different from other questions
@@ -33,11 +35,12 @@ public class ShortestPathInBinaryMatrix {
         grid[0][0] = '*';
         while (!queue.isEmpty()) {
             int size = queue.size();
+            distance++;
             for (int i = 0; i < size; i++) {
                 int[] poll = queue.poll();
-                distance++;
+                // reached final row and column
                 if (poll[0] == totalRow - 1 && poll[1] == totalCol - 1) {
-                    return distance + 1;
+                    return distance;
                 }
                 for (int[] direction : dir) {
                     int x = poll[0] + direction[0];
@@ -49,10 +52,9 @@ public class ShortestPathInBinaryMatrix {
                         continue;
                     }
                     queue.add(new int[]{x, y});
-                    grid[x][y] = '*';
+                    grid[x][y] = '*'; // mark visited
                 }
             }
-            distance++;
         }
         return -1;
     }

@@ -3,6 +3,7 @@ package Coding.Graph.KahnAlgoTopologicalSort;
 import java.util.*;
 
 // https://leetcode.com/problems/alien-dictionary/
+// 269. Alien Dictionary
 public class AlienDictionary {
     public String alienOrder(String[] words) {
         // Step 1: Initialize graph and in-degree map
@@ -10,6 +11,7 @@ public class AlienDictionary {
         Map<Character, Integer> inDegree = new HashMap<>();
 
         // Initialize the in-degree map for each unique character
+        // inDegree = {'w': 0, 'r': 0, 't': 0, 'f': 0, 'e': 0}
         for (String word : words) {
             for (char c : word.toCharArray()) {
                 inDegree.put(c, 0);
@@ -44,6 +46,9 @@ public class AlienDictionary {
             }
         }
 
+        // graph = {'t': {'f'}, 'w': {'e'}, 'r': {'t'}, 'e': {'r'}}
+        // inDegree = {'w': 0, 'r': 1, 't': 1, 'f': 1, 'e': 0}
+
         // Step 3: Topological sort using BFS (Kahn's Algorithm)
         Queue<Character> queue = new LinkedList<>();
         StringBuilder result = new StringBuilder();
@@ -55,6 +60,7 @@ public class AlienDictionary {
             }
         }
 
+        // Initial queue: ['w', 'e'] because inDegree is 0
         while (!queue.isEmpty()) {
             char current = queue.poll();
             result.append(current);
@@ -74,6 +80,12 @@ public class AlienDictionary {
             return ""; // invalid order (cycle detected)
         }
 
-        return result.toString();
+        return result.toString(); // result = "wertf"
+    }
+
+    public static void main(String[] args) {
+        String[] words = {"wrt", "wrf", "er", "ett", "rftt"};
+        String s = new AlienDictionary().alienOrder(words);
+        System.out.println(s);
     }
 }
