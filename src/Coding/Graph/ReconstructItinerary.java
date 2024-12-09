@@ -8,32 +8,35 @@ import java.util.*;
 // adjList value is PriorityQueue because we want output in lexicographical order
 // simple dfs & then removing every edge
 // we need to add every element at first - starting backwards
+// PriorityQueue ensures that the destinations for each departure are processed in lexicographical order.
+// Using a PriorityQueue avoids the need for pre-sorting the tickets manually.
 public class ReconstructItinerary {
-    Map<String, PriorityQueue<String>> adjList;
-    LinkedList<String> res;
 
     public List<String> findItinerary(List<List<String>> tickets) {
-        adjList = new HashMap<>();
-        res = new LinkedList<>();
-
-        //1. Build the graph
+        // Step 1: Build the graph
+        Map<String, PriorityQueue<String>> graph = new HashMap<>();
         for (List<String> ticket : tickets) {
-            String source = ticket.get(0), destination = ticket.get(1);
-            adjList.putIfAbsent(source, new PriorityQueue<>());
-            adjList.get(source).offer(destination);
+            String from = ticket.get(0);
+            String to = ticket.get(1);
+            graph.putIfAbsent(from, new PriorityQueue<>());
+            graph.get(from).add(to);
         }
 
-        //2. Call dfs from JFK
-        dfs("JFK");
-        return res;
+        // Step 2: Perform DFS
+        List<String> itinerary = new LinkedList<>();
+        dfs("JFK", graph, itinerary);
+
+        // Since we add nodes to the front in post-order, no need to reverse
+        return itinerary;
     }
 
-    void dfs(String from) {
-        PriorityQueue<String> arrivals = adjList.get(from);
-        while (arrivals != null && arrivals.size() > 0) {
-            dfs(arrivals.poll());
+    private void dfs(String airport, Map<String, PriorityQueue<String>> graph, List<String> itinerary) {
+        PriorityQueue<String> destinations = graph.get(airport);
+        while (destinations != null && !destinations.isEmpty()) {
+            String next = destinations.poll(); // Get the smallest lexical destination
+            dfs(next, graph, itinerary);
         }
-        res.addFirst(from); // because eulerian path starts from source
+        itinerary.add(0, airport); // Add the airport to the front
     }
 
     public static void main(String[] args) {

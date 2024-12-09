@@ -16,27 +16,27 @@ public class BottomView {
         }
 
         // Queue for level-order traversal
-        Queue<RowColDirection> queue = new LinkedList<>();
-        queue.add(new RowColDirection(0, root));
+        Queue<TreeNodeInfo> queue = new LinkedList<>();
+        queue.add(new TreeNodeInfo(0, root));
 
         // TreeMap to store the bottom view (HD -> Node Value)
         TreeMap<Integer, Integer> columnMap = new TreeMap<>();
 
         // Level-order traversal
         while (!queue.isEmpty()) {
-            RowColDirection current = queue.poll();
-            int col = current.col;
-            TreeNode node = current.treeNode;
+            TreeNodeInfo current = queue.poll();
+            int col = current.column;
+            TreeNode node = current.node;
 
             // Update the map with the current node's value
             columnMap.put(col, node.val);
 
             // Add left and right children to the queue
             if (node.left != null) {
-                queue.add(new RowColDirection(col - 1, node.left));
+                queue.add(new TreeNodeInfo(col - 1, node.left));
             }
             if (node.right != null) {
-                queue.add(new RowColDirection(col + 1, node.right));
+                queue.add(new TreeNodeInfo(col + 1, node.right));
             }
         }
 

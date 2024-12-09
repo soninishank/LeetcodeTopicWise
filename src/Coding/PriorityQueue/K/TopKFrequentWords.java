@@ -1,35 +1,44 @@
 package Coding.PriorityQueue.K;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/top-k-frequent-words/
 public class TopKFrequentWords {
 
     public List<String> topKFrequent(String[] words, int k) {
-        List<String> list = new ArrayList<>();
-        HashMap<String, Integer> hashMap = new HashMap<>();
+        HashMap<String, Integer> hashmap = new HashMap<>();
+        // Build hashmap
         for (String word : words) {
-            hashMap.put(word, hashMap.getOrDefault(word, 0) + 1);
+            hashmap.put(word, hashmap.getOrDefault(word, 0) + 1);
         }
-        PriorityQueue<String> priorityQueue = new PriorityQueue<>(new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                if (hashMap.get(o1) == hashMap.get(o2)) {
-                    return o2.compareTo(o1);
-                }
-                return hashMap.get(o1) - hashMap.get(o2);
+
+        // PriorityQueue with custom comparator
+        PriorityQueue<String> pq = new PriorityQueue<>((o1, o2) -> {
+            int freq1 = hashmap.get(o1);
+            int freq2 = hashmap.get(o2);
+
+            if (freq1 == freq2) {
+                return o2.compareTo(o1); // Lexicographical order (reverse for min-heap behavior)
             }
+            return freq1 - freq2; // Compare by frequency
         });
-        for (String word : hashMap.keySet()) {
-            priorityQueue.add(word);
-            if (priorityQueue.size() > k) {
-                priorityQueue.poll();
+
+        // Add elements to the PriorityQueue
+        for (String word : hashmap.keySet()) {
+            pq.add(word);
+            if (pq.size() > k) {
+                pq.poll(); // Remove the least frequent element
             }
         }
-        while (!priorityQueue.isEmpty()) {
-            String poll = priorityQueue.poll();
-            list.add(0, poll);
+        // Build the result list from the PriorityQueue
+        List<String> list = new ArrayList<>();
+        while (!pq.isEmpty()) {
+            list.add(0, pq.poll()); // Add elements in reverse order
         }
+
         return list;
     }
 

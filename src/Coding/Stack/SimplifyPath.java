@@ -6,6 +6,7 @@ import java.util.Stack;
 // https://leetcode.com/problems/simplify-path/
 // . -> same directory
 // .. -> previous directory
+// 71. Simplify Path
 public class SimplifyPath {
     Stack<String> stack = new Stack<>();
 

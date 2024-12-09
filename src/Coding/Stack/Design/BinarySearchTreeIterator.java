@@ -6,11 +6,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 // https://leetcode.com/problems/binary-search-tree-iterator/
-public class BSTIterator {
+public class BinarySearchTreeIterator {
 
     Queue<Integer> queue = new LinkedList<>();
 
-    public BSTIterator(TreeNode root) {
+    public BinarySearchTreeIterator(TreeNode root) {
         inOrderTraversal(root);
     }
 
@@ -38,11 +38,11 @@ public class BSTIterator {
         treeNode.right = new TreeNode(15);
         treeNode.right.left = new TreeNode(9);
         treeNode.right.right = new TreeNode(20);
-        BSTIterator bSTIterator = new BSTIterator(treeNode);
+        BinarySearchTreeIterator bSTIterator = new BinarySearchTreeIterator(treeNode);
     }
 }
 
-// This is an optimized approach
+// TODO This is an optimized approach
 //class BSTIterator {
 //    Stack<Node> stack;
 //    TreeNode node;

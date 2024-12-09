@@ -10,15 +10,16 @@ class WordDictionary {
     }
 
     public void addWord(String word) {
-        TrieNode start = trieNode;
-        for (int i = 0; i < word.length(); i++) {
-            char ch = word.charAt(i);
-            if (!start.containsKey(ch)) {
-                start.put(ch, new TrieNode());
+        TrieNode node = trieNode;
+        char[] charArray = word.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            char ch = charArray[i];
+            if (node.links[ch - 'a'] == null) {
+                node.links[ch - 'a'] = new TrieNode();
             }
-            start = start.get(ch);
+            node = node.links[ch - 'a'];
         }
-        start.setEnd();
+        node.isEnd = true;
     }
 
     public boolean search(String word) {
@@ -26,15 +27,15 @@ class WordDictionary {
         return helper(word, 0, search);
     }
 
-    private boolean helper(String word, int currentIndex, TrieNode root) {
-        if (root == null) {
+    private boolean helper(String word, int currentIndex, TrieNode node) {
+        if (node == null) {
             return false;
         }
         if (currentIndex == word.length()) {
-            return root.isEnd();
+            return node.isEnd;
         }
         if (word.charAt(currentIndex) == '.') {
-            for (TrieNode child : root.links) {
+            for (TrieNode child : node.links) {
                 if (child != null && helper(word, currentIndex + 1, child)) {
                     return true;
                 }
@@ -42,11 +43,12 @@ class WordDictionary {
             return false;
         } // if it's not a dot
         else {
-            if (!root.containsKey(word.charAt(currentIndex))) {
+            char ch1 = word.charAt(currentIndex);
+            if (node.links[ch1 - 'a'] == null) {
                 return false;
             }
-            root = root.get(word.charAt(currentIndex)); // updating the root reference
-            return helper(word, currentIndex + 1, root);
+            node = node.links[ch1 - 'a']; // updating the root reference
+            return helper(word, currentIndex + 1, node);
         }
     }
 }

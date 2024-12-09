@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Stack;
 
 // https://leetcode.com/problems/exclusive-time-of-functions/
-// "1:start:2" -> 1 is the function name , start is action , 2 is timestamp
+// 636. Exclusive Time of Functions
+// "1:start:2" -> 1 is the function name, start is action, 2 is timestamp
 public class ExclusiveTimeOfFunctions {
 
     public int[] exclusiveTime(int n, List<String> logs) {
@@ -28,9 +29,12 @@ public class ExclusiveTimeOfFunctions {
                 stack.push(functionId);
                 prevTime = timestamp;
             } else { // action is "end"
-                // Pop the function from the stack and calculate its exclusive time
-                result[stack.pop()] += timestamp - prevTime + 1;
+                // Pop the function from the stack and calculate its inclusive time
+                result[stack.pop()] += timestamp - prevTime + 1; // we need to add +1 because the end is inclusive
                 prevTime = timestamp + 1; // Update prevTime to the next timestamp
+            }
+            if (!stack.isEmpty()) {
+                System.out.println(result[stack.peek()]);
             }
         }
         return result;

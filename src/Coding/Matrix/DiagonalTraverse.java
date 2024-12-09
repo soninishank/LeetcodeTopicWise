@@ -49,15 +49,15 @@ public class DiagonalTraverse {
         if (mat == null || mat.length == 0) {
             return new int[0];
         }
-        int m = mat.length;
-        int n = mat[0].length;
-        int[] result = new int[m * n];
+        int rowLength = mat.length;
+        int colLength = mat[0].length;
+        int[] result = new int[rowLength * colLength];
         int row = 0, col = 0, direction = 1;
 
         for (int i = 0; i < result.length; i++) {
             result[i] = mat[row][col];
             if (direction == 1) { // Moving upward
-                if (col == n - 1) { // Hit the last column
+                if (col == colLength - 1) { // Hit the last column
                     row++;
                     direction = -1;
                 } else if (row == 0) { // Hit the first row
@@ -68,7 +68,7 @@ public class DiagonalTraverse {
                     col++;
                 }
             } else { // Moving downward
-                if (row == m - 1) { // Hit the last row
+                if (row == rowLength - 1) { // Hit the last row
                     col++;
                     direction = 1;
                 } else if (col == 0) { // Hit the first column

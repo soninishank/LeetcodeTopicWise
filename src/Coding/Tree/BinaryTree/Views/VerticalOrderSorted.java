@@ -20,41 +20,53 @@ public class VerticalOrderSorted {
         if (root == null) {
             return new ArrayList<>();
         }
-        TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> resultMap = new TreeMap<>();
-        Queue<RowColDirection> queue = new LinkedList<>();
-        queue.add(new RowColDirection(0, 0, root));
-        while (!queue.isEmpty()) {
-            int size = queue.size();
+
+        // A TreeMap to store columns and their corresponding rows and values
+        TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> columnMap = new TreeMap<>();
+        Queue<TreeNodeInfo> nodeQueue = new LinkedList<>();
+
+        // Start BFS traversal with the root node
+        nodeQueue.add(new TreeNodeInfo(0, 0, root));
+
+        while (!nodeQueue.isEmpty()) {
+            int size = nodeQueue.size();
             for (int i = 0; i < size; i++) {
-                RowColDirection poll = queue.poll();
-                if (!resultMap.containsKey(poll.col)) {
-                    resultMap.put(poll.col, new TreeMap<>());
+                TreeNodeInfo currentNodeInfo = nodeQueue.poll();
+
+                // Ensure the column exists in the columnMap
+                columnMap.putIfAbsent(currentNodeInfo.column, new TreeMap<>());
+
+                // Ensure the row exists within the column
+                columnMap.get(currentNodeInfo.column).putIfAbsent(currentNodeInfo.row, new PriorityQueue<>());
+
+                // Add the current node's value to the corresponding PriorityQueue
+                columnMap.get(currentNodeInfo.column).get(currentNodeInfo.row).add(currentNodeInfo.node.val);
+
+                // Add left and right children to the queue with updated row and column
+                if (currentNodeInfo.node.left != null) {
+                    nodeQueue.add(new TreeNodeInfo(currentNodeInfo.row + 1, currentNodeInfo.column - 1, currentNodeInfo.node.left));
                 }
-                if (!resultMap.get(poll.col).containsKey(poll.row)) {
-                    resultMap.get(poll.col).put(poll.row, new PriorityQueue<>());
-                }
-                resultMap.get(poll.col).get(poll.row).add(poll.treeNode.val);
-                if (poll.treeNode.left != null) {
-                    queue.add(new RowColDirection(poll.row + 1, poll.col - 1, poll.treeNode.left));
-                }
-                if (poll.treeNode.right != null) {
-                    queue.add(new RowColDirection(poll.row + 1, poll.col + 1, poll.treeNode.right));
+                if (currentNodeInfo.node.right != null) {
+                    nodeQueue.add(new TreeNodeInfo(currentNodeInfo.row + 1, currentNodeInfo.column + 1, currentNodeInfo.node.right));
                 }
             }
         }
-        List<List<Integer>> resultList = new ArrayList<>();
-        for (Integer key : resultMap.keySet()) {
-            TreeMap<Integer, PriorityQueue<Integer>> treeMap = resultMap.get(key);
-            List<Integer> list = new ArrayList<>();
-            for (Integer integer : treeMap.keySet()) {
-                PriorityQueue<Integer> priorityQueue = treeMap.get(integer);
-                while (!priorityQueue.isEmpty()) {
-                    list.add(priorityQueue.poll());
+
+        // Prepare the final result list
+        List<List<Integer>> result = new ArrayList<>();
+        for (Integer column : columnMap.keySet()) {
+            TreeMap<Integer, PriorityQueue<Integer>> rowMap = columnMap.get(column);
+            List<Integer> columnValues = new ArrayList<>();
+            for (Integer row : rowMap.keySet()) {
+                PriorityQueue<Integer> values = rowMap.get(row);
+                while (!values.isEmpty()) {
+                    columnValues.add(values.poll());
                 }
             }
-            resultList.add(list);
+            result.add(columnValues);
         }
-        return resultList;
+
+        return result;
     }
 
     public static void main(String[] args) {

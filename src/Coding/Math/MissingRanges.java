@@ -15,6 +15,9 @@ public class MissingRanges {
             missingRanges.add(Arrays.asList(lower, upper));
             return missingRanges;
         }
+
+        // TODO : Remember that we are not increasing i loop in lower and upper
+
         // Check for any missing numbers between the lower bound and nums[0].
         if (lower < nums[0]) {
             missingRanges.add(Arrays.asList(lower, nums[0] - 1));

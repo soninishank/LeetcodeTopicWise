@@ -12,14 +12,16 @@ public class ImplementTrie {
     // Space complexity - O ( m * n )
     private void insert(String word) {
         TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-            char currentChar = word.charAt(i);
-            if (!node.containsKey(currentChar)) {
-                node.put(currentChar, new TrieNode());
+        char[] charArray = word.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            char currentChar = charArray[i];
+            // means referenceLink is not present
+            if (node.links[currentChar - 'a'] == null) {
+                node.links[currentChar - 'a'] = new TrieNode();
             }
-            node = node.get(currentChar);
+            node = node.links[currentChar - 'a'];
         }
-        node.setEnd();
+        node.isEnd = true;
     }
 
     // search a key in trie
@@ -28,13 +30,13 @@ public class ImplementTrie {
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
             char currentChar = word.charAt(i);
-            if (node.containsKey(currentChar)) {
-                node = node.get(currentChar);
+            if (node.links[currentChar - 'a'] != null) {
+                node = node.links[currentChar - 'a'];
             } else {
                 return false;
             }
         }
-        return node.isEnd();
+        return node.isEnd;
     }
 
     // Time complexity - O (n)
@@ -42,8 +44,8 @@ public class ImplementTrie {
         TrieNode node = root;
         for (int i = 0; i < prefix.length(); i++) {
             char currentChar = prefix.charAt(i);
-            if (node.containsKey(currentChar)) {
-                node = node.get(currentChar);
+            if (node.links[currentChar - 'a'] != null) {
+                node = node.links[currentChar - 'a'];
             } else {
                 return false;
             }

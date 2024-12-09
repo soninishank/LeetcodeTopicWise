@@ -14,23 +14,23 @@ public class BinaryTreeVerticalOrderTraversal {
             return result;
         }
         TreeMap<Integer, List<Integer>> treeMap = new TreeMap<>();
-        Queue<RowColDirection> queue = new LinkedList<>();
-        queue.add(new RowColDirection(0, root));
+        Queue<TreeNodeInfo> queue = new LinkedList<>();
+        queue.add(new TreeNodeInfo(0, root));
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                RowColDirection poll = queue.poll();
-                if (treeMap.containsKey(poll.col)) {
-                    treeMap.get(poll.col).add(poll.treeNode.val);
+                TreeNodeInfo poll = queue.poll();
+                if (treeMap.containsKey(poll.column)) {
+                    treeMap.get(poll.column).add(poll.node.val);
                 } else {
-                    treeMap.put(poll.col, new ArrayList<>());
-                    treeMap.get(poll.col).add(poll.treeNode.val);
+                    treeMap.put(poll.column, new ArrayList<>());
+                    treeMap.get(poll.column).add(poll.node.val);
                 }
-                if (poll.treeNode.left != null) {
-                    queue.add(new RowColDirection(poll.col - 1, poll.treeNode.left));
+                if (poll.node.left != null) {
+                    queue.add(new TreeNodeInfo(poll.column - 1, poll.node.left));
                 }
-                if (poll.treeNode.right != null) {
-                    queue.add(new RowColDirection(poll.col + 1, poll.treeNode.right));
+                if (poll.node.right != null) {
+                    queue.add(new TreeNodeInfo(poll.column + 1, poll.node.right));
                 }
             }
         }

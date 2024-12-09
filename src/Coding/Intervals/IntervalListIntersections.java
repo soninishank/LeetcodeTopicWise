@@ -12,15 +12,18 @@ public class IntervalListIntersections {
     public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
         int i = 0, j = 0;
         List<int[]> list = new ArrayList<>();
+
         while (i < firstList.length && j < secondList.length) {
-            int low = Math.max(firstList[i][0], secondList[j][0]);
-            int high = Math.min(firstList[i][1], secondList[j][1]);
-            // we are adding only when low is less than high
-            if (low <= high) {
-                list.add(new int[]{low, high}); // if low is less than equal to high, it means it's a valid intersection
+            int[] poll1 = firstList[i];
+            int[] poll2 = secondList[j];
+            int temp1 = Math.max(poll1[0], poll2[0]); // max
+            int temp2 = Math.min(poll1[1], poll2[1]); // min
+            if (temp1 <= temp2) {
+                list.add(new int[]{temp1, temp2});
             }
-            if (firstList[i][1] < secondList[j][1]) {
-                i++;// move the pointer of a smaller one
+            // compare last index
+            if (poll1[1] <= poll2[1]) {
+                i++;
             } else {
                 j++;
             }

@@ -9,15 +9,17 @@ public class WordSearchI {
     // Exact same code that we have used in implement trie function
     private void insert(String word) {
         TrieNode node = trieNode;
+        char[] charArray = word.toCharArray();
+
         for (int i = 0; i < word.length(); i++) {
-            char currentChar = word.charAt(i);
-            if (!node.containsKey(currentChar)) {
-                node.put(currentChar, new TrieNode());
+            char currentChar = charArray[i];
+            if (node.links[currentChar - 'a'] == null) {
+                node.links[currentChar - 'a'] = new TrieNode();
             }
-            node = node.get(currentChar);
+            node = node.links[currentChar - 'a'];
         }
-        node.setActualWord(word);
-        node.setEnd();
+        node.actualWord = word;
+        node.isEnd = true;
     }
 
     private boolean exist(char[][] board, String word) {
@@ -34,7 +36,7 @@ public class WordSearchI {
             for (int j = 0; j < col; j++) {
                 char currentChar = board[i][j];
                 // if char exist in trie
-                if (trieNode.containsKey(currentChar)) {
+                if (trieNode.links[currentChar - 'a'] != null) {
                     if (applyDFS(board, trieNode, i, j)) { // it might be possible that he wasn't able to find it in first iteration
                         return true;
                     }
@@ -54,11 +56,11 @@ public class WordSearchI {
         }
         // if the child is not present
         char currentChar = board[row][col];
-        if (!trieNode.containsKey(currentChar)) {
+        if (trieNode.links[currentChar - 'a'] == null) {
             return false;
         }
-        trieNode = trieNode.get(currentChar);
-        if (trieNode.isEnd()) {
+        trieNode = trieNode.links[currentChar - 'a'];
+        if (trieNode.isEnd) {
             return true;
         }
         board[row][col] = '#'; // marking visited

@@ -3,27 +3,38 @@ package Coding.Tree.BinaryTree.DP;
 import Coding.Tree.TreeNode;
 
 // https://leetcode.com/problems/binary-tree-maximum-path-sum
+// 124. Binary Tree Maximum Path Sum
 public class MaximumPathSum {
-    private int maximumSum = Integer.MIN_VALUE;
+    private int globalMaxSum = Integer.MIN_VALUE; // Tracks the maximum path sum globally
 
-    private int maxPathSum(TreeNode treeNode) {
-        if (treeNode == null) {
-            return 0;
-        }
-        maximumSum(treeNode);
-        return maximumSum;
-    }
-
-    private int maximumSum(TreeNode root) {
+    public int maxPathSum(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        int maxGainOnLeftSubTree = Math.max(maximumSum(root.left), 0); // what if left side is negative
-        int maxGainOnRightSubTree = Math.max(maximumSum(root.right), 0); // what is right side is negative
-        int currentPathSum = root.val + maxGainOnLeftSubTree + maxGainOnRightSubTree; // max at current node
-        maximumSum = Math.max(maximumSum, currentPathSum);
-        return root.val + Math.max(maxGainOnLeftSubTree, maxGainOnRightSubTree); // we need to return parent current
-        // node and either its left child or right child
+        calculatePathSum(root);
+        return globalMaxSum;
+    }
+
+    private int calculatePathSum(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        // Recursively calculate the maximum path sum of the left and right subtrees
+        int leftSubtreeSum = calculatePathSum(node.left);
+        int rightSubtreeSum = calculatePathSum(node.right);
+
+        // Possible maximum path sums involving the current node
+        int pathThroughNode = node.val; // Only the current node
+        int pathIncludingBothSubtrees = node.val + leftSubtreeSum + rightSubtreeSum; // Current node and both subtrees
+        int pathIncludingOneSubtree = Math.max(leftSubtreeSum, rightSubtreeSum) + node.val; // Current node and one subtree
+
+        // Update the global maximum path sum
+        globalMaxSum = Math.max(globalMaxSum, pathThroughNode);
+        globalMaxSum = Math.max(globalMaxSum, pathIncludingBothSubtrees);
+        globalMaxSum = Math.max(globalMaxSum, pathIncludingOneSubtree);
+
+        // Return the maximum path sum that can be extended to the parent node - we can't use pathIncludingBothSubtrees because it cannot be passed above
+        return Math.max(pathThroughNode, pathIncludingOneSubtree);
     }
 
     public static void main(String[] args) {

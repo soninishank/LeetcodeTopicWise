@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 // https://leetcode.com/problems/merge-intervals/
+// 56. Merge Intervals
 public class MergeInterval {
     public int[][] merge(int[][] intervals) {
         // Sort the intervals based on the start time

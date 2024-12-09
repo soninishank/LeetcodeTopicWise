@@ -2,17 +2,52 @@ package Coding.Tree.BinaryTree.Symmetry;
 
 import Coding.Tree.TreeNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 // https://leetcode.com/problems/invert-binary-tree/
 // swapping a tree
+// 226. Invert Binary Tree
 public class InvertBinaryTree {
     public TreeNode invertTree(TreeNode root) {
         if (root == null) {
             return null;
         }
-        TreeNode temp = invertTree(root.left);// just saving left tree
-        root.left = invertTree(root.right);  // assigning right tree to left
-        root.right = temp;// then left to right
-        return root;// returning root
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+
+        // swap
+        root.left = right;
+        root.right = left;
+
+        return root;
+    }
+
+    public TreeNode invertTreeUsingBFS(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode current = queue.poll();
+
+            TreeNode leftNode = current.left;
+            TreeNode rightNode = current.right;
+
+            // swap
+            current.left = rightNode;
+            current.right = leftNode;
+
+            // add this at last
+            if (current.left != null) {
+                queue.add(current.left);
+            }
+            if (current.right != null) {
+                queue.add(current.right);
+            }
+        }
+        return root;
     }
 
     public static void main(String[] args) {

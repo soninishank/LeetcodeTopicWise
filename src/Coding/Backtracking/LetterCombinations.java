@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 // https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+// 17. Letter Combinations of a Phone Number
 public class LetterCombinations {
     private List<String> resultList = new ArrayList<>();
     private HashMap<Character, String> hashMap = new HashMap<>();

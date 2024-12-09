@@ -3,15 +3,21 @@ package Coding.String;
 // https://leetcode.com/problems/valid-palindrome/
 public class ValidPalindrome {
     public boolean isPalindrome(String s) {
-        s = s.toLowerCase();
-        s = s.replaceAll("[^a-zA-Z0-9]", "");
-        int low = 0, high = s.length()-1;
+        int low = 0, high = s.length() - 1;
         while (low <= high) {
-            if (s.charAt(low) == s.charAt(high)) {
+            char l1 = s.charAt(low);
+            char l2 = s.charAt(high);
+            if (!Character.isLetterOrDigit(l1)) {
                 low++;
+            } else if (!Character.isLetterOrDigit(l2)) {
                 high--;
             } else {
-                return false;
+                if (Character.toLowerCase(l1) == Character.toLowerCase(l2)) {
+                    low++;
+                    high--;
+                } else {
+                    return false;
+                }
             }
         }
         return true;

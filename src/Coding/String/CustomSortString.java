@@ -2,29 +2,36 @@ package Coding.String;
 
 public class CustomSortString {
     public String customSortString(String order, String s) {
-        // Create a frequency array for characters
-        int[] count = new int[26]; // Assuming only lowercase English letters
-        // Count occurrences of each character in s
-        for (char c : s.toCharArray()) {
-            count[c - 'a']++;
+        int[] frequency = new int[26];  // Array to store the frequency of each character in 's'
+        char[] sChars = s.toCharArray();  // Convert string 's' to a character array
+
+        // Count the frequency of each character in 's'
+        for (int i = 0; i < sChars.length; i++) {
+            frequency[sChars[i] - 'a']++;
         }
-        StringBuilder result = new StringBuilder();
-        // Append characters in the order specified
-        for (char c : order.toCharArray()) {
-            while (count[c - 'a'] > 0) {
-                result.append(c);
-                count[c - 'a']--;
+
+        StringBuilder stringBuilder = new StringBuilder();  // StringBuilder to build the result string
+        char[] orderChars = order.toCharArray();  // Convert string 'order' to a character array
+
+        // Append characters from the 'order' string to the result based on frequency
+        for (int i = 0; i < orderChars.length; i++) {
+            while (frequency[orderChars[i] - 'a'] > 0) { // use while loop - "kqep"  "pekeq" -> output is "kqeep"
+                stringBuilder.append(orderChars[i]);
+                frequency[orderChars[i] - 'a']--;  // Decrease frequency of the character
             }
         }
-        // Append remaining characters that are not in order
-        for (int i = 0; i < 26; i++) {
-            while (count[i] > 0) {
-                result.append((char) (i + 'a'));
-                count[i]--;
+
+        // Append remaining characters from 's' that are not in 'order'
+        for (int i = 0; i < sChars.length; i++) {
+            while (frequency[sChars[i] - 'a'] > 0) { // use while loop
+                stringBuilder.append(sChars[i]);
+                frequency[sChars[i] - 'a']--;  // Decrease frequency of the character
             }
         }
-        return result.toString();
+
+        return stringBuilder.toString();  // Return the final sorted string
     }
+
 
     public static void main(String[] args) {
         String order = "cba", s = "abcd";

@@ -33,7 +33,7 @@ public class BasicCalculatorII {
                 num = 0;
             }
         }
-        evaluate(stack, prevOperator, num);
+        evaluate(stack, prevOperator, num); // again for the last number
         int result = 0;
         while (!stack.isEmpty()) {
             result += stack.pop();

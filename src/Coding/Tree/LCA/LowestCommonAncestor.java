@@ -13,12 +13,14 @@ public class LowestCommonAncestor {
         }
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
-        if (left == null) {
-            return right;
-        } else if (right == null) {
-            return left;
-        } else {
+        if (left != null && right != null) {
             return root;
+        } else if (left != null) {
+            return left;
+        } else if (right != null) {
+            return right;
+        } else {
+            return null;
         }
     }
 }

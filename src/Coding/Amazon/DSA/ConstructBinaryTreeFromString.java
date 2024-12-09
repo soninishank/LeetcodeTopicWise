@@ -2,51 +2,45 @@ package Coding.Amazon.DSA;
 
 import Coding.Tree.TreeNode;
 
-import java.util.Stack;
-
 // https://leetcode.com/problems/construct-binary-tree-from-string/
+// 536. Construct Binary Tree from String
 public class ConstructBinaryTreeFromString {
     public TreeNode str2tree(String s) {
-        if (s == null || s.length() == 0) {
-            return null; // Return null if the string is empty
+        if (s.length() == 0) {
+            return null;
         }
+        return buildTree(s, new int[]{0});
+    }
 
-        Stack<TreeNode> stack = new Stack<>();
-        int i = 0;
-
-        while (i < s.length()) {
-            char c = s.charAt(i);
-            if (c == '(') {
-                // Move to the next character
-                i++;
-            } else if (c == ')') {
-                // Finished with the current node, pop from the stack
-                stack.pop();
-                i++;
+    private TreeNode buildTree(String str, int[] index) {
+        if (str.length() == 0) {
+            return null;
+        }
+        if (index[0] > str.length() - 1) {
+            return null;
+        }
+        int start = index[0];
+        while (index[0] < str.length()) {
+            if (str.charAt(index[0]) == '-') {
+                index[0]++;
+            } else if (Character.isDigit(str.charAt(index[0]))) {
+                index[0]++;
             } else {
-                // Parse the number (could be negative or multi-digit)
-                int start = i;
-                // s.charAt(i) == '-', it means a number can be negative also
-                while (i < s.length() && (Character.isDigit(s.charAt(i)) || s.charAt(i) == '-')) {
-                    i++;
-                }
-                int num = Integer.parseInt(s.substring(start, i));
-                TreeNode node = new TreeNode(num);
-                // If the stack is not empty, connect the node to its parent
-                if (!stack.isEmpty()) {
-                    TreeNode parent = stack.peek();
-                    if (parent.left == null) {
-                        parent.left = node; // Add as left child if it's empty
-                    } else {
-                        parent.right = node; // Otherwise, add as right child
-                    }
-                }
-                // Push the current node to the stack
-                stack.push(node);
+                break;
             }
         }
-
-        // The root of the tree is the last remaining node in the stack
-        return stack.isEmpty() ? null : stack.peek();
+        String substring = str.substring(start, index[0]);
+        TreeNode treeNode = new TreeNode(Integer.valueOf(substring));
+        if (index[0] < str.length() && str.charAt(index[0]) == '(') {
+            index[0]++;
+            treeNode.left = buildTree(str, index);
+            index[0]++;
+        }
+        if (index[0] < str.length() && str.charAt(index[0]) == '(') {
+            index[0]++;
+            treeNode.right = buildTree(str, index);
+            index[0]++;
+        }
+        return treeNode;
     }
 }

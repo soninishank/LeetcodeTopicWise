@@ -17,15 +17,16 @@ public class WordSearchII {
     // Exact same code that we have used in implement trie function
     private void insert(String word) {
         TrieNode node = trieNode;
-        for (int i = 0; i < word.length(); i++) {
-            char currentChar = word.charAt(i);
-            if (!node.containsKey(currentChar)) {
-                node.put(currentChar, new TrieNode());
+        char[] charArray = word.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            char currentChar = charArray[i];
+            if (node.links[currentChar - 'a'] == null) {
+                node.links[currentChar - 'a'] = new TrieNode();
             }
-            node = node.get(currentChar);
+            node = node.links[currentChar - 'a'];
         }
-        node.setActualWord(word);
-        node.setEnd();
+        node.actualWord = word;
+        node.isEnd = true;
     }
 
     public List<String> findWords(char[][] board, String[] words) {
@@ -42,7 +43,7 @@ public class WordSearchII {
             for (int j = 0; j < col; j++) {
                 char currentChar = board[i][j];
                 // if char exist in trie
-                if (trieNode.containsKey(currentChar)) {
+                if (trieNode.links[currentChar - 'a'] != null) {
                     applyDFS(board, trieNode, i, j);
                 }
             }
@@ -61,12 +62,12 @@ public class WordSearchII {
         }
         // if the child is not present
         char currentChar = board[row][col];
-        if (!trieNode.containsKey(currentChar)) {
+        if (trieNode.links[currentChar - 'a'] == null) {
             return;
         }
-        trieNode = trieNode.get(currentChar);
-        if (trieNode.isEnd()) {
-            result.add(trieNode.getActualWord());
+        trieNode = trieNode.links[currentChar - 'a'];
+        if (trieNode.isEnd) {
+            result.add(trieNode.actualWord);
             // https://youtu.be/DMP2bqW6URA?list=PLpIkg8OmuX-I99uuP2BZOz4mI_lms4gVG&t=2388
             trieNode.isEnd = false;
         }

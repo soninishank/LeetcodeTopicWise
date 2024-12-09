@@ -45,9 +45,9 @@ public class GroupShiftedStrings {
                 diff += 26; // Handle wrap-around
             }
             // Append the difference to the key
-            // we need to append the comma to differntiate different keys
-            // abn -> 1,12,
-            // aln -> 11,2,
+            // we need to append the comma to differentiate different keys
+            // abn -> 1,12,   b - a = 1     n - a = 12
+            // aln -> 11,2,   l - a = 11    n - a = 2
             // If we don't add the comma, it will be treated as the same key which is 112 and that is wrong
             key.append(diff).append(',');
         }

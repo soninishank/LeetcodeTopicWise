@@ -11,7 +11,7 @@ public class ValidPalindromeIII {
     }
 
     private boolean isKPalindromeHelper(String s, int left, int right, int k) {
-        // If we've used up our allowed removals, we can't proceed
+        // If we've used up our allowed removals, we can't proceed -> this should be the first step
         if (k < 0) {
             return false;
         }
