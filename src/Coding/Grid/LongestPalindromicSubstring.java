@@ -37,7 +37,8 @@ public class LongestPalindromicSubstring {
 
 // This is the optimized approach 
 // Its very easy 
-
+// Time Complexity - O(N^2) - Outer for loop and inner while loop
+// Space Complexity - O(1)
 class Solution {
     int finalDifference = 0;
     int start = 0;
@@ -50,7 +51,7 @@ class Solution {
             findLength(s, i, i); // odd kind of palindrome
             findLength(s, i, i + 1); // even kind of palindrome
         }
-        return s.substring(start,start+finalDifference);
+        return s.substring(start, start + finalDifference);
     }
 
     private void findLength(String str, int low, int high) {

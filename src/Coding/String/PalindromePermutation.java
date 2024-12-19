@@ -16,9 +16,9 @@ public class PalindromePermutation {
 
             if (value % 2 != 0) {
                 if (count == 0) {
-                    count++;
+                    count++; // if its first time - allow it
                 } else {
-                    return false;
+                    return false; // more than one odd is not allowed
                 }
             }
         }

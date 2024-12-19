@@ -6,6 +6,9 @@ import java.util.Map;
 // https://leetcode.com/problems/valid-palindrome-iii/
 // 1216. Valid Palindrome III
 public class ValidPalindromeIII {
+
+    // TC - O(2^k * n)
+    // SC - Depth is bounded by O(n).
     public boolean isValidPalindrome(String s, int k) {
         return isKPalindromeHelper(s, 0, s.length() - 1, k);
     }

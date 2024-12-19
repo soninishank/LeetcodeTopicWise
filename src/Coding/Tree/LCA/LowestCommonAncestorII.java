@@ -6,36 +6,43 @@ import Coding.Tree.TreeNode;
 // Hence, we need to know that we have seen two values
 // use count variable
 // https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/
+// 1644. Lowest Common Ancestor of a Binary Tree II
 public class LowestCommonAncestorII {
-    int count = 0;
+    boolean pFound = false;
+    boolean qFound = false;
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return null;
         }
-        TreeNode treeNode = calcLCA(root, p, q);
-        if (count == 2) {
-            return treeNode;
+        TreeNode LCA = findLCA(root, p, q);
+        if (pFound && qFound) {
+            return LCA;
         }
         return null;
     }
 
-    private TreeNode calcLCA(TreeNode root, TreeNode p, TreeNode q) {
+    private TreeNode findLCA(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return null;
         }
-        TreeNode left = calcLCA(root.left, p, q);
-        TreeNode right = calcLCA(root.right, p, q);
-        if (root == p || root == q) {
-            count++;
+        TreeNode left = findLCA(root.left, p, q);
+        TreeNode right = findLCA(root.right, p, q);
+        if (root == p) {
+            pFound = true;
             return root;
         }
-        if (left == null) {
-            return right;
-        } else if (right == null) {
+        if (root == q) {
+            qFound = true;
+            return root;
+        }
+
+        if (left != null && right != null) {
+            return root;
+        }
+        if (left != null) {
             return left;
-        } else {
-            return root;
         }
+        return right;
     }
 }

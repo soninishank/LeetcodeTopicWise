@@ -4,6 +4,8 @@ package Coding.TwoPointers;
 // 408. Valid Word Abbreviation
 public class ValidWordAbbreviation {
 
+    // Time Complexity: O(n+m)
+    // Space Complexity : O(1)
     public boolean validWordAbbreviation(String word, String abbr) {
         int i = 0, j = 0;
         while (i < word.length() && j < abbr.length()) {

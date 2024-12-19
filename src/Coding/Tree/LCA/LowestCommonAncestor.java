@@ -6,6 +6,11 @@ import Coding.Tree.TreeNode;
 // It is guaranteed that both p and q are in the tree.
 // A node can be a descendant of itself.
 // Find common manager - Amazon Seattle
+// TC - O(N)
+// SC - O(H) - height of the tree
+//      it means - Balanced tree - O(logN)
+//                 Skewed Tree - O(N)
+//Thus the space complexity is O(H)
 public class LowestCommonAncestor {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == p || root == q || root == null) {

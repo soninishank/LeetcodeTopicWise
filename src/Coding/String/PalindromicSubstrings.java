@@ -4,13 +4,15 @@ package Coding.String;
 // We choose all possible centers for potential palindromes:
 //Every single character in the string is a center for possible odd-length palindromes
 //Every pair of consecutive characters in the string is a center for possible even-length palindromes.
-//For every center, we can expand around it as long as we get palindromes (i.e. the first and last characters should match)
+//For every center, we can expand around it as long as we get palindromes (i.e., the first and last characters should match)
 public class PalindromicSubstrings {
+    // TC - O(N^2) - outer while loop and inner for loop
+    // SC - O(1)
     public int countSubstrings(String s) {
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
-            count += checkPalindrome(s, i, i);
-            count += checkPalindrome(s, i, i + 1);
+            count += checkPalindrome(s, i, i); // TODO : You are passing the same index
+            count += checkPalindrome(s, i, i + 1); // TODO : You are passing the i and i+1
         }
         return count;
     }
