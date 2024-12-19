@@ -40,14 +40,14 @@ public class VerticalOrderSorted {
                 columnMap.get(currentNodeInfo.column).putIfAbsent(currentNodeInfo.row, new PriorityQueue<>());
 
                 // Add the current node's value to the corresponding PriorityQueue
-                columnMap.get(currentNodeInfo.column).get(currentNodeInfo.row).add(currentNodeInfo.node.val);
+                columnMap.get(currentNodeInfo.column).get(currentNodeInfo.row).add(currentNodeInfo.treeNode.val);
 
                 // Add left and right children to the queue with updated row and column
-                if (currentNodeInfo.node.left != null) {
-                    nodeQueue.add(new TreeNodeInfo(currentNodeInfo.row + 1, currentNodeInfo.column - 1, currentNodeInfo.node.left));
+                if (currentNodeInfo.treeNode.left != null) {
+                    nodeQueue.add(new TreeNodeInfo(currentNodeInfo.row + 1, currentNodeInfo.column - 1, currentNodeInfo.treeNode.left));
                 }
-                if (currentNodeInfo.node.right != null) {
-                    nodeQueue.add(new TreeNodeInfo(currentNodeInfo.row + 1, currentNodeInfo.column + 1, currentNodeInfo.node.right));
+                if (currentNodeInfo.treeNode.right != null) {
+                    nodeQueue.add(new TreeNodeInfo(currentNodeInfo.row + 1, currentNodeInfo.column + 1, currentNodeInfo.treeNode.right));
                 }
             }
         }

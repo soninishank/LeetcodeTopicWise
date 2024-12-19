@@ -3,6 +3,7 @@ package Coding.Tree.BinaryTree;
 import Coding.Tree.TreeNode;
 
 // https://leetcode.com/problems/maximum-depth-of-binary-tree/
+// 104. Maximum Depth of Binary Tree
 public class MaximumDepthBinaryTree {
     public int maxDepth(TreeNode root) {
         if (root == null) {

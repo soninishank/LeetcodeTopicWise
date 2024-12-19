@@ -5,13 +5,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class LoyalCustomers {
+public class A_8_LoyalCustomers {
 
     public static void main(String[] args) throws IOException {
         String day1LogFile = "day1.log";
         String day2LogFile = "day2.log";
 
-        // Parse log files
+        // Parse log files - <customerId, HashSet<PageId>>
         Map<String, Set<String>> day1Visits = parseLogFile(day1LogFile);
         Map<String, Set<String>> day2Visits = parseLogFile(day2LogFile);
 

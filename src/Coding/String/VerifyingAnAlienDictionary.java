@@ -2,9 +2,12 @@ package Coding.String;
 
 // https://leetcode.com/problems/verifying-an-alien-dictionary/
 public class VerifyingAnAlienDictionary {
+    // 1. Step 1: Create the Order Map
+// 2. Step 2: Iterate Over the Words Array
+// 3. Step 3: Conclusion for All Words
     public boolean isAlienSorted(String[] words, String order) {
         // Create a mapping of character to its index in the alien dictionary
-        int[] orderMap = new int[26];
+        int[] orderMap = new int[26]; // map every character to index
         for (int i = 0; i < order.length(); i++) {
             orderMap[order.charAt(i) - 'a'] = i;
         }
@@ -22,14 +25,15 @@ public class VerifyingAnAlienDictionary {
     private boolean isInCorrectOrder(String word1, String word2, int[] orderMap) {
         int length1 = word1.length();
         int length2 = word2.length();
-        int minLength = Math.min(length1, length2);
+        int minLength = Math.min(length1, length2); // iterate till min length
 
         // Compare letter by letter
         for (int i = 0; i < minLength; i++) {
             char char1 = word1.charAt(i);
             char char2 = word2.charAt(i);
-            if (char1 != char2) {
+            if (char1 != char2) { // if words did not match
                 // Compare based on the order given in the alien dictionary
+                // orderMap[char2 - 'a'] it should be greater
                 return orderMap[char1 - 'a'] < orderMap[char2 - 'a'];
             }
         }
@@ -37,6 +41,11 @@ public class VerifyingAnAlienDictionary {
         // If all letters are the same up to minLength, compare lengths
         return length1 <= length2;
     }
+
+// This is for last return statement -> length1 <= length2;
+// Input: words = ["apple","app"], order = "abcdefghijklmnopqrstuvwxyz"
+// Output: false
+// Explanation: The first three characters "app" match, and the second string is shorter (in size.) According to lexicographical rules "apple" > "app", because 'l' > '∅', where '∅' is defined as the blank character which is less than any other character
 
     public static void main(String[] args) {
         VerifyingAnAlienDictionary verifyingAnAlienDictionary = new VerifyingAnAlienDictionary();

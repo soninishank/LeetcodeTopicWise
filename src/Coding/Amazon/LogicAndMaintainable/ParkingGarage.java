@@ -8,7 +8,7 @@ import java.util.Map;
 // https://leetcode.com/discuss/interview-question/368537/amazon-phone-screen-parking-service
 class ParkingGarage {
     private int[] bays; // [small, medium, large] bay counts
-    private Map<Integer, String> ticketMap; // Maps ticket number to car type
+    private Map<Integer, String> ticketMap; // Maps ticket number to a car type
     private int nextTicket;
 
     public ParkingGarage(int small, int medium, int large) {

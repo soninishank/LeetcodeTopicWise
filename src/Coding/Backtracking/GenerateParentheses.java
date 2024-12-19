@@ -30,6 +30,30 @@ public class GenerateParentheses {
         }
     }
 
+
+    List<String> result = new ArrayList<>();
+    private void backtrackUsingStringBuilder(int n, int open, int close, StringBuilder sb) {
+        // Base case: When the length of the string is 2 * n, add to result
+        if (sb.length() == n * 2) {
+            result.add(sb.toString()); // Convert StringBuilder to String
+            return; // Stop further recursion
+        }
+
+        // If the number of open parentheses is less than n, add an open parenthesis
+        if (open < n) {
+            sb.append('('); // Append '('
+            backtrackUsingStringBuilder(n, open + 1, close, sb);
+            sb.deleteCharAt(sb.length() - 1); // Backtrack
+        }
+
+        // If the number of close parentheses is less than the number of open ones, add a closing parenthesis
+        if (close < open) {
+            sb.append(')'); // Append ')'
+            backtrackUsingStringBuilder(n, open, close + 1, sb);
+            sb.deleteCharAt(sb.length() - 1); // Backtrack
+        }
+    }
+
     public static void main(String[] args) {
         int n = 3;
         List<String> list = new GenerateParentheses().generateParenthesis(n);

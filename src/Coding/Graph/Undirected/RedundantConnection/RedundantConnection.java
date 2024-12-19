@@ -8,6 +8,7 @@ import java.util.List;
 // https://leetcode.com/problems/redundant-connection/
 // detect cycle in undirected graph while creating an adjacencyList
 // similarly think like a GraphValidTree question
+// 684. Redundant Connection
 public class RedundantConnection {
 
     List<List<Integer>> adjList = new ArrayList<>();
@@ -15,12 +16,15 @@ public class RedundantConnection {
     public int[] findRedundantConnection(int[][] edges) {
         int n = edges.length;
         adjList = new ArrayList<>(n);
-        for (int i = 1; i <= n; i++) {
+        // We need an array list till all the edges length to avoid arrayIndexOutOfBoundException
+        for (int i = 0; i <= n; i++) {
             adjList.add(new ArrayList<>());
         }
         // We want to check whether we can connect this edges or not
         for (int[] edge : edges) {
+            // every time we are initializing a new visited set
             if (applyDFS(edge[0], edge[1], adjList, new HashSet<>())) {
+                // It means it's a redundant connection
                 return edge;
             } else {
                 adjList.get(edge[0]).add(edge[1]);

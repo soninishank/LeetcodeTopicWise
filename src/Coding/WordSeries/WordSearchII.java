@@ -6,14 +6,19 @@ import java.util.List;
 // !resultList.contains(word) because there might be duplicates - [["o","a","b","n"],["o","t","a","e"],["a","h","k","r"],["a","f","l","v"]]  O/p : ["oa","oaa"]
 // https://leetcode.com/problems/word-search-ii/
 // This solution will give TLE
+// TC - O(W.L.m.n) - W is word , L is length of the word , m * n is grid
+// SC - O(L+W. L)
 public class WordSearchII {
 
     List<String> resultList = new ArrayList<>();
 
     public List<String> findWords(char[][] board, String[] words) {
+        // We are iterating every word
         for (String word : words) {
+            // we are always starting from index 0 and doing the DFS
             for (int i = 0; i < board.length; i++) {
                 for (int j = 0; j < board[i].length; j++) {
+                    // checking if the character is matching with the word first character
                     if (board[i][j] == word.charAt(0) && !resultList.contains(word) && exist(board, i, j, word, 0)) {
                         resultList.add(word);
                     }

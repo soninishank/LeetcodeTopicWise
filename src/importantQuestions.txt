@@ -22,7 +22,7 @@
 
 ### Linked Lists
 1. Remove Nth Node from End of List
-2. Reverse Linked List
+2. Reverse Linked List - https://leetcode.com/problems/reverse-linked-list/
 3. Merge Two Sorted Lists
 4. Odd Even Linked List
 5. Reorder List
@@ -33,9 +33,10 @@
 10. Flatten a Multilevel Doubly Linked List
 
 ### Strings
-1. Valid Palindrome
+1. Valid Palindrome - https://leetcode.com/problems/valid-palindrome/
+2. Valid Palindrome III - https://leetcode.com/problems/valid-palindrome-iii/
 3. Longest Substring Without Repeating Characters
-4. Group Anagrams
+4. Group Anagrams - https://leetcode.com/problems/group-anagrams/
 5. Longest Palindromic Substring
 6. Valid Anagram
 7. First Unique Character in a String
@@ -52,6 +53,8 @@
 3. LRU Cache
 4. First Bad Version
 5. Implement Magic Dictionary
+6. Insert Delete GetRandom O(1) - https://leetcode.com/problems/insert-delete-getrandom-o1/
+7. Contains Duplicate - https://leetcode.com/problems/contains-duplicate/
 
 ## Algorithms
 
@@ -78,15 +81,15 @@
 7. Squares of a Sorted Array - https://leetcode.com/problems/squares-of-a-sorted-array/
 8. Two Sum - https://leetcode.com/problems/two-sum/
 9. Reverse Vowels of a String: https://leetcode.com/problems/reverse-vowels-of-a-string/
-10. Missing Ranges : https://leetcode.com/problems/missing-ranges/
+10. Missing Ranges: https://leetcode.com/problems/missing-ranges/
+11. Palindromic Substrings: https://leetcode.com/problems/palindromic-substrings/
 
 
 ### Dynamic Programming
 1. Unique Paths
-2. Unique Paths II
+2. Unique Paths II -  https://leetcode.com/problems/unique-paths-ii/
 3. Jump Game
 4. Climbing Stairs
-5. Maximum Product Subarray
 6. Longest Increasing Subsequence
 7. Coin Change
 8. Word Break
@@ -135,6 +138,8 @@
 5. Course Schedule
 6. Course Schedule II
 7. Number of Provinces
+8. Redundant Connection: https://leetcode.com/problems/redundant-connection/
+9. Is Graph Bipartite: https://leetcode.com/problems/is-graph-bipartite/
 
 ## Bit Manipulation
 1. Single Number
@@ -180,13 +185,16 @@
 9. Sliding Window Median
 10. Maximum Frequency Stack
 11. Remove All Adjacent Duplicates in String II - https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/ - 1209
+12. Simplify Path - https://leetcode.com/problems/simplify-path
+13. Sliding Window Maximum - https://leetcode.com/problems/sliding-window-maximum/
+14. 132-pattern - https://leetcode.com/problems/132-pattern/
 
 ## Sliding Window
 1. Find All Anagrams in a String - https://leetcode.com/problems/find-all-anagrams-in-a-string/
 2. Maximum Sum of 3 Non-Overlapping Subarrays
 3. Continuous Subarray Sum
-4. Max Consecutive Ones III
-5. Longest Substring Without Repeating Characters
+4. Max Consecutive Ones, III.
+5. Longest Substring Without Repeating Characters - https://leetcode.com/problems/longest-substring-without-repeating-characters/
 6. Permutation in String
 
 ## Heap & Priority Queue
@@ -199,6 +207,7 @@
 7. Top K Frequent Elements - https://leetcode.com/problems/top-k-frequent-elements/
 8. Merge k Sorted Lists - https://leetcode.com/problems/merge-k-sorted-lists/
 9. Sort Characters by Frequency - https://leetcode.com/problems/sort-characters-by-frequency/
+10. Reorganize String -  https://leetcode.com/problems/reorganize-string/
 
 ## Matrix Problems
 1. Spiral Matrix
@@ -212,6 +221,7 @@
 9. Diagonal Traverse - https://leetcode.com/problems/diagonal-traverse/ - using simulation
 10. Set Matrix Zeroes
 11. Toeplitz Matrix - https://leetcode.com/problems/toeplitz-matrix/
+12. Minimum Path Sum - https://leetcode.com/problems/minimum-path-sum/
 
 ## Recursion & Backtracking
 1. Letter Combinations of a Phone Number
@@ -231,13 +241,15 @@
 2. String to Integer (atoi)
 3. Add Binary
 4. Multiply Strings
-5. Longest Palindromic Substring
+5. Longest Palindromic Substring - https://leetcode.com/problems/longest-palindromic-substring/
 6. Custom Sort String
 7. Reorganize String
 8. Stamping the Sequence
 
 ## Number Theory & Math
-1. Pow(x, n)
+1. Plus One - https://leetcode.com/problems/plus-one/
+2. Maximum Product Subarray - https://leetcode.com/problems/maximum-product-subarray/
+1. Pow(x, n) -  https://leetcode.com/problems/powx-n/
 2. Excel Sheet Column Number
 3. Excel Sheet Column Title
 4. Roman to Integer
@@ -286,7 +298,6 @@
 ## System Design-like Problems
 1. Peeking Iterator
 2. Flatten Nested List Iterator
-3. Insert Delete GetRandom O(1)
 4. Random Pick with Weight
 5. Random Pick Index
 
@@ -329,7 +340,6 @@
 2. Possible Bipartition
 3. Find the Town Judge
 4. Keys and Rooms
-5. Redundant Connection
 
 ## Greedy
 1. Water Bottles

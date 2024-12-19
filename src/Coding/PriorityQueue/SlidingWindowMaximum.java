@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/sliding-window-maximum/discuss/65936/My-Java-Solution-Using-PriorityQueue
+// 239. Sliding Window Maximum
+// https://leetcode.com/problems/sliding-window-maximum/
 public class SlidingWindowMaximum {
     public int[] maxSlidingWindowTLE(int[] nums, int k) {
         int[] result = new int[nums.length - k + 1];
@@ -27,11 +29,11 @@ public class SlidingWindowMaximum {
         Deque<Integer> deque = new LinkedList<>();// store by index
         int[] result = new int[nums.length - k + 1];
         for (int i = 0; i < nums.length; i++) {
-            // removing the start candidates -
+            // removing the start candidates
             while (!deque.isEmpty() && deque.peekFirst() <= i - k) {
                 deque.pollFirst();
             }
-            // if the last element is smaller than current element
+            // if the last element is smaller than the current element
             while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
                 deque.pollLast();
             }

@@ -25,4 +25,20 @@ public class BestTimeToBuyAndSellStockII {
             return dp[index][buy] = Math.max(prices[index] + totalProfit(dp, prices, index + 1, buy ^ 1), totalProfit(dp, prices, index + 1, buy));
         }
     }
+
+    public int maxProfitSum(int[] prices) {
+        int length = prices.length;
+        int minPrice = prices[0];
+        int profit = 0;
+
+        for (int num : prices) {
+            if (num < minPrice) {
+                minPrice = num;
+            } else if (num > minPrice) {
+                profit += num - minPrice;
+                minPrice = num;
+            }
+        }
+        return profit;
+    }
 }

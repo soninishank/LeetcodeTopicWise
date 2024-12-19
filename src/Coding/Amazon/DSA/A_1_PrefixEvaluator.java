@@ -2,7 +2,7 @@ package Coding.Amazon.DSA;
 
 import java.util.Stack;
 
-public class PrefixEvaluator {
+public class A_1_PrefixEvaluator {
 
     public static int evaluatePrefix(String expression) {
         // Split the expression into tokens
@@ -18,8 +18,8 @@ public class PrefixEvaluator {
                 stack.push(Integer.parseInt(token));
             } else {
                 // Pop two operands from the stack
-                int operand1 = stack.pop();
-                int operand2 = stack.pop();
+                int operand1 = stack.pop(); // Left operand
+                int operand2 = stack.pop(); // Right operand
 
                 // Apply the operator and push the result
                 switch (token) {
@@ -35,6 +35,8 @@ public class PrefixEvaluator {
                     case "/":
                         stack.push(operand1 / operand2); // Integer division
                         break;
+                    default:
+                        throw new IllegalArgumentException("Invalid operator: " + token);
                 }
             }
         }
@@ -54,7 +56,7 @@ public class PrefixEvaluator {
     }
 
     public static void main(String[] args) {
-        String expression = "-+ 5 3 4"; // Example expression
+        String expression = "- + 5 3 6"; // Example expression
         int result = evaluatePrefix(expression);
         System.out.println("Result: " + result); // Output: 4
     }

@@ -6,6 +6,8 @@ import java.util.PriorityQueue;
 
 // largest repetitive elements return
 // remove smaller counts
+// when you call poll() on a PriorityQueue (min-heap), it does the following:
+// 1. Removes the smallest element from the heap.
 //https://leetcode.com/problems/top-k-frequent-elements/
 // Blind-75
 public class TopKFrequentElements {

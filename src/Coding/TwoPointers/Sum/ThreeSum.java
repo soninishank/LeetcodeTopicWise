@@ -4,32 +4,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author Nishank Soni
- * @project LeetcodeTopicWise on 4/1/22
- */
 // https://leetcode.com/problems/3sum/
+// 15. 3Sum
 public class ThreeSum {
-    List<List<Integer>> finalList = new ArrayList<>();
 
     // -4, -1, -1, 0, 1, 2
     public List<List<Integer>> threeSum(int[] nums) {
-        if (nums.length == 0) {
+        List<List<Integer>> finalList = new ArrayList<>();
+        if (nums.length < 3) {
             return finalList;
         }
         Arrays.sort(nums); // O(NlogN)
-        for (int i = 0; i < nums.length - 3; i++) {
+        for (int i = 0; i < nums.length - 2; i++) {
+            // Skip duplicate elements for the current `i`
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
             int low = i + 1, high = nums.length - 1;
             while (low < high) {
-                List<Integer> list = new ArrayList<>();
-                if (nums[i] + nums[low] + nums[high] == 0) {
-                    list.add(nums[i]);
-                    list.add(nums[low]);
-                    list.add(nums[high]);
-                    finalList.add(list);
+                int sum = nums[i] + nums[low] + nums[high];
+                if (sum == 0) {
+                    finalList.add(Arrays.asList(nums[i], nums[low], nums[high]));
+                    // Skip duplicate elements for `low` and `high`
                     while (low < high && nums[low] == nums[low + 1]) {
                         low++;
                     }
@@ -38,7 +34,7 @@ public class ThreeSum {
                     }
                     low++;
                     high--;
-                } else if (nums[low] + nums[high] + nums[i] > 0) {
+                } else if (sum > 0) {
                     high--;
                 } else {
                     low++;

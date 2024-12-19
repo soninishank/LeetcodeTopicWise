@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 // https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
-// whenever there is undirected graph you need visited array because they are cyclic in nature
+// whenever there is undirected graph you need a visited array because they are cyclic in nature
 public class NumberOfUnconnectedComponentsInAGraph {
     List<List<Integer>> adjList = new ArrayList<>();
     HashSet<Integer> visited = new HashSet<>();

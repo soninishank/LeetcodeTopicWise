@@ -22,7 +22,7 @@ public class SerializeAndDeserializeBinaryTree {
 
     private String preOrderTraversal(TreeNode root, StringBuilder stringBuilder) {
         if (root == null) {
-            return stringBuilder.append("#").append(",").toString();
+            return stringBuilder.append("null").append(",").toString();
         }
         stringBuilder.append(root.val).append(",");
         preOrderTraversal(root.left, stringBuilder);
@@ -44,7 +44,7 @@ public class SerializeAndDeserializeBinaryTree {
     private TreeNode buildTree(Queue<String> queue) {
         if (!queue.isEmpty()) {
             String poll = queue.poll();
-            if (poll.equals("#")) {
+            if (poll.equals("#")) { // Do remember to use equals method
                 return null;
             } else {
                 TreeNode node = new TreeNode(Integer.parseInt(poll));

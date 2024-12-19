@@ -16,20 +16,20 @@ public class TopView {
         if (null == root) {
             return resultList;
         }
-        Queue<RowColDirection> queue = new LinkedList<>();
-        queue.add(new RowColDirection(0, root));
+        Queue<TreeNodeInfo> queue = new LinkedList<>();
+        queue.add(new TreeNodeInfo(0, root));
         TreeMap<Integer, List<Integer>> hashMap = new TreeMap<>();
         while (!queue.isEmpty()) {
-            RowColDirection poll = queue.poll();
-            if (!hashMap.containsKey(poll.col)) {
-                hashMap.put(poll.col, new ArrayList<>());
-                hashMap.get(poll.col).add(poll.treeNode.val);
+            TreeNodeInfo poll = queue.poll();
+            if (!hashMap.containsKey(poll.column)) {
+                hashMap.put(poll.column, new ArrayList<>());
+                hashMap.get(poll.column).add(poll.treeNode.val);
             }
             if (poll.treeNode.left != null) {
-                queue.add(new RowColDirection(poll.col - 1, poll.treeNode.left));
+                queue.add(new TreeNodeInfo(poll.column - 1, poll.treeNode.left));
             }
             if (poll.treeNode.right != null) {
-                queue.add(new RowColDirection(poll.col + 1, poll.treeNode.right));
+                queue.add(new TreeNodeInfo(poll.column + 1, poll.treeNode.right));
             }
         }
         for (int key : hashMap.keySet()) {

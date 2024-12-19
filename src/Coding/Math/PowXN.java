@@ -9,7 +9,7 @@ public class PowXN {
     // 2. if n < 0 -> then change n to positive value and x will be 1/x;
     // 3. if power % 2 == 0
     //    1.  2^10 = 4^5
-    //    2.  4^5 -> power is odd  you can write like  4^2.4^2.4 -> 16^4.4
+    //    2.  4^5 -> power is odd so you can write like (4^2 . 4^2 . 4) = (16.16.4)
     // 1. Recursion
     public double myPow(double x, int n) {
         if (n == 0) return 1;
@@ -47,5 +47,10 @@ public class PowXN {
             n >>= 1;
         }
         return ans;
+    }
+
+    public static void main(String[] args) {
+        double v = new PowXN().myPow(2, Integer.MIN_VALUE);
+        System.out.println(v);
     }
 }

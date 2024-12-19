@@ -21,16 +21,16 @@ public class BinaryTreeVerticalOrderTraversal {
             for (int i = 0; i < size; i++) {
                 TreeNodeInfo poll = queue.poll();
                 if (treeMap.containsKey(poll.column)) {
-                    treeMap.get(poll.column).add(poll.node.val);
+                    treeMap.get(poll.column).add(poll.treeNode.val);
                 } else {
                     treeMap.put(poll.column, new ArrayList<>());
-                    treeMap.get(poll.column).add(poll.node.val);
+                    treeMap.get(poll.column).add(poll.treeNode.val);
                 }
-                if (poll.node.left != null) {
-                    queue.add(new TreeNodeInfo(poll.column - 1, poll.node.left));
+                if (poll.treeNode.left != null) {
+                    queue.add(new TreeNodeInfo(poll.column - 1, poll.treeNode.left));
                 }
-                if (poll.node.right != null) {
-                    queue.add(new TreeNodeInfo(poll.column + 1, poll.node.right));
+                if (poll.treeNode.right != null) {
+                    queue.add(new TreeNodeInfo(poll.column + 1, poll.treeNode.right));
                 }
             }
         }

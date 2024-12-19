@@ -5,17 +5,17 @@ import Coding.Tree.TreeNode;
 public class TreeNodeInfo {
     int row;
     int column;
-    TreeNode node;
+    TreeNode treeNode;
 
-    public TreeNodeInfo(int row, int column, TreeNode node) {
+    public TreeNodeInfo(int row, int column, TreeNode treeNode) {
         this.row = row;
         this.column = column;
-        this.node = node;
+        this.treeNode = treeNode;
     }
 
     public TreeNodeInfo(int col, TreeNode treeNode) {
         this.column = col;
-        this.node = treeNode;
+        this.treeNode = treeNode;
     }
 }
 

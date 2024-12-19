@@ -16,22 +16,22 @@ public class DiagonalTraversalBinaryTree {
             return;
         }
         HashMap<Integer, List<Integer>> hashMap = new HashMap<>();
-        Queue<RowColDirection> queue = new LinkedList<>();
-        queue.add(new RowColDirection(0, root));
+        Queue<TreeNodeInfo> queue = new LinkedList<>();
+        queue.add(new TreeNodeInfo(0, root));
 
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                RowColDirection poll = queue.poll();
-                if (!hashMap.containsKey(poll.col)) {
-                    hashMap.put(poll.col, new ArrayList<>());
+                TreeNodeInfo poll = queue.poll();
+                if (!hashMap.containsKey(poll.column)) {
+                    hashMap.put(poll.column, new ArrayList<>());
                 }
-                hashMap.get(poll.col).add(poll.treeNode.val);
+                hashMap.get(poll.column).add(poll.treeNode.val);
                 if (poll.treeNode.left != null) {
-                    queue.add(new RowColDirection(poll.col - 1, poll.treeNode.left));
+                    queue.add(new TreeNodeInfo(poll.column - 1, poll.treeNode.left));
                 }
                 if (poll.treeNode.right != null) {
-                    queue.add(new RowColDirection(poll.col, poll.treeNode.right));
+                    queue.add(new TreeNodeInfo(poll.column, poll.treeNode.right));
                 }
             }
         }

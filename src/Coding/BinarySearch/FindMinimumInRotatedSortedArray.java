@@ -33,7 +33,7 @@ public class FindMinimumInRotatedSortedArray {
     //     Otherwise, the minimum lies in the left half (including mid).
     public int findMinimum(int[] nums) {
         int low = 0, high = nums.length - 1;
-        // Means the array is not rotated itself
+        // Means the array is not rotated itself -  Check if the array is not rotated
         if (nums[low] < nums[high]) {
             return nums[low];
         }
@@ -42,12 +42,15 @@ public class FindMinimumInRotatedSortedArray {
             // iska matlab abhi me highest position pe hu
             // 3 4 5 1 2
             // if nums[mid] is 5 it means I need to go in right side
+            // If mid element is greater than the rightmost element,
+            // the minimum is in the right part
             if (nums[mid] > nums[high]) {
                 low = mid + 1;
-            } else {
+            } else {            // Otherwise, the minimum is in the left part (including mid)
                 high = mid;
             }
         }
+        // At the end, left will point to the minimum element
         return nums[low];
     }
 }

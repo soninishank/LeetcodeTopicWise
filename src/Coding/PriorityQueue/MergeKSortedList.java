@@ -4,36 +4,36 @@ import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/merge-k-sorted-lists/
 // Blind-75
-// Time complexity - O(NlogK)
-// Space complexity - O(N)
+// Time complexity - O(NlogK) -:> O(klogK) + O(Nlogk)
+// Space complexity - O(k) -> the priority queue can store k nodes at any time
 public class MergeKSortedList {
-    public ListNode mergeKLists(ListNode[] lists) {
-        PriorityQueue<ListNode> priorityQueue = new PriorityQueue<>((o1, o2) -> {
-            if (o1.val < o2.val) {
-                return -1;
-            } else if (o1.val == o2.val) {
-                return 0;
-            } else {
-                return 1;
-            }
-        });
-        for (ListNode listNode : lists) {
-            if (listNode != null) {
-                priorityQueue.add(listNode);
+    public ListNode mergeKSortedLists(ListNode[] lists) {
+        // Min-heap to store the current nodes from each list, sorted by value
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>((node1, node2) -> node1.val - node2.val);
+        // Add the head of each list to the priority queue (if it's not null)
+        for (ListNode headNode : lists) {
+            if (headNode != null) {
+                minHeap.offer(headNode);
             }
         }
-        ListNode dummy = new ListNode();
-        ListNode temp = dummy;
-        while (!priorityQueue.isEmpty()) {
-            ListNode poll = priorityQueue.poll();
-            temp.next = poll;
-            temp = temp.next;
-            if (poll.next != null) {
-                priorityQueue.add(poll.next);
+        // Dummy node to simplify result list construction
+        ListNode dummyHead = new ListNode(0);
+        ListNode current = dummyHead;
+        // Process the priority queue until all nodes are merged
+        while (!minHeap.isEmpty()) {
+            // Extract the node with the smallest value
+            ListNode smallestNode = minHeap.poll();
+            current.next = smallestNode; // Append it to the merged list
+            current = current.next;
+            // If there are more nodes in the list, add the next node to the queue
+            if (smallestNode.next != null) {
+                minHeap.offer(smallestNode.next);
             }
         }
-        return dummy.next;
+        // Return the merged sorted list
+        return dummyHead.next;
     }
+
 
     public ListNode mergeKListsUsingRecursion(ListNode[] lists) {
         if (lists.length == 0) {

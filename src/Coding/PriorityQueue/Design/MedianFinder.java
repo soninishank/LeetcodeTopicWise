@@ -1,6 +1,5 @@
 package Coding.PriorityQueue.Design;
 
-import java.util.Collections;
 import java.util.PriorityQueue;
 
 // https://leetcode.com/problems/find-median-from-data-stream/
@@ -9,44 +8,42 @@ import java.util.PriorityQueue;
 // 295. Find Median from Data Stream
 
 public class MedianFinder {
-    PriorityQueue<Integer> minPQ = new PriorityQueue<>(); // smallest to largest
-    PriorityQueue<Integer> maxPQ = new PriorityQueue<>(Collections.reverseOrder()); // largest to smallest
+    // store only largest elements
+    PriorityQueue<Integer> rightMinHeap = new PriorityQueue<>();
+
+    // extra element will always be in leftMaxHeap
+    // leftMaxHeap will store only the smallest element
+    PriorityQueue<Integer> leftMaxHeap = new PriorityQueue<>((o1, o2) -> (o2 - o1));
 
     public MedianFinder() {
     }
 
     public void addNum(int num) {
-        // add elements when maxPQ is empty
-        if (maxPQ.isEmpty()) {
-            maxPQ.add(num);
-        }
-        // add all smaller numbers that are less than maxPQ
-        else if (maxPQ.peek() > num) {
-            maxPQ.add(num);
+        if (leftMaxHeap.isEmpty()) {
+            leftMaxHeap.add(num);
+        } else if (num < leftMaxHeap.peek()) {
+            leftMaxHeap.add(num);
         } else {
-            minPQ.add(num);
+            rightMinHeap.add(num); // big elements isme ayenge
         }
-        // Balancing step
 
-        if (maxPQ.size() > 1 + minPQ.size()) {
-            Integer poll = maxPQ.poll();
-            minPQ.add(poll);
-        } else if (minPQ.size() > 1 + maxPQ.size()) {
-            Integer poll = minPQ.poll();
-            maxPQ.add(poll);
+        // always maintain leftMaxHeap size one greater than rightMinHeap
+        if (Math.abs(leftMaxHeap.size() - rightMinHeap.size()) > 1) {
+            int val = leftMaxHeap.poll();
+            rightMinHeap.add(val);
+        } else if (leftMaxHeap.size() < rightMinHeap.size()) {
+            leftMaxHeap.add(rightMinHeap.poll());
         }
     }
 
     public double findMedian() {
-        // For even
-        if (minPQ.size() == maxPQ.size()) {
-            return (minPQ.peek() + maxPQ.peek()) / 2.0;
-        }
-        // For odd
-        else if (maxPQ.size() > minPQ.size()) {
-            return maxPQ.peek();
+        // even number of elements
+        if (leftMaxHeap.size() == rightMinHeap.size()) {
+            int val1 = leftMaxHeap.peek();
+            int val2 = rightMinHeap.peek();
+            return (double) (val1 + val2) / 2;
         } else {
-            return minPQ.peek();
+            return leftMaxHeap.peek();
         }
     }
 }

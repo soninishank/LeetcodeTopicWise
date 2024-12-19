@@ -15,6 +15,8 @@ import java.util.Queue;
 // https://leetcode.com/problems/shortest-path-in-binary-matrix/
 // All the visited cells of the path are 0.
 // 1091. Shortest Path in Binary Matrix
+// TC - O(N^2) - grid traversal
+// SC - O(N^2) - visited set can hold upto N^2 elements
 public class ShortestPathInBinaryMatrix {
 
     private final int[][] dir = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, -1}, {-1, 1}, {-1, -1}, {1, 1}};

@@ -26,7 +26,7 @@ public class BottomView {
         while (!queue.isEmpty()) {
             TreeNodeInfo current = queue.poll();
             int col = current.column;
-            TreeNode node = current.node;
+            TreeNode node = current.treeNode;
 
             // Update the map with the current node's value
             columnMap.put(col, node.val);
