@@ -1,4 +1,7 @@
-public class Test {
+package Meta;
+
+// https://chatgpt.com/c/6769051b-2800-8008-8938-2536dead669f
+public class PowerXN {
     public double myPow(double x, int n) {
         if (n == 0) {
             return 1;
@@ -14,10 +17,5 @@ public class Test {
         } else {
             return x * myPow(x * x, n / 2);
         }
-    }
-
-    public static void main(String[] args) {
-        double v = new Test().myPow(2.00000, Integer.MIN_VALUE);
-        System.out.println(v);
     }
 }
