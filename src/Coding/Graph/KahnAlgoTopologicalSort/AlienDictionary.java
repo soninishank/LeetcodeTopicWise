@@ -64,7 +64,6 @@ public class AlienDictionary {
         while (!queue.isEmpty()) {
             char current = queue.poll();
             result.append(current);
-
             if (graph.containsKey(current)) {
                 for (char neighbor : graph.get(current)) {
                     inDegree.put(neighbor, inDegree.get(neighbor) - 1);
@@ -79,7 +78,6 @@ public class AlienDictionary {
         if (result.length() < inDegree.size()) {
             return ""; // invalid order (cycle detected)
         }
-
         return result.toString(); // result = "wertf"
     }
 

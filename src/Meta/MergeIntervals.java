@@ -1,8 +1,9 @@
-package Coding;
+package Meta;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// Meta
 public class MergeIntervals {
     public static List<int[]> mergeIntervals(int[][] A, int[][] B) {
         int i = 0, j = 0;
@@ -47,14 +48,21 @@ public class MergeIntervals {
         int[][] list5 = {{0, 10}};
         int[][] list6 = {{25, 226}};
 
-        System.out.println("list1 & list2");
-        printResult(mergeIntervals(list1, list2));
+//        System.out.println("list1 & list2");
+//        printResult(mergeIntervals(list1, list2));
+//
+//        System.out.println("list3 & list4");
+//        printResult(mergeIntervals(list3, list4));
+//
+//        System.out.println("list5 & list6");
+//        printResult(mergeIntervals(list5, list6));
 
-        System.out.println("list3 & list4");
-        printResult(mergeIntervals(list3, list4));
 
-        System.out.println("list5 & list6");
-        printResult(mergeIntervals(list5, list6));
+        int[][] list01 = {{1, 2}, {3, 9}};
+        int[][] list02 = {{4, 6}, {8, 10}, {11, 12}};
+        printResult(mergeIntervals(list01, list02));
+
+
     }
 
     private static void printResult(List<int[]> result) {

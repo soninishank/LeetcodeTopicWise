@@ -1,5 +1,12 @@
 package Meta;
 
+import java.util.Arrays;
+
+// Move even numbers to the left of array in place
+// 1. Could numbers be duplicated - may be
+// 2. Should numbers be sorted ? - Not necessary
+// 3. Are negative numbers included? - Could be
+// Does it handle negative numbers - Yes
 public class MoveEvenNumbersToLeftOfArray {
 
     public void moveEvens(int[] data) {
@@ -35,9 +42,11 @@ public class MoveEvenNumbersToLeftOfArray {
     public static void main(String[] args) {
         int[] data = {6, 2, 3, 5, 10, 7, 5, 4, 8}; // Example input
         new MoveEvenNumbersToLeftOfArray().moveEvens(data);
-        for (int num : data) {
-            System.out.print(num + " ");
-        }
+        System.out.println(Arrays.toString(data));
+
+        int[] data1 = {-4, -3, 2, -1, 6, -5};
+        new MoveEvenNumbersToLeftOfArray().moveEvens(data1);
+        System.out.println(Arrays.toString(data1));
     }
 
 }

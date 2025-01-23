@@ -7,19 +7,13 @@ import java.util.*;
 //2. delete() - delete an item if present
 //3. search() - return the index of the item if present
 //4. getRandom() - return a random element from present in data structure
-public class A_3_InsertDeleteGetRandom {
+public class _3_InsertDeleteGetRandom {
     // List to store elements
-    private List<Integer> list;
+    private List<Integer> list = new ArrayList<>();
     // Map to store an element and its index in the list
-    private Map<Integer, Integer> map;
+    private Map<Integer, Integer> map = new HashMap<>();
     // Random object to generate random indices
-    private Random random;
-
-    public A_3_InsertDeleteGetRandom() {
-        list = new ArrayList<>();
-        map = new HashMap<>();
-        random = new Random();
-    }
+    private Random random = new Random();
 
     // Inserts an item if not present already
     public boolean insert(int value) {
@@ -65,7 +59,7 @@ public class A_3_InsertDeleteGetRandom {
     }
 
     public static void main(String[] args) {
-        A_3_InsertDeleteGetRandom rds = new A_3_InsertDeleteGetRandom();
+        _3_InsertDeleteGetRandom rds = new _3_InsertDeleteGetRandom();
 
         System.out.println(rds.insert(10)); // true
         System.out.println(rds.insert(20)); // true

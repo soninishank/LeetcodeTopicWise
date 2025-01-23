@@ -2,7 +2,7 @@ package Coding.Amazon.DSA;
 
 import java.util.Stack;
 
-public class A_1_PrefixEvaluator {
+public class _1_PrefixEvaluator {
 
     public static int evaluatePrefix(String expression) {
         // Split the expression into tokens

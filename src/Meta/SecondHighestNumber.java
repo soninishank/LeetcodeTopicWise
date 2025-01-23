@@ -2,6 +2,7 @@ package Meta;
 
 import java.util.Arrays;
 
+// Find the second-highest number by rearranging an array of digits
 public class SecondHighestNumber {
     public static String findSecondHighest(int[] digits) {
         // Edge case: if the input is null or has less than 2 digits
@@ -14,7 +15,8 @@ public class SecondHighestNumber {
         reverseArray(digits);
 
         // Step 2: Find the largest number
-        String firstLargestNumber = arrayToNumber(digits);
+        String firstLargestNumber = arrayToStringBuilder(digits);
+        System.out.print(firstLargestNumber + "   ");
 
         // Step 3: Find the second-largest number by swapping the last two digits
         for (int i = digits.length - 1; i > 0; i--) {
@@ -25,13 +27,22 @@ public class SecondHighestNumber {
         }
 
         // Generate the second-largest number
-        String secondLargestNumber = arrayToNumber(digits);
+        String secondLargestNumber = arrayToStringBuilder(digits);
 
         // Edge case: if the second largest is the same as the largest (unlikely but for completeness)
         if (firstLargestNumber.equals(secondLargestNumber)) {
             return "Cannot find a distinct second highest number";
         }
         return secondLargestNumber;
+    }
+
+    // Helper method to convert an array to a number (as a String)
+    private static String arrayToStringBuilder(int[] array) {
+        StringBuilder sb = new StringBuilder();
+        for (int digit : array) {
+            sb.append(digit);
+        }
+        return sb.toString();
     }
 
     // Helper method to reverse an array
@@ -49,15 +60,6 @@ public class SecondHighestNumber {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
-    }
-
-    // Helper method to convert an array to a number (as a String)
-    private static String arrayToNumber(int[] array) {
-        StringBuilder sb = new StringBuilder();
-        for (int digit : array) {
-            sb.append(digit);
-        }
-        return sb.toString();
     }
 
     public static void main(String[] args) {

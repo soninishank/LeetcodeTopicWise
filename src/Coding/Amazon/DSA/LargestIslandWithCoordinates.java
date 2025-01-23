@@ -38,7 +38,7 @@ public class LargestIslandWithCoordinates {
             }
         }
 
-        // Step 3: If no 0 was found, return null (or [-1, -1])
+        // Step 3: If no. 0 was found, return null (or [-1, -1])
         if (bestCoordinates == null) {
             return new int[]{-1, -1};
         }

@@ -1,5 +1,7 @@
 package Coding.Math;
 
+import java.util.Arrays;
+
 public class MaximumSwap {
     public int maximumSwap(int num) {
         char[] digits = Integer.toString(num).toCharArray();
@@ -18,6 +20,8 @@ public class MaximumSwap {
             maxIndexArray[i] = maxIdx;
         }
 
+        System.out.println(Arrays.toString(maxIndexArray));
+
         // Find the first position where a swap would increase the number
         for (int i = 0; i < n; i++) {
             if (digits[i] != digits[maxIndexArray[i]]) {
@@ -35,5 +39,9 @@ public class MaximumSwap {
         int num = 2736;
         int i = new MaximumSwap().maximumSwap(num);
         System.out.println(i);
+
+        int num1 = 43183;
+        int i1 = new MaximumSwap().maximumSwap(num1);
+        System.out.println(i1);
     }
 }

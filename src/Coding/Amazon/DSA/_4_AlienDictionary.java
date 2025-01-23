@@ -1,8 +1,10 @@
 package Coding.Amazon.DSA;
 
+import Coding.Graph.KahnAlgoTopologicalSort.AlienDictionary;
+
 import java.util.*;
 
-public class A_4_AlienDictionary {
+public class _4_AlienDictionary {
     public String alienOrder(String[] words) {
         // Step 1: Initialize graph and in-degree map
         Map<Character, Set<Character>> graph = new HashMap<>();
@@ -20,23 +22,21 @@ public class A_4_AlienDictionary {
         for (int i = 0; i < words.length - 1; i++) {
             String word1 = words[i];
             String word2 = words[i + 1];
-            int minLen = Math.min(word1.length(), word2.length());
-
             // Check for a prefix condition (invalid order)
             if (word1.length() > word2.length() && word1.startsWith(word2)) {
                 return ""; // invalid order
             }
 
+            int minLen = Math.min(word1.length(), word2.length());
             // Find the first non-matching character and create an edge
             for (int j = 0; j < minLen; j++) {
                 char parent = word1.charAt(j);
                 char child = word2.charAt(j);
                 if (parent != child) {
-                    if (!graph.containsKey(parent)) {
-                        graph.put(parent, new HashSet<>());
-                    }
+                    graph.putIfAbsent(parent, new HashSet<>());
+                    boolean isNewEdge = graph.get(parent).add(child);
                     // Add the edge if it hasn't been added before
-                    if (graph.get(parent).add(child)) {
+                    if (isNewEdge) {
                         inDegree.put(child, inDegree.get(child) + 1);
                     }
                     break; // only the first non-matching character matters
@@ -62,7 +62,6 @@ public class A_4_AlienDictionary {
         while (!queue.isEmpty()) {
             char current = queue.poll();
             result.append(current);
-
             if (graph.containsKey(current)) {
                 for (char neighbor : graph.get(current)) {
                     inDegree.put(neighbor, inDegree.get(neighbor) - 1);
@@ -77,7 +76,12 @@ public class A_4_AlienDictionary {
         if (result.length() < inDegree.size()) {
             return ""; // invalid order (cycle detected)
         }
-
         return result.toString(); // result = "wertf"
+    }
+
+    public static void main(String[] args) {
+        String[] words = {"wrt", "wrf", "er", "ett", "rftt"};
+        String s = new AlienDictionary().alienOrder(words);
+        System.out.println(s);
     }
 }

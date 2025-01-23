@@ -6,56 +6,76 @@ import java.util.*;
 // Time complexity - O(n+m)
 // Space complexity - O(n+m)
 public class A_9_JobScheduler {
-    public static List<Integer> getJobExecutionOrder(List<Integer> jobIds, List<int[]> jobDependencies) {
+
+    public static List<Integer> getJobOrder(List<Integer> jobs, List<int[]> deps) {
         // Step 1: Build the graph and in-degree map
-        Map<Integer, List<Integer>> adjList = new HashMap<>();
+        Map<Integer, List<Integer>> graph = new HashMap<>();
         Map<Integer, Integer> inDegree = new HashMap<>();
-        // Initialize graph and in-degree for all jobs
-        for (int jobId : jobIds) {
-            adjList.put(jobId, new ArrayList<>());
-            inDegree.put(jobId, 0);
+
+        // Initialize the graph and in-degree map
+        for (int job : jobs) {
+            graph.put(job, new ArrayList<>());
+            inDegree.put(job, 0);
         }
-        // Add dependencies to the graph
-        for (int[] dependency : jobDependencies) {
-            int prerequisiteJob = dependency[0];
-            int dependentJob = dependency[1];
-            adjList.get(prerequisiteJob).add(dependentJob);
-            inDegree.put(dependentJob, inDegree.get(dependentJob) + 1);
+
+        // Populate the graph and in-degree map based on dependencies
+        for (int[] dep : deps) {
+            int prereq = dep[0];
+            int job = dep[1];
+            graph.get(prereq).add(job);
+            inDegree.put(job, inDegree.get(job) + 1);
         }
-        // Step 2: Add jobs with zero dependencies to the queue
+
+        // Step 2: Initialize the queue with jobs having no prerequisites (in-degree = 0)
         Queue<Integer> queue = new LinkedList<>();
-        for (int jobId : inDegree.keySet()) {
-            if (inDegree.get(jobId) == 0) {
-                queue.add(jobId);
+        for (int job : jobs) {
+            if (inDegree.get(job) == 0) {
+                queue.offer(job);
             }
         }
-        // Step 3: Process jobs in topological order
-        List<Integer> executionOrder = new ArrayList<>();
+
+        // Step 3: Perform topological sorting
+        List<Integer> order = new ArrayList<>();
         while (!queue.isEmpty()) {
             int currentJob = queue.poll();
-            executionOrder.add(currentJob);
-            for (int dependentJob : adjList.get(currentJob)) {
-                inDegree.put(dependentJob, inDegree.get(dependentJob) - 1);
-                if (inDegree.get(dependentJob) == 0) {
-                    queue.add(dependentJob);
+            order.add(currentJob);
+
+            // Reduce the in-degree of dependent jobs
+            for (int dependent : graph.get(currentJob)) {
+                inDegree.put(dependent, inDegree.get(dependent) - 1);
+                if (inDegree.get(dependent) == 0) {
+                    queue.offer(dependent);
                 }
             }
         }
-        // Step 4: Check for cycles
-        if (executionOrder.size() != jobIds.size()) {
-            return new ArrayList<>(); // Cycle detected, return empty list
+
+        // Step 4: Check if all jobs are processed
+        if (order.size() == jobs.size()) {
+            return order;
+        } else {
+            return new ArrayList<>(); // Return an empty list if there's a cycle
         }
-        return executionOrder;
     }
 
-
     public static void main(String[] args) {
-        // Example Input
+        // Example input
         List<Integer> jobs = Arrays.asList(1, 2, 3, 4);
-        List<int[]> dependencies = Arrays.asList(new int[]{1, 2}, new int[]{1, 3}, new int[]{3, 2}, new int[]{4, 2}, new int[]{4, 3});
+        List<int[]> deps = Arrays.asList(
+                new int[]{1, 2},
+                new int[]{1, 3},
+                new int[]{3, 2},
+                new int[]{4, 2},
+                new int[]{4, 3}
+        );
 
-        // Get a valid job order
-        List<Integer> result = getJobExecutionOrder(jobs, dependencies);
-        System.out.println(result); // Example Output: [1, 4, 3, 2] or [4, 1, 3, 2]
+        // Get the job order
+        List<Integer> jobOrder = getJobOrder(jobs, deps);
+
+        // Print the result
+        if (jobOrder.isEmpty()) {
+            System.out.println("No valid job order exists (cycle detected).");
+        } else {
+            System.out.println("Valid job order: " + jobOrder);
+        }
     }
 }

@@ -4,7 +4,7 @@ import Coding.Tree.TreeNode;
 
 // https://leetcode.com/problems/construct-binary-tree-from-string/
 // 536. Construct Binary Tree from String
-public class ConstructBinaryTreeFromString {
+public class _15_ConstructBinaryTreeFromString {
     public TreeNode str2tree(String s) {
         if (s.length() == 0) {
             return null;
@@ -42,5 +42,12 @@ public class ConstructBinaryTreeFromString {
             index[0]++;
         }
         return treeNode;
+    }
+
+    public static void main(String[] args) {
+        _15_ConstructBinaryTreeFromString treeNode = new _15_ConstructBinaryTreeFromString();
+        String s1 = "4(2(3)(1))(6(5))";
+        TreeNode treeNode1 = treeNode.str2tree(s1);
+
     }
 }

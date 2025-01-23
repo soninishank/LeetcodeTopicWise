@@ -38,4 +38,10 @@ public class MissingRanges {
         }
         return missingRanges;
     }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 4, 7, 13, 20};
+        List<List<Integer>> missingRanges = new MissingRanges().findMissingRanges(nums, 0, 99);
+        System.out.println(missingRanges);
+    }
 }

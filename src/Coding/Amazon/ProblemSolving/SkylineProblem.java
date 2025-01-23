@@ -2,6 +2,8 @@ package Coding.Amazon.ProblemSolving;
 
 import java.util.*;
 
+// https://leetcode.com/problems/the-skyline-problem/
+// https://chatgpt.com/c/678a08ed-6024-8008-ba73-ef99e05165bd
 public class SkylineProblem {
     // Class to represent events
     static class Event implements Comparable<Event> {

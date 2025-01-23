@@ -38,6 +38,9 @@ class ParkingGarage {
         String carType = ticketMap.remove(ticketNumber);
         int bayIndex = getBayIndex(carType);
         bays[bayIndex]++;
+        if (ticketMap.size() == 0) {
+            nextTicket = 1;
+        }
         return "departed";
     }
 
@@ -57,39 +60,21 @@ class ParkingGarage {
     public static void main(String[] args) {
         ParkingGarage garage = new ParkingGarage(1, 1, 2);
 
-        // First sequence
-        System.out.println("First Sequence Output:");
-        List<String[]> firstSequence = Arrays.asList(
-                new String[]{"arrival", "small"},
-                new String[]{"arrival", "large"},
-                new String[]{"arrival", "medium"},
-                new String[]{"arrival", "large"},
-                new String[]{"arrival", "medium"}
-        );
-        for (String[] action : firstSequence) {
-            if ("arrival".equals(action[0])) {
-                System.out.println(garage.processArrival(action[1]));
-            }
-        }
-
-        // Reset garage for the second sequence
-        garage = new ParkingGarage(1, 1, 2);
-
         // Second sequence
         System.out.println("\nSecond Sequence Output:");
         List<String[]> secondSequence = Arrays.asList(
                 new String[]{"arrival", "small"},
-                new String[]{"arrival", "large"},
+                new String[]{"arrival", "small"},
                 new String[]{"arrival", "medium"},
                 new String[]{"arrival", "large"},
-                new String[]{"depart", null, "3"},
+                new String[]{"depart", "3"},
                 new String[]{"arrival", "medium"}
         );
         for (String[] action : secondSequence) {
             if ("arrival".equals(action[0])) {
                 System.out.println(garage.processArrival(action[1]));
             } else if ("depart".equals(action[0])) {
-                System.out.println(garage.processDeparture(Integer.parseInt(action[2])));
+                System.out.println(garage.processDeparture(Integer.parseInt(action[1])));
             }
         }
     }

@@ -3,65 +3,75 @@ package Coding.Graph;
 import java.util.LinkedList;
 import java.util.Queue;
 
+//  * Use DFS + BFS to solve this WONDERFUL problem!
+//     * Step 1: use DFS to mark the first island to another number
+//     * Step 2: start from the first island, doing BFS level order traversal to find number of bridges (levels)
+//     * until reach the second island
+// https://leetcode.com/problems/shortest-bridge/
+
 public class ShortestBridge {
 
-    int[][] direction = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    private int[][] dirs = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    private Queue<int[]> queue = new LinkedList<>();    // store visited cells with x and y in an array
+    private int[][] grid;
+    private int row, col;
 
-    public int shortestBridge(int[][] grid) {
-        if (grid.length == 0) {
-            return 0;
-        }
-        // Apply DFS
-        // 1.Find first island - color all its components means connected
-        // 2.Find second island - add it in the queue
-        // 3. run the BFS - if you find the newColor 2 then return the steps
-        boolean isFirst = false;
-        int newColor = 2;
-        int islandColor = 1;
-        int steps = 0;
-        Queue<int[]> queue = new LinkedList<>();
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                if (grid[i][j] == 1 && !isFirst) {
-                    applyDFS(grid, i, j, islandColor, newColor);
-                    isFirst = true;
+    public int shortestBridge(int[][] A) {
+        grid = A;
+        row = A.length;
+        col = A[0].length;
+        boolean[][] visited = new boolean[row][col];
+        boolean found = false;
+
+        // 1. dfs to find an island, mark its cells in visited - add all the first island elements in a queue
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (found) {
+                    break;
                 }
-                if (grid[i][j] == 1 && isFirst) {
-                    queue.add(new int[]{i, j});
-                }
-            }
-        }
-        while (!queue.isEmpty()) {
-            int size = 0;
-            for (int i = 0; i < size; i++) {
-                int[] poll = queue.poll();
-                for (int[] dir : direction) {
-                    int x = dir[0] + poll[0];
-                    int y = dir[1] + poll[1];
-                    if (x < 0 || y < 0 || i > grid.length - 1 || x > grid[0].length - 1) {
-                        continue;
-                    } else if (grid[x][y] == newColor) {
-                        return steps;
-                    } else if (grid[x][y] == 0) {
-                        grid[x][y] = 1;
-                        queue.add(new int[]{x, y});
+                if (A[i][j] == 1) {
+                    dfs(visited, i, j);
+                    found = true;
+                    if (found) {
+                        break;
                     }
                 }
             }
-            steps++;
+        }
+        // 2. bfs to expand this island to reach another island
+        int step = 0;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] cell = queue.poll();
+                // Iterate in all four directions
+                for (int[] d : dirs) {
+                    int x = cell[0] + d[0];
+                    int y = cell[1] + d[1];
+                    if (x >= 0 && y >= 0 && x < row && y < col && !visited[x][y]) {    // Not in current island
+                        // If we find the island with value 1 - it means we got a second island
+                        if (A[x][y] == 1) {
+                            return step;
+                        }
+                        queue.offer(new int[]{x, y});
+                        visited[x][y] = true;
+                    }
+                }
+            }
+            step++;
         }
         return -1;
     }
 
-    private void applyDFS(int[][] grid, int i, int j, int currentColor, int newColor) {
-        if (i < 0 || j < 0 || i > grid.length - 1 || j > grid[0].length - 1 || grid[i][j] != currentColor) {
+    private void dfs(boolean[][] visited, int x, int y) {
+        if (x < 0 || y < 0 || x >= row || y >= col || visited[x][y] || grid[x][y] == 0) {
             return;
         }
-        grid[i][j] = newColor;
-        applyDFS(grid, i + 1, j, currentColor, newColor);
-        applyDFS(grid, i - 1, j, currentColor, newColor);
-        applyDFS(grid, i, j + 1, currentColor, newColor);
-        applyDFS(grid, i, j - 1, currentColor, newColor);
+        visited[x][y] = true;
+        queue.offer(new int[]{x, y});
+        for (int[] d : dirs) {
+            dfs(visited, x + d[0], y + d[1]);
+        }
     }
 
     public static void main(String[] args) {

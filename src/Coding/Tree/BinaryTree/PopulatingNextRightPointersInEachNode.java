@@ -44,6 +44,32 @@ public class PopulatingNextRightPointersInEachNode {
         return root;
     }
 
+    public void connectWithoutExtraSpace(Node root) {
+        if (root == null) {
+            return;
+        }
+        // Start with the root node
+        Node current = root;
+        while (current != null) {
+            Node dummy = new Node(0); // Dummy node to track the start of the next level
+            Node tail = dummy; // Tail pointer to connect nodes at the next level
+            // Traverse the current level
+            while (current != null) {
+                if (current.left != null) {
+                    tail.next = current.left;
+                    tail = tail.next;
+                }
+                if (current.right != null) {
+                    tail.next = current.right;
+                    tail = tail.next;
+                }
+                current = current.next; // Move to the next node at the current level
+            }
+            // Move to the next level
+            current = dummy.next;
+        }
+    }
+
     private class Node {
         public int val;
         public Node left;
@@ -63,5 +89,11 @@ public class PopulatingNextRightPointersInEachNode {
             right = _right;
             next = _next;
         }
+    }
+
+    public static void main(String[] args) {
+        PopulatingNextRightPointersInEachNode test = new PopulatingNextRightPointersInEachNode();
+
+
     }
 }

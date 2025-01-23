@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 // https://leetcode.com/discuss/interview-question/394896/Facebook-or-Phone-Screen-or-Redundant-Paths-and-Next-Permutation
+//  D be the total number of directories.
+//  M be the average number of folder names per directory.
+// L be the average length of a folder name.
+// TC - O(D×M×L)
+// SC - O(D×M×L)
 public class RemoveRedundantDirectories {
     TrieNode root;
 
