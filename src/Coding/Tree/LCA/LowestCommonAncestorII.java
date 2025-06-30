@@ -4,6 +4,7 @@ import Coding.Tree.TreeNode;
 
 // If either node p or q does not exist in the tree, return null.
 // Hence, we need to know that we have seen two values
+// In this we need to make sure that both p and q exists
 // use count variable
 // https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/
 // 1644. Lowest Common Ancestor of a Binary Tree II

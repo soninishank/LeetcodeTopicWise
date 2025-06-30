@@ -31,7 +31,7 @@ public class LowestCommonAncestorIII {
     }
 
     public static void main(String[] args) {
-// Create nodes
+        // Create nodes
         Node root = new Node(3);
         Node node5 = new Node(5);
         Node node1 = new Node(1);

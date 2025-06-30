@@ -1,24 +1,22 @@
 package Coding.Recursion;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-
 public class CoinChange {
-    public long count(int arr[], int m, int sum) {
-        // code here.
-        if (arr.length == 0) {
+    public int coinChange(int[] coins, int amount) {
+        if (coins.length == 0) {
             return 0;
         }
-        return applyRecursion(arr, sum);
+        return applyRecursion(coins, amount);
+
     }
 
-    private int applyRecursion(int[] arr, int sum) {
-        if (sum == 0) {
+    private int applyRecursion(int[] arr, int amount) {
+        if (amount == 0) {
             return 1;
         }
         int result = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] <= sum) {
-                result += applyRecursion(arr, sum - arr[i]);
+            if (arr[i] <= amount) {
+                result += applyRecursion(arr, amount - arr[i]);
             }
         }
         return result;
@@ -26,7 +24,7 @@ public class CoinChange {
 
     public static void main(String[] args) {
         int arr[] = {2, 5, 3, 6};
-        long count = new CoinChange().count(arr, arr.length, 10);
+        long count = new CoinChange().coinChange(arr, 10);
         System.out.println(count);
     }
 }

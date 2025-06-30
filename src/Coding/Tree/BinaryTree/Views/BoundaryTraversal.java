@@ -35,6 +35,7 @@ public class BoundaryTraversal {
             return;
         }
         resultList.add(root.val);
+        // This is very important
         if (root.left == null) {
             printLeftViewExcludeLeafNode(root.right);
         } else {

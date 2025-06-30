@@ -11,19 +11,24 @@ class MajorityElement {
         if (nums.length == 0) {
             return -1;
         }
-        int ans = nums[0], count = 0;
-
+        int majorElement = nums[0], count = 0;
         for (int num : nums) {
-            if (count == 0) {
-                ans = num;
+            if (count == 0) {  // reset
+                majorElement = num;
             }
-            if (ans == num) {
+            if (majorElement == num) {
                 count++;
             } else {
                 count--;
             }
         }
-        return ans;
+        return majorElement;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 2, 1, 1, 1, 2, 2};
+        int i = new MajorityElement().majorityElement(arr);
+        System.out.println(i);
     }
 }
 

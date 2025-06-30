@@ -12,7 +12,9 @@ public class RemoveInvalidParentheses {
     // Time Complexity is - O(2^n.n)
     public List<String> removeInvalidParentheses(String s) {
         List<String> result = new ArrayList<>();
-        if (s == null) return result;
+        if (s == null) {
+            return result;
+        }
 
         // Using a queue for BFS
         Queue<String> queue = new LinkedList<>();
@@ -24,7 +26,6 @@ public class RemoveInvalidParentheses {
         // Start BFS
         while (!queue.isEmpty()) {
             String current = queue.poll();
-
             // Check if the current string is valid
             if (isValid(current)) {
                 result.add(current);
@@ -35,9 +36,9 @@ public class RemoveInvalidParentheses {
 
             // Generate all possible states by removing a parenthesis
             for (int i = 0; i < current.length(); i++) {
-                if (current.charAt(i) != '(' && current.charAt(i) != ')')
+                if (current.charAt(i) != '(' && current.charAt(i) != ')') {
                     continue;
-
+                }
                 String next = current.substring(0, i) + current.substring(i + 1); // skipping one index every time
                 if (!visited.contains(next)) {
                     queue.add(next);

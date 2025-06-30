@@ -8,25 +8,25 @@ public class ASCIIToInteger_44 {
         if (s == null || s.length() == 0) {
             return 0;
         }
-        int i = 0, n = s.length();
-        int sign = 1;
-        int result = 0;
         // Step 2: Ignore leading whitespace
+        int i = 0, n = s.length();
         while (i < n && s.charAt(i) == ' ') {
             i++;
         }
         // Step 3: Check for '+' or '-' sign
+        int sign = 1;
         if (i < n && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
             sign = (s.charAt(i) == '-') ? -1 : 1;
             i++;
         }
         // Step 4: Convert digits to integer
+        int result = 0;
         while (i < n && Character.isDigit(s.charAt(i))) {
             int digit = s.charAt(i) - '0';
 
             // Step 5: Check for overflow/underflow
             // we are just simple writing this
-            // result * 10 + digit -> result = -digit/10
+            // result * 10 + digit -> result = -digit/10 -> This is exactly the same as 7. reverseInteger condition
             if (result > (Integer.MAX_VALUE - digit) / 10) {
                 return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             }

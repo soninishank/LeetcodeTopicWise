@@ -45,8 +45,7 @@ public class KeyValueCacheWithTransactions {
         try {
             String value = null;
             if (isTransactionActive) {
-                for (int i = transactionStack.size() - 1; i >= 0;
-                     i--) {
+                for (int i = transactionStack.size() - 1; i >= 0; i--) {
                     if (transactionStack.get(i).containsKey(key)) {
                         value = transactionStack.get(i).get(key);
                         break;

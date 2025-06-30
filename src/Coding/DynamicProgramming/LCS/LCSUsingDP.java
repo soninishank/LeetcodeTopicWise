@@ -1,6 +1,7 @@
 package Coding.DynamicProgramming.LCS;
 
 // https://leetcode.com/problems/longest-common-subsequence/
+// Longest Common Subsequence | DP
 public class LCSUsingDP {
     public int longestCommonSubsequence(String text1, String text2) {
         if (text1.length() == 0 || text2.length() == 0) {

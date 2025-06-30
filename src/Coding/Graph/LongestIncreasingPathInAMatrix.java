@@ -45,7 +45,7 @@ public class LongestIncreasingPathInAMatrix {
                 maxLength = Math.max(maxLength, length);
             }
         }
-        // Store the result in memoization array
+        // Store the result in a memoization array
         memo[i][j] = maxLength;
         return maxLength;
     }
@@ -57,7 +57,6 @@ public class LongestIncreasingPathInAMatrix {
                 {6, 6, 8},
                 {2, 1, 1}
         };
-
         System.out.println(solution.longestIncreasingPath(matrix)); // Output: 4
     }
 }

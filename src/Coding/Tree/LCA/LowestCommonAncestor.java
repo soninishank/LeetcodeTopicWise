@@ -11,6 +11,7 @@ import Coding.Tree.TreeNode;
 //      it means - Balanced tree - O(logN)
 //                 Skewed Tree - O(N)
 //Thus the space complexity is O(H)
+// Watch this : https://youtu.be/Oi3_06ultic?si=qxQF4hsQTSap4k_d
 public class LowestCommonAncestor {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == p || root == q || root == null) {

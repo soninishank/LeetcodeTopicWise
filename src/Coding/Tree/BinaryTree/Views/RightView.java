@@ -15,7 +15,7 @@ import java.util.Queue;
 public class RightView {
     List<Integer> result = new ArrayList<>();
 
-    public List<Integer> rightSideView(TreeNode root) {
+    public List<Integer> rightSideViewUsingBFS(TreeNode root) {
         if (root == null) {
             return result;
         }
@@ -38,4 +38,24 @@ public class RightView {
         }
         return result;
     }
+
+    public List<Integer> rightSideViewUsingDFS(TreeNode root) {
+        if (root == null) {
+            return result;
+        }
+        preOrderTraversal(root, 1, result);
+        return result;
+    }
+
+    private void preOrderTraversal(TreeNode root, int level, List<Integer> result) {
+        if (root == null) {
+            return;
+        }
+        if (result.size() < level) {
+            result.add(root.val);
+        }
+        preOrderTraversal(root.right, level + 1, result);
+        preOrderTraversal(root.left, level + 1, result);
+    }
+
 }

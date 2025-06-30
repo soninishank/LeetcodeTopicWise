@@ -8,6 +8,7 @@ public class JumpGame {
             if (reachable < i) {
                 return false;
             }
+            // i + nums[i] is the farthest we can reach from index i. - which is asked in a question
             reachable = Math.max(reachable, i + nums[i]);
         }
         return true;
@@ -18,5 +19,10 @@ public class JumpGame {
         int[] nums = {3, 2, 1, 0, 4};
         boolean b = new JumpGame().canJump(nums);
         System.out.println(b);
+
+        int[] num1 = {2, 3, 1, 1, 4};
+        boolean b1 = new JumpGame().canJump(num1);
+        System.out.println(b1);
+
     }
 }

@@ -2,6 +2,7 @@ package Coding.DynamicProgramming.LCS;
 
 import java.util.Arrays;
 
+// Longest Common Subsequence | Memoization
 public class LCSMemoization {
     public int longestCommonSubsequenceMemoization(String text1, String text2) {
         if (text1.length() == 0 || text2.length() == 0) {

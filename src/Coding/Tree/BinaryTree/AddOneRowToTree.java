@@ -43,15 +43,48 @@ public class AddOneRowToTree {
                     node.left.left = leftChild; // connect the left child
                     node.right.right = rightChild; // connect the right child
                 }
-
                 // Add the children of the current node to the queue
                 if (node.left != null) queue.offer(node.left);
                 if (node.right != null) queue.offer(node.right);
             }
-
             currentDepth++;
         }
+        return root;
+    }
 
+    public TreeNode addOneRowUsingDFS(TreeNode root, int val, int depth) {
+        if (root == null) {
+            return null;
+        }
+        if (depth == 1) {
+            TreeNode newNode = new TreeNode(val);
+            newNode.left = root;
+            return newNode;
+        }
+        int currentDepth = 1;
+        return addNode(root, val, depth, currentDepth);
+    }
+
+    private TreeNode addNode(TreeNode root, int val, int depth, int currentDepth) {
+        if (root == null) {
+            return null;
+        }
+        if (currentDepth == depth - 1) {
+            // Store previous node left and right pointers
+            TreeNode tempLeft = root.left;
+            TreeNode tempRight = root.right;
+
+            root.left = new TreeNode(val);
+            root.right = new TreeNode(val);
+
+            // Again attach to the newly added 1 node
+            root.left.left = tempLeft;
+            root.right.right = tempRight;
+
+            return root;
+        }
+        root.left = addNode(root.left, val, depth, currentDepth + 1);
+        root.right = addNode(root.right, val, depth, currentDepth + 1);
         return root;
     }
 

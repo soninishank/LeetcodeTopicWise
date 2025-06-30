@@ -1,5 +1,7 @@
 package Coding.Array;
 
+import java.util.Arrays;
+
 // https://leetcode.com/problems/product-of-array-except-self/
 // 238. Product of Array Except Self
 public class ProductOfArrayExceptSelf {
@@ -35,5 +37,11 @@ public class ProductOfArrayExceptSelf {
             rightProduct *= nums[i];   // Update the right product
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4};
+        int[] ints = new ProductOfArrayExceptSelf().productExceptSelf(arr);
+        System.out.println(Arrays.toString(ints));
     }
 }

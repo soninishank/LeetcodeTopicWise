@@ -17,9 +17,7 @@ public class MaximumProductSubarray {
                 result = 1; // Reset the product if zero is encountered
             }
         }
-
         result = 1; // Reset for the backward pass
-
         // Backward pass
         for (int j = nums.length - 1; j >= 0; j--) {
             result *= nums[j];
@@ -28,7 +26,6 @@ public class MaximumProductSubarray {
                 result = 1; // Reset the product if zero is encountered
             }
         }
-
         return max;
     }
 
